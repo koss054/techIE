@@ -14,5 +14,39 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Roboto', serif;
+    padding-top: 80px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+header .navbar {
+    padding: 0;
+    margin: 0;
+}
+
+header .container-fluid {
+    padding-left: 0;
+}
+
+header nav .navbar-brand {
+    font-size: 27px;
+    font-weight: 400;
+    padding: 10px;
+}
+
+header nav .logo-i {
+    color: cornflowerblue;
+    font-weight: 700;
+}
+
+header nav .logo-e {
+    color: cornflowerblue;
+    font-weight: 700;
 }
