@@ -105,7 +105,8 @@ header nav .navbar-brand {
     margin-right: 60px;
 }
 
-footer {
+#shared-footer {
+    position: inherit;
     display: flex;
 }
 
