@@ -77,13 +77,12 @@ header nav .navbar-brand {
     max-width: 100%;
 }
 
-.hero-second {
-    display: none;
+.hero-first {
+    display: flex;
 }
 
-.hero-img {
-    width: 100%;
-    height: auto;
+.hero-second {
+    display: none;
 }
 
 .hero-content {
@@ -91,8 +90,8 @@ header nav .navbar-brand {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     z-index: 0;
+    margin-top: 300px;
 }
 
 .hero-content-second {
@@ -100,9 +99,15 @@ header nav .navbar-brand {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     z-index: 0;
+    margin-top: 250px;
 }
+
+.hero-img {
+    width: 100%;
+    height: auto;
+}
+
 
 .hero-content .t-container {
     display: flex;
@@ -161,6 +166,50 @@ header nav .navbar-brand {
     width: 40px;
     align-self: end;
     left: 60px;
+}
+
+h4.our-categories {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+hr.hero-separator {
+    height: 8px;
+    width: 300px;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 60px;
+    color: #005BFF;
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    width: 350px;
+    height: 350px;
+}
+
+.phone-index {
+    display: flex;
+    margin: 0 35px;
+}
+
+.laptop-index {
+    display: flex;
+    margin: 0 35px;
+}
+
+.smart-watch-index {
+    display: flex;
+    margin: 0 35px;
 }
 
 .grow {
