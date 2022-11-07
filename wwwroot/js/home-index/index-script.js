@@ -37,10 +37,32 @@
         $("#smart-watch-img").removeClass("grow-category-img");
     });
 
+    $(".marketplace-index-image.explore").hover(function () {
+        $("#explore-img").toggleClass("grow-category-img", true, 1000);
+        $(".marketplace-names.explore").fadeIn(300);
+    }, function () {
+        hideMarketplaceText();
+        $("#explore-img").removeClass("grow-category-img");
+    });
+
+    $(".marketplace-index-image.create").hover(function () {
+        $("#create-img").toggleClass("grow-category-img", true, 1000);
+        $(".marketplace-names.create").fadeIn(300);
+    }, function () {
+        hideMarketplaceText();
+        $("#create-img").removeClass("grow-category-img");
+    });
+
     function hideCategoryText() {
         $(".category-names.phone").hide();
         $(".category-names.laptop").hide();
         $(".category-names.smart-watch").hide();
+        console.log("hidden");
+    }
+
+    function hideMarketplaceText() {
+        $(".marketplace-names.explore").hide();
+        $(".marketplace-names.create").hide();
         console.log("hidden");
     }
 });

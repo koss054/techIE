@@ -264,7 +264,7 @@ hr.hero-separator.pink {
     outline-color: cornflowerblue;
     font-size: 50px;
     font-weight: 700;
-    text-shadow: -1.75px -1.75px 0 deeppink, 1.75px -1.75px 0 deeppink, -1.75px 1.75px 0 deeppink, 1.75px 1.75px 0 deeppink;
+    text-shadow: -1px -1px 0 deeppink, 1px -1px 0 deeppink, -1px 1px 0 deeppink, 1px 1px 0 deeppink;
     text-align: center;
 }
 
