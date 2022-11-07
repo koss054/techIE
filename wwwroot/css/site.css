@@ -340,14 +340,12 @@ footer .bottom-nav ul li.list-title {
 footer .container {
     margin-left: 60px;
     color: dimgray;
+    display: flex;
+    justify-content: center;
 }
 
 footer .bottom-footer {
     display: flex;
     padding-right: 60px;
     background-color: #DCEBFF;
-}
-
-footer .footer-privacy {
-    margin-right: 60px;
 }
