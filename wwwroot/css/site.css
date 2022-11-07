@@ -231,10 +231,10 @@ hr.hero-separator {
     font-size: 50px;
     font-weight: 700;
     text-shadow: -2px -2px 0 cornflowerblue, 2px -2px 0 cornflowerblue, -2px 2px 0 cornflowerblue, 2px 2px 0 cornflowerblue;
+    text-align: center;
 }
 
 .category-names.smart-watch {
-    text-align: center;
 }
 
 .category-img {

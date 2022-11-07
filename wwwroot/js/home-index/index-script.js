@@ -14,24 +14,31 @@ $(".left-arrow").click(function () {
 
 $(".category-index-image.phone").hover(function () {
     $("#phone-img").toggleClass("grow-category-img", true, 1000);
-    $(".category-names.phone").show();
+    $(".category-names.phone").fadeIn(300);
 }, function () {
+    hideCategoryText();
     $("#phone-img").removeClass("grow-category-img");
-    $(".category-names.phone").hide();
 });
 
 $(".category-index-image.laptop").hover(function () {
     $("#laptop-img").toggleClass("grow-category-img", true, 1000);
-    $(".category-names.laptop").show();
+    $(".category-names.laptop").fadeIn(300);
 }, function () {
+    hideCategoryText();
     $("#laptop-img").removeClass("grow-category-img");
-    $(".category-names.laptop").hide();
 });
 
 $(".category-index-image.smart-watch").hover(function () {
     $("#smart-watch-img").toggleClass("grow-category-img", true, 1000);
-    $(".category-names.smart-watch").show();
+    $(".category-names.smart-watch").fadeIn(300);
 }, function () {
+    hideCategoryText();
     $("#smart-watch-img").removeClass("grow-category-img");
-    $(".category-names.smart-watch").hide();
 });
+
+function hideCategoryText() {
+    $(".category-names.phone").hide();
+    $(".category-names.laptop").hide();
+    $(".category-names.smart-watch").hide();
+    console.log("hidden");
+}
