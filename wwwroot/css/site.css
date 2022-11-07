@@ -39,14 +39,15 @@ header nav .navbar-brand {
     font-size: 27px;
     font-weight: 400;
     padding: 10px;
+    margin-left: 50px;
 }
 
-header nav .logo-i {
+.logo-i {
     color: cornflowerblue;
     font-weight: 700;
 }
 
-header nav .logo-e {
+.logo-e {
     color: cornflowerblue;
     font-weight: 700;
 }
@@ -57,7 +58,47 @@ header nav .logo-e {
     max-width: 100%;
 }
 
-.hero-image {
+.hero img {
     max-height: 100%;
     width: 100%;
+}
+
+.hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-content .t-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding-left: 60px;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    max-width: 600px;
+    color: #071013;
+}
+
+.hero-content p {
+    max-width: 585px;
+    font-size: 25px;
+}
+
+footer {
+    display: flex;
+}
+
+footer .container {
+    margin-left: 60px;
+}
+
+footer .footer-privacy {
+    margin-right: 60px;
 }
