@@ -295,10 +295,57 @@ hr.hero-separator.pink {
 #shared-footer {
     position: inherit;
     display: flex;
+    flex-direction: column;
+}
+
+footer .bottom-nav {
+    padding: 15px 0;
+    background-color: aliceblue;
+}
+
+footer .bottom-nav .footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+footer .bottom-nav ul {
+    list-style: none;
+    padding: 0;
+    margin-right: 60px;
+}
+
+footer .bottom-nav ul li {
+    line-height: 35px;
+}
+
+footer .bottom-nav ul li a {
+    color: dimgray;
+    font-size: 16px;
+    margin-top: 0;
+    text-decoration: none;
+    display: block;
+}
+
+footer .bottom-nav ul li.list-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: darkslategray;
 }
 
 footer .container {
     margin-left: 60px;
+    color: dimgray;
+}
+
+footer .bottom-footer {
+    display: flex;
+    padding-right: 60px;
+    background-color: #DCEBFF;
 }
 
 footer .footer-privacy {

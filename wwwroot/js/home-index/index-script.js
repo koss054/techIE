@@ -57,12 +57,10 @@
         $(".category-names.phone").hide();
         $(".category-names.laptop").hide();
         $(".category-names.smart-watch").hide();
-        console.log("hidden");
     }
 
     function hideMarketplaceText() {
         $(".marketplace-names.explore").hide();
         $(".marketplace-names.create").hide();
-        console.log("hidden");
     }
 });
