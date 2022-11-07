@@ -23,7 +23,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 9;
 }
 
 .account {
@@ -208,6 +208,12 @@ hr.hero-separator.pink {
     justify-content: center;
 }
 
+.marketplace {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .img-container {
     display: flex;
     justify-content: center;
@@ -224,16 +230,13 @@ hr.hero-separator.pink {
     justify-content: center;
 }
 
-.laptop-index {
+.marketplace-index-image {
     display: flex;
     position: relative;
     margin: 0 35px;
-}
-
-.smart-watch-index {
-    display: flex;
-    position: relative;
-    margin: 0 35px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 .category-names {
@@ -252,9 +255,27 @@ hr.hero-separator.pink {
 .category-names.smart-watch {
 }
 
+.marketplace-names {
+    position: absolute;
+    display: none;
+    z-index: 2;
+    text-transform: uppercase;
+    color: white;
+    outline-color: cornflowerblue;
+    font-size: 50px;
+    font-weight: 700;
+    text-shadow: -1.75px -1.75px 0 deeppink, 1.75px -1.75px 0 deeppink, -1.75px 1.75px 0 deeppink, 1.75px 1.75px 0 deeppink;
+    text-align: center;
+}
+
 .category-img {
     height: 300px;
     width: 300px;
+}
+
+.marketplace-img {
+    height: 300px;
+    width: 450px;
 }
 
 .grow {
