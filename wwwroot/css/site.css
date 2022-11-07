@@ -26,6 +26,10 @@ header {
     z-index: 1;
 }
 
+.account {
+    padding-right: 60px;
+}
+
 header .navbar {
     padding: 0;
     margin: 0;
@@ -58,10 +62,11 @@ header nav .navbar-brand {
     max-width: 100%;
 }
 
-.hero img {
-    max-height: 100%;
+.hero .hero-img {
     width: 100%;
+    height: auto;
 }
+
 
 .hero-content {
     position: absolute;
@@ -86,9 +91,18 @@ header nav .navbar-brand {
     color: #071013;
 }
 
-.hero-content p {
+.hero-content .hero-paragraph {
     max-width: 585px;
     font-size: 25px;
+}
+
+.right-arrow {
+    position: absolute;
+    float: right;
+    height: 40px;
+    width: 40px;
+    align-self: end;
+    margin-right: 60px;
 }
 
 footer {
