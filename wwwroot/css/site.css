@@ -79,10 +79,12 @@ header nav .navbar-brand {
 
 .hero-first {
     display: flex;
+    position: relative;
 }
 
 .hero-second {
     display: none;
+    position: relative;
 }
 
 .hero-content {
@@ -90,8 +92,8 @@ header nav .navbar-brand {
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     z-index: 0;
-    margin-top: 300px;
 }
 
 .hero-content-second {
@@ -99,8 +101,8 @@ header nav .navbar-brand {
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     z-index: 0;
-    margin-top: 250px;
 }
 
 .hero-img {
@@ -195,21 +197,49 @@ hr.hero-separator {
     justify-content: center;
     width: 350px;
     height: 350px;
+    margin-bottom: 60px;
 }
 
-.phone-index {
+.category-index-image {
     display: flex;
+    position: relative;
     margin: 0 35px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 .laptop-index {
     display: flex;
+    position: relative;
     margin: 0 35px;
 }
 
 .smart-watch-index {
     display: flex;
+    position: relative;
     margin: 0 35px;
+}
+
+.category-names {
+    position: absolute;
+    display: none;
+    z-index: 2;
+    text-transform: uppercase;
+    color: white;
+    outline-color: cornflowerblue;
+    font-size: 50px;
+    font-weight: 700;
+    text-shadow: -2px -2px 0 cornflowerblue, 2px -2px 0 cornflowerblue, -2px 2px 0 cornflowerblue, 2px 2px 0 cornflowerblue;
+}
+
+.category-names.smart-watch {
+    text-align: center;
+}
+
+.category-img {
+    height: 300px;
+    width: 300px;
 }
 
 .grow {
@@ -218,6 +248,12 @@ hr.hero-separator {
 
 .grow:hover {
     transform: scale(1.3);
+}
+
+.grow-category-img {
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+    filter: blur(5px);
 }
 
 #shared-footer {

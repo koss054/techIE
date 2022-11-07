@@ -11,3 +11,27 @@ $(".left-arrow").click(function () {
     $(".hero-second").css({ "display": "none" });
     $(".hero-first").css({ "display": "flex" });
 });
+
+$(".category-index-image.phone").hover(function () {
+    $("#phone-img").toggleClass("grow-category-img", true, 1000);
+    $(".category-names.phone").show();
+}, function () {
+    $("#phone-img").removeClass("grow-category-img");
+    $(".category-names.phone").hide();
+});
+
+$(".category-index-image.laptop").hover(function () {
+    $("#laptop-img").toggleClass("grow-category-img", true, 1000);
+    $(".category-names.laptop").show();
+}, function () {
+    $("#laptop-img").removeClass("grow-category-img");
+    $(".category-names.laptop").hide();
+});
+
+$(".category-index-image.smart-watch").hover(function () {
+    $("#smart-watch-img").toggleClass("grow-category-img", true, 1000);
+    $(".category-names.smart-watch").show();
+}, function () {
+    $("#smart-watch-img").removeClass("grow-category-img");
+    $(".category-names.smart-watch").hide();
+});
