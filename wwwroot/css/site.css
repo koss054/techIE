@@ -293,7 +293,7 @@ hr.hero-separator.pink {
 }
 
 #shared-footer {
-    position: inherit;
+    position: unset;
     display: flex;
     flex-direction: column;
 }
