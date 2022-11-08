@@ -1,18 +1,22 @@
 ﻿namespace techIE.Data.Entities.Enums
 {
+    /// <summary>
+    /// Enum for the available colors.
+    /// Making sure a valid color is selected.
+    /// </summary>
     public enum Color
     {
-        Colorful = 0,
-        Black = 1,
-        White = 2,
-        Silver = 3,
-        Gold = 4,
-        Blue = 5,
-        Red = 6,
-        Purple = 7,
-        Yellow = 8,
-        Orange = 9,
-        Green = 10,
-        Pink = 11
+        Black = 0,
+        White = 1,
+        Silver = 2,
+        Gold = 3,
+        Blue = 4,
+        Red = 5,
+        Purple = 6,
+        Yellow = 7,
+        Orange = 8,
+        Green = 9,
+        Pink = 10,
+        Colorful = 11
     }
 }

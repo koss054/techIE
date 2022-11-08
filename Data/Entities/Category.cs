@@ -12,13 +12,14 @@
         /// Category ID.
         /// </summary>
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Category name. It is visualized in two cases: 
         /// when a user browses the store or marketplace;
         /// when a user adds a product to the marketplace.
         /// </summary>
+        [Required]
         public string Name { get; set; } = null!;
 
         /// <summary>
