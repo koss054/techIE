@@ -15,19 +15,15 @@
         }
 
         /// <summary>
-        /// Constants for the Marketplace Product entity.
+        /// Constants for the Official and Marketplace Product entities.
         /// </summary>
-        public class MarketplaceProduct
+        public class Product
         {
+            public const int MinNameLength = 10;
+            public const int MaxNameLength = 100;
 
-        }
-
-        /// <summary>
-        /// Constants for the Official Product entity.
-        /// </summary>
-        public class OfficialProduct
-        {
-
+            public const int MinDescriptionLength = 10;
+            public const int MaxDescriptionLength = 10000;
         }
 
         /// <summary>
