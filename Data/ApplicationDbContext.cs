@@ -29,8 +29,7 @@
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<MarketplaceProduct> MarketplaceProducts { get; set; }
+        public DbSet<Product> Products { get; set; }
 
-        public DbSet<OfficialProduct> OfficialProducts { get; set; }
     }
 }

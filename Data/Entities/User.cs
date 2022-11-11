@@ -19,6 +19,6 @@
         /// <summary>
         /// Mapping table for the User and the Marketplace Product.
         /// </summary>
-        public virtual ICollection<UserMProduct> UsersMProducts { get; set; } = new List<UserMProduct>();
+        public virtual ICollection<UserProduct> UsersMProducts { get; set; } = new List<UserProduct>();
     }
 }
