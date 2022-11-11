@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using techIE.Models;
-
-namespace techIE.Controllers
+﻿namespace techIE.Controllers
 {
-    public class HomeController : Controller
+    using System.Diagnostics;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using Models;
+
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
