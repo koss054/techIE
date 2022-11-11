@@ -26,7 +26,7 @@
         /// ID of the user who has made the order.
         /// </summary>
         [ForeignKey(nameof(User))]
-        public int UserId { get; set; }
+        public string UserId { get; set; } = null!;
 
         /// <summary>
         /// User who has made the order.
