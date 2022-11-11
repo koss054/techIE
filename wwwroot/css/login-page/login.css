@@ -23,8 +23,9 @@
     align-items: center;
 }
 
-.login-page h3 {
+.login-page h2 {
     position: relative;
+    color: #0000008c;
 }
 
 #account {
