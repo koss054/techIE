@@ -39,6 +39,8 @@
 
             public const int MinPasswordLength = 12;
             public const int MaxPasswordLength = 32;
+
+            public const string DisplayUserName = "Username";
         }
     }
 }
