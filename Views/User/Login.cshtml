@@ -1,0 +1,33 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/login-page/login.css" asp-append-version="true" />
+</head>
+
+<section class="login-page">
+    <div class="login-img-div">
+        <img class="login-img" src="~/images/login-page/login-img.jpg" />
+    </div>
+
+    <div class="login-details flex-stack">
+        <span asp-validation-for="UserName" class="error"></span>
+        <span asp-validation-for="Password" class="error"></span>
+        <h3>Login</h3>
+        <hr />
+        <form id="account" method="post">
+            <div class="text-center mb-3">
+                <input asp-for="@Model.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter username..." />
+            </div>
+            <div class="text-center mb-3">
+                <input asp-for="@Model.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Enter password..." />
+            </div>
+            <div class="text-center">
+                <button id="login-submit" type="submit" class="btn">Log in</button>
+            </div>
+        </form>
+    </div>
+
+</section>
