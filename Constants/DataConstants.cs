@@ -15,7 +15,7 @@
         }
 
         /// <summary>
-        /// Constants for the Official and Marketplace Product entities.
+        /// Constants for the Product entity.
         /// </summary>
         public class Product
         {
@@ -31,7 +31,14 @@
         /// </summary>
         public class User
         {
+            public const int MinUserNameLength = 4;
+            public const int MaxUserNameLength = 32;
 
+            public const int MinEmailLength = 8;
+            public const int MaxEmailLength = 80;
+
+            public const int MinPasswordLength = 12;
+            public const int MaxPasswordLength = 32;
         }
     }
 }
