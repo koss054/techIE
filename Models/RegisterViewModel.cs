@@ -27,25 +27,11 @@
         public string Email { get; set; } = null!;
 
         /// <summary>
-        /// Confirmation of the email when the user is registering.
-        /// </summary>
-        [EmailAddress]
-        [Compare(nameof(Email))]
-        public string ConfirmEmail { get; set; } = null!;
-
-        /// <summary>
         /// Password of the user when registering.
         /// </summary>
         [Required]
         [DataType(DataType.Password)]
         [StringLength(MaxPasswordLength, MinimumLength = MinPasswordLength)]
         public string Password { get; set; } = null!;
-
-        /// <summary>
-        /// Confirmation of password when the user is registering.
-        /// </summary>
-        [Compare(nameof(Password))]
-        [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; } = null!;
     }
 }

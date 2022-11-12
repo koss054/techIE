@@ -1,0 +1,40 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/account/login-register.css" asp-append-version="true" />
+</head>
+
+<section class="account-page">
+    <div class="img-div">
+        <img src="~/images/account/register-img.jpg" />
+    </div>
+
+    <div class="account-details flex-stack">
+        <h2 class="mb-4">Register</h2>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form id="account" method="post">
+            <span asp-validation-for="UserName" class="error text-center"></span>
+            <div class="text-center mb-3">
+                <input asp-for="@Model.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Username..." />
+            </div>
+
+            <span asp-validation-for="Email" class="error text-center"></span>
+            <div class="text-center mb-3">
+                <input asp-for="@Model.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="Email..." />
+            </div>
+
+            <span asp-validation-for="Password" class="error text-center mb-0"></span>
+            <div class="text-center mb-3">
+                <input asp-for="@Model.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Password..." />
+            </div>
+
+            <div class="text-center">
+                <button id="account-submit" type="submit" class="btn mb-4">Register</button>
+            </div>
+        </form>
+    </div>
+</section>
