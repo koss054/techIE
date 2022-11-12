@@ -24,6 +24,14 @@
             userManager = _userManager;
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction(
+                RedirectPaths.HomeIndexPage,
+                RedirectPaths.HomeController);
+        }
+
         /// <summary>
         /// If the user is already logged in they get redirected to the home page.
         /// Otherwise, the user is redirected to the login page, where they need to enter their account details.
@@ -35,8 +43,8 @@
             if (User?.Identity?.IsAuthenticated ?? false)
             {
                 return RedirectToAction(
-                    RedirectPaths.UserAuthenticatedPage,
-                    RedirectPaths.UserAuthenticatedController);
+                    RedirectPaths.HomeIndexPage,
+                    RedirectPaths.HomeController);
             }
 
             var model = new LoginViewModel();
@@ -86,14 +94,19 @@
             if (User?.Identity?.IsAuthenticated ?? false)
             {
                 return RedirectToAction(
-                    RedirectPaths.UserAuthenticatedPage,
-                    RedirectPaths.UserAuthenticatedController);
+                    RedirectPaths.HomeIndexPage,
+                    RedirectPaths.HomeController);
             }
 
             var model = new RegisterViewModel();
             return View(model);
         }
 
+        /// <summary>
+        /// If the details aren't correct or if the model state isn't valid, the page informs the user and they can try again.
+        /// If the registration is successful, the user is redirected to the login page.
+        /// </summary>
+        /// <param name="model"></param>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
