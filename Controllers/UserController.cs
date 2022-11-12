@@ -44,7 +44,7 @@
         }
 
         /// <summary>
-        /// If the details aren't correct or if the model state isn't valid, the page refreshes and informs the user.
+        /// If the details aren't correct or if the model state isn't valid, the page informs the user and they can try again.
         /// If the login is successful, the user is redirected to the home page.
         /// </summary>
         /// <param name="model"></param>
@@ -72,6 +72,56 @@
             ModelState.AddModelError(
                 string.Empty,
                 ErrorMessages.InvalidUserDetails);
+            return View(model);
+        }
+
+        /// <summary>
+        /// If the user is already logged in, they are redirected to the home page.
+        /// Otherwise, the user is prompted to enter their account details.
+        /// </summary>
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register()
+        {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction(
+                    RedirectPaths.UserAuthenticatedPage,
+                    RedirectPaths.UserAuthenticatedController);
+            }
+
+            var model = new RegisterViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = new User
+            {
+                UserName = model.UserName,
+                Email = model.Email
+            };
+
+            var result = await userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(
+                    RedirectPaths.UserRegisterPage,
+                    RedirectPaths.UserRegisterController);
+            }
+
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, item.Description);
+            }
+
             return View(model);
         }
     }
