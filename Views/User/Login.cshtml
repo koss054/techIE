@@ -20,8 +20,17 @@
 
             <span asp-validation-for="Password" class="error text-center mb-0"></span>
             <div class="text-center mb-3">
-                <input asp-for="@Model.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Password..." />
+                <input asp-for="@Model.Password" id="pass" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Password..." />
             </div>
+
+            <div class="text-center mb-3 show-pass-div grow">
+                <img class="show-pass" src="~/images/menus/eye.svg" /><span class="show-pass-text">Show Password</span>
+            </div>
+
+            <div class="text-center mb-3 hide-pass-div grow">
+                <img class="hide-pass" src="~/images/menus/eye-slash.svg" /><span class="hide-pass-text">Hide Password</span>
+            </div>
+
             <div class="text-center">
                 <button id="account-submit" type="submit" class="btn">Log in</button>
             </div>
@@ -31,5 +40,6 @@
     <div class="img-div">
         <img src="~/images/account/login-img.jpg" />
     </div>
-
 </section>
+
+<script src="~/js/account/show-pass-script.js" asp-append-version="true"></script>
