@@ -5,11 +5,12 @@
     /// </summary>
     public static class RedirectPaths
     {
-        // ---------- User Related Redirects ----------
-        // Successfully authenticated users are redirected to the Index page of the Home controller.
-        public const string UserAuthenticatedPage = "Index";
-        public const string UserAuthenticatedController = "Home";
+        // ---------- Home Controller Redirects ----------
+        // Default redirect. Goes to the page with the hero images.
+        public const string HomeIndexPage = "Index";
+        public const string HomeController = "Home";
 
+        // ---------- User Related Redirects ----------
         // Successfully logged in users are redirected to the Index page of the Home controller.
         // Not using the constants above, in case the user needs to be redirected to a different page.
         public const string UserLoginPage = "Index";
