@@ -4,30 +4,32 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/login-page/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/account/login-register.css" asp-append-version="true" />
 </head>
 
-<section class="login-page">
-    <div class="login-img-div">
-        <img class="login-img" src="~/images/login-page/login-img.jpg" />
-    </div>
-
-    <div class="login-details flex-stack">
-        <span asp-validation-for="UserName" class="error"></span>
-        <span asp-validation-for="Password" class="error"></span>
+<section class="account-page">
+    <div class="account-details flex-stack">
         <h2>Login</h2>
         <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <form id="account" method="post">
+            <span asp-validation-for="UserName" class="error text-center"></span>
             <div class="text-center mb-3">
-                <input asp-for="@Model.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter username..." />
+                <input asp-for="@Model.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Username..." />
             </div>
+
+            <span asp-validation-for="Password" class="error text-center mb-0"></span>
             <div class="text-center mb-3">
-                <input asp-for="@Model.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Enter password..." />
+                <input asp-for="@Model.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Password..." />
             </div>
             <div class="text-center">
-                <button id="login-submit" type="submit" class="btn">Log in</button>
+                <button id="account-submit" type="submit" class="btn">Log in</button>
             </div>
         </form>
+    </div>
+
+    <div class="img-div">
+        <img src="~/images/account/login-img.jpg" />
     </div>
 
 </section>
