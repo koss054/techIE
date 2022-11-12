@@ -1,4 +1,4 @@
-﻿.login-page {
+﻿.account-page {
     display: flex;
     justify-content: center;
     padding-top: 1rem;
@@ -6,11 +6,20 @@
     margin-right: 4rem;
 }
 
-.login-img-div {
+.img-div {
     width: 480px;
 }
 
-.login-details {
+img {
+    width: 480px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.account-details {
     width: 70%;
     background-image: linear-gradient(to top, #4cadff59, #d8eeff00);
 }
@@ -23,7 +32,7 @@
     align-items: center;
 }
 
-.login-page h2 {
+.account-page h2 {
     position: relative;
     color: #0000008c;
 }
