@@ -19,6 +19,6 @@
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Value of the bool user property IsAdmin.</returns>
-        Task<bool> IsAdminAsync(string userId);
+        bool IsAdminAsync(string userId);
     }
 }

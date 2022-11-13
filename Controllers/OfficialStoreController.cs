@@ -10,10 +10,10 @@
     /// </summary>
     public class OfficialStoreController : BaseController
     {
-        public IActionResult Add()
-        {
-            var model = new AddProductViewModel();
+        //public IActionResult Add()
+        //{
+        //    var model = new AddProductViewModel();
            
-        }
+        //}
     }
 }
