@@ -24,6 +24,9 @@
 
             public const int MinDescriptionLength = 10;
             public const int MaxDescriptionLength = 10000;
+
+            public const string MinPriceValue = "0.00";
+            public const string MaxPriceValue = "10000.00";
         }
 
         /// <summary>
