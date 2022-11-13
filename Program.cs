@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
+using techIE.Contracts;
+using techIE.Services;
 using techIE.Data;
 using techIE.Data.Entities;
 
@@ -26,6 +28,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 
