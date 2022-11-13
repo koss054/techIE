@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace techIE.Controllers
+﻿namespace techIE.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+
+    using Models.Products;
+
     /// <summary>
     /// Controller that handles the logic for techIE's official store.
     /// Only items with IsOfficial == true will be displayed here.
     /// </summary>
     public class OfficialStoreController : BaseController
     {
-        public IActionResult Index()
+        public IActionResult Add()
         {
-            return View();
+            var model = new AddProductViewModel();
+           
         }
     }
 }
