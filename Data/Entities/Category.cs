@@ -26,6 +26,7 @@
         /// The value is true if the category is used in the official store page.
         /// The value is false if the category is used only in the user marketplace.
         /// </summary>
+        [Required]
         public bool IsOfficial { get; set; }
     }
 }
