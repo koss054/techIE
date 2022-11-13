@@ -40,7 +40,7 @@
         /// techIE owns imgur and wants the users the use their image hosting website to keep the product images ;)
         /// </summary>
         [Required]
-        public string Image { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
 
         /// <summary>
         /// Color of the product.
