@@ -1,7 +1,6 @@
 ﻿namespace techIE.Controllers
 {
     using System.Security.Claims;
-    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +28,8 @@
         /// <summary>
         /// Get request for adding a category to the database.
         /// Only admins can add categories.
-        /// The IsOfficial is set to "true" because of this.
+        /// The IsOfficial is set to "true" because of this. IsOfficial is false when an admin adds a category for the marketplace.
+        /// If a non admin user tries to access this, they get redirected to an error page, informing them they don't have access.
         /// </summary>
         /// <returns>AddCategoryViewModel to post request.</returns>
         [HttpGet]
@@ -38,12 +38,16 @@
             var userId = User.Claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
+            // It's no issue that userId may be null.
+            // IsAdminAsync returns false if no users' ID matches the provided one.
+            if (!userService.IsAdminAsync(userId))
+            {
+                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+            }
+
             // Admin adds a category.
             // Category is always official.
-            var model = new AddCategoryViewModel()
-            {
-                IsOfficial = true
-            };
+            var model = new AddCategoryViewModel();
 
             return View(model);
         }
@@ -65,9 +69,19 @@
             return View();
         }
 
-        private async Task<bool> IsCurrUserAdminAsync(string userId)
+        /// <summary>
+        /// Private function for checking if the current user is an admin or not.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>If userId is null it returns false. Otherwise, returns the value of user.IsAdmin.</returns>
+        private bool IsCurrUserAdminAsync()
         {
-            return await userService.IsAdminAsync(userId);
+            var userId = User.Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            // It's no issue that userId may be null.
+            // This function returns false if no users' ID matches the provided one.
+            return userService.IsAdminAsync(userId);
         }
     }
 }
