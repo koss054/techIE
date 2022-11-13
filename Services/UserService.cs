@@ -40,11 +40,13 @@
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Value of the bool user property IsAdmin.</returns>
-        public async Task<bool> IsAdminAsync(string userId)
+        public bool IsAdminAsync(string userId)
         {
-            var user = await GetUserAsync(userId);
-            return user == null 
-                ? false 
+            var user = context.Users
+                .FirstOrDefault(u => u.Id == userId);
+
+            return user == null
+                ? false
                 : user.IsAdmin;
         }
     }

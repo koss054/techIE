@@ -36,6 +36,7 @@
 
         /// <summary>
         /// Add a category to the database.
+        /// Only admins can add categories to the database, so IsOfficial is always true.
         /// </summary>
         /// <param name="model"></param>
         public async Task AddAsync(AddCategoryViewModel model)
@@ -44,7 +45,7 @@
             {
                 Id = model.Id,
                 Name = model.Name,
-                IsOfficial = model.IsOfficial
+                IsOfficial = true
             };
 
             await context.Categories.AddAsync(entity);
