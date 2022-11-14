@@ -1,4 +1,4 @@
-﻿@model AddCategoryViewModel
+﻿@model AdminCategoryViewModel
 @{
     ViewData["Title"] = "Admin - Categories";
 }
@@ -13,16 +13,20 @@
     <div class="panel-inputs">
         <div class="category-options">
             <table>
-                <form method="post">
-                    <div class="text-center">
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                        <input asp-for="@Model.Name" class="form-control single-btn" aria-required="true" placeholder="Category name..." />
-                    </div>
-
-                    <div class="text-center">
-                        <input class="btn btn-primary text-center admin-btn" type="submit" value="Add" data-confirm="Are you sure you want to update category list?" />
-                    </div>
-                </form>
+                @foreach (var category in Model.Categories) {
+                    <tr>
+                        <p>@category.Name @category.IsOfficial</p>
+                    </tr>
+                }
+                <tr>
+                    <form method="post">
+                        <div class="text-center add-category">
+                            <span asp-validation-for="@Model.AddedCategory.Name" class="text-danger"></span>
+                            <input asp-for="@Model.AddedCategory.Name" class="form-control single-btn" aria-required="true" placeholder="Category name..." />
+                            <input class="btn btn-primary text-center admin-btn" type="submit" value="Add" data-confirm="Are you sure you want to update category list?" />
+                        </div>
+                    </form>
+                </tr>
             </table>
         </div>
 
