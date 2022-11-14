@@ -6,6 +6,7 @@
     using Data;
     using Data.Entities;
     using Models.Categories;
+    using System.Net.WebSockets;
 
     /// <summary>
     /// Handling all category logic.
@@ -23,15 +24,26 @@
         /// Gets all categories from the database.
         /// </summary>
         /// <returns>List of categories.</returns>
-        public async Task<IEnumerable<CategoryViewModel>> GetAllAsync()
+        public async Task<AdminCategoryViewModel> GetAllCategoriesAsync()
         {
-            return await context.Categories
+            var entities = await context.Categories
                 .Select(c => new CategoryViewModel()
                 {
                     Id = c.Id,
                     Name = c.Name,
                     IsOfficial = c.IsOfficial
                 }).ToListAsync();
+
+            var adminEntity = new AdminCategoryViewModel()
+            {
+                Categories = entities,
+                AddedCategory = new AddCategoryViewModel()
+                {
+                    IsOfficial = false
+                }
+            };
+
+            return adminEntity;
         }
 
         /// <summary>

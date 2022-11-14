@@ -29,9 +29,8 @@
         /// Checks if the current user is an admin. If not, they are redirected.
         /// If user is admin, they can manage all categories.
         /// </summary>
-        /// <returns>CategoryModel to view for HttpPost.</returns>
         [HttpGet]
-        public IActionResult Categories()
+        public async Task<IActionResult> Categories()
         {
             var userId = User.Claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -43,9 +42,8 @@
                 return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
             }
 
-            // Admin adds a category.
-            // Category is always official.
-            var model = new AddCategoryViewModel();
+            AdminCategoryViewModel model
+                = await categoryService.GetAllCategoriesAsync();
 
             return View(model);
         }
@@ -56,14 +54,14 @@
         /// <param name="model"></param>
         /// <returns>The same view page on successfull category update.</returns>
         [HttpPost]
-        public async Task<IActionResult> Categories(AddCategoryViewModel model)
+        public async Task<IActionResult> Categories(AdminCategoryViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            await categoryService.AddAsync(model);
+            await categoryService.AddAsync(model.AddedCategory);
             return RedirectToAction(
                 RedirectPaths.AddCategoryPage,
                 RedirectPaths.AddCategoryController);
