@@ -15,20 +15,20 @@ img {
     width: 100%;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
-    .panel-inputs h2 {
-        position: absolute;
-        top: 120px;
-        color: white;
-        text-shadow: 1.5px 0 0 #255b75, 0 -1.5px 0 #255b75, 0 1.5px 0 #255b75, -1.5px 0 0 #255b75;
-    }
+.category-options {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
 
 .form-control {
-    width: 200px;
-    background: none;
+    width: 400px;
     font-size: 15px;
     padding: 10px 10px 10px 5px;
     display: block;
@@ -40,14 +40,18 @@ img {
     text-align: center;
 }
 
-.form-control:focus {
+/*.form-control:focus {
     background: none;
     width: 400px;
-}
+}*/
 
 .single-btn {
     margin-top: 1rem;
     margin-bottom: 2rem;
+}
+
+.hidden {
+    display: none;
 }
 
 /****** Page Colors ******/

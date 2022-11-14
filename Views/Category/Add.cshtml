@@ -11,17 +11,21 @@
 <div class="panel">
     <img src="~/images/admin/admin-panel.jpg" />
     <div class="panel-inputs">
-        <h2>ADMIN: Add Category</h2>
-        <form method="post">
-            <div class="mb-4 text-center">
-                <span asp-validation-for="Name" class="text-danger"></span>
-                <input asp-for="@Model.Name" class="form-control single-btn" aria-required="true" placeholder="Category name..." />
-            </div>
+        <div class="category-options">
+            <table>
+                <form method="post">
+                    <div class="text-center">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <input asp-for="@Model.Name" class="form-control single-btn" aria-required="true" placeholder="Category name..." />
+                    </div>
 
-            <div class="mb-3 text-center">
-                <input class="btn btn-primary text-center admin-btn" type="submit" value="Add" data-confirm="Are you sure you want to update category list?" />
-            </div>
-        </form>
+                    <div class="text-center">
+                        <input class="btn btn-primary text-center admin-btn" type="submit" value="Add" data-confirm="Are you sure you want to update category list?" />
+                    </div>
+                </form>
+            </table>
+        </div>
+
     </div>
 </div>
 
