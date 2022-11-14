@@ -71,20 +71,5 @@
                 RedirectPaths.AddCategoryPage,
                 RedirectPaths.AddCategoryController);
         }
-
-        /// <summary>
-        /// Private function for checking if the current user is an admin or not.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>If userId is null it returns false. Otherwise, returns the value of user.IsAdmin.</returns>
-        private bool IsCurrUserAdminAsync()
-        {
-            var userId = User.Claims
-                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-
-            // It's no issue that userId may be null.
-            // This function returns false if no users' ID matches the provided one.
-            return userService.IsAdminAsync(userId);
-        }
     }
 }
