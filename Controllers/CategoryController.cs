@@ -4,6 +4,7 @@
 
     using Microsoft.AspNetCore.Mvc;
 
+    using Constants;
     using Contracts;
     using Models.Categories;
 
@@ -66,7 +67,9 @@
             }
 
             await categoryService.AddAsync(model);
-            return View();
+            return RedirectToAction(
+                RedirectPaths.AddCategoryPage,
+                RedirectPaths.AddCategoryController);
         }
 
         /// <summary>

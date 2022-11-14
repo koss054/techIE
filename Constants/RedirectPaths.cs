@@ -19,5 +19,9 @@
         // Successfully registered users are redirected to the Login page of the User controller.
         public const string UserRegisterPage = "Login";
         public const string UserRegisterController = "User";
+
+        // ---------- Category Controller Redirects ----------
+        public const string AddCategoryPage = "Add";
+        public const string AddCategoryController = "Category";
     }
 }
