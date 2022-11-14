@@ -1,0 +1,74 @@
+﻿/****** Page Layout ******/
+img {
+    max-width: 600px;
+}
+
+.panel {
+    margin: 1rem 60px 0 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-image: linear-gradient(to top, #180d5b00, #2f7b9fbd);
+}
+
+.panel-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .panel-inputs h2 {
+        position: absolute;
+        top: 120px;
+        color: white;
+        text-shadow: 1.5px 0 0 #255b75, 0 -1.5px 0 #255b75, 0 1.5px 0 #255b75, -1.5px 0 0 #255b75;
+    }
+
+.form-control {
+    width: 200px;
+    background: none;
+    font-size: 15px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    border: none;
+    border-radius: 1px;
+    border-bottom: 1px solid #669eb8;
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+    text-align: center;
+}
+
+.form-control:focus {
+    background: none;
+    width: 400px;
+}
+
+.single-btn {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+/****** Page Colors ******/
+.logo-i {
+    color: #43e8e1;
+}
+
+.logo-e {
+    color: #43e8e1;
+}
+
+.admin-btn {
+    background-image: radial-gradient(100% 100% at 100% 0, #43e8e1 0, #2f7b9edb 100%);
+}
+
+footer .bottom-nav {
+    background-color: #43e8e136;
+}
+
+footer .bottom-footer {
+    background-color: #38b2bf69;
+}
+
+/****** Button Style ******/
