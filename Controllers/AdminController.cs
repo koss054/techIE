@@ -9,16 +9,15 @@
     using Models.Categories;
 
     /// <summary>
-    /// Controller for the category entity.
-    /// Only accessible by admin users.
-    /// The allowed users can add more categories to the database.
+    /// Controller for the admin access.
+    /// Only accessible by IsAdmin == true; users.
     /// </summary>
-    public class CategoryController : BaseController
+    public class AdminController : BaseController
     {
         private readonly IUserService userService;
         private readonly ICategoryService categoryService;
 
-        public CategoryController(
+        public AdminController(
             IUserService _userService, 
             ICategoryService _categoryService)
         {
@@ -27,14 +26,12 @@
         }
 
         /// <summary>
-        /// Get request for adding a category to the database.
-        /// Only admins can add categories.
-        /// The IsOfficial is set to "true" because of this. IsOfficial is false when an admin adds a category for the marketplace.
-        /// If a non admin user tries to access this, they get redirected to an error page, informing them they don't have access.
+        /// Checks if the current user is an admin. If not, they are redirected.
+        /// If user is admin, they can manage all categories.
         /// </summary>
-        /// <returns>AddCategoryViewModel to post request.</returns>
+        /// <returns>CategoryModel to view for HttpPost.</returns>
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Categories()
         {
             var userId = User.Claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -54,12 +51,12 @@
         }
 
         /// <summary>
-        /// Post request for adding a category to the database.
+        /// Post request for adding a category/updating existing categories.
         /// </summary>
         /// <param name="model"></param>
-        /// <returns>The same view, so the admin can add more categories if they want to.</returns>
+        /// <returns>The same view page on successfull category update.</returns>
         [HttpPost]
-        public async Task<IActionResult> Add(AddCategoryViewModel model)
+        public async Task<IActionResult> Categories(AddCategoryViewModel model)
         {
             if (!ModelState.IsValid)
             {
