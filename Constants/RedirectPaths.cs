@@ -21,7 +21,7 @@
         public const string UserRegisterController = "User";
 
         // ---------- Admin Controller Redirects ----------
-        public const string AddCategoryPage = "Categories";
-        public const string AddCategoryController = "Admin";
+        public const string UpdateCategoryPage = "Categories";
+        public const string UpdateCategoryController = "Admin";
     }
 }
