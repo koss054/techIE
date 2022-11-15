@@ -32,16 +32,23 @@
                 {
                     <tr>
                         <td>
-                            <p>@category.Name</p>
+                            @if(category.IsOfficial) {
+                                <p style="color: #0f2650">@category.Name</p>
+                            } else {
+                                <p style="color: #540061">@category.Name</p>
+                            }
                         </td>
                         <td>
-                            <p>@category.IsOfficial</p>
+                            @if (category.IsOfficial) {
+                                <img src="~/images/menus/verified.svg" style="width: 25px">
+                            } else {
+                            }
                         </td>
                         <td>
-                            E
+                            <img src="~/images/menus/edit.svg" style="width: 25px">
                         </td>
                         <td>
-                            D
+                            <img src="~/images/menus/delete.svg" style="width: 25px">
                         </td>
                     </tr>
                 }
