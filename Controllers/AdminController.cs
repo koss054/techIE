@@ -43,28 +43,9 @@
             }
 
             AdminCategoryViewModel model
-                = await categoryService.GetAllCategoriesAsync();
+                = await categoryService.GetAllAsync();
 
             return View(model);
-        }
-
-        /// <summary>
-        /// Post request for adding a category/updating existing categories.
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns>The same view page on successfull category update.</returns>
-        [HttpPost]
-        public async Task<IActionResult> Categories(AdminCategoryViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            await categoryService.AddAsync(model.AddedCategory);
-            return RedirectToAction(
-                RedirectPaths.AddCategoryPage,
-                RedirectPaths.AddCategoryController);
         }
     }
 }
