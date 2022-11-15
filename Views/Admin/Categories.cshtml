@@ -41,17 +41,17 @@
                         <td>
                             <a asp-controller="Category" asp-action="Verify" asp-route-id="@category.Id">
                             @if (category.IsOfficial) {
-                                <img src="~/images/menus/verified.svg" style="width: 25px">
+                                <img class="grow" src="~/images/menus/verified.svg" style="width: 25px">
                             } else {
-                                <img src="~/images/menus/square.svg" style="width: 25px">
+                                <img class="grow" src="~/images/menus/square.svg" style="width: 25px">
                             }
                             </a>
                         </td>
                         <td>
-                            <img src="~/images/menus/edit.svg" style="width: 25px">
+                            <img class="grow" src="~/images/menus/edit.svg" style="width: 25px">
                         </td>
                         <td>
-                            <img src="~/images/menus/delete.svg" style="width: 25px">
+                            <img class="grow" src="~/images/menus/delete.svg" style="width: 25px">
                         </td>
                     </tr>
                 }

@@ -88,6 +88,14 @@ tbody:hover,
     display: none;
 }
 
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.3);
+}
+
 .logo-i {
     color: #43e8e1;
 }
