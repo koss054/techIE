@@ -176,7 +176,7 @@ namespace techIE.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("techIE.Data.Entities.Order", b =>
@@ -198,7 +198,7 @@ namespace techIE.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("techIE.Data.Entities.Product", b =>
@@ -244,7 +244,7 @@ namespace techIE.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("techIE.Data.Entities.User", b =>
@@ -329,7 +329,7 @@ namespace techIE.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("UserProduct");
+                    b.ToTable("UserProduct", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
