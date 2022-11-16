@@ -74,6 +74,14 @@ tbody:hover,
     align-items: baseline;
 }
 
+.category-edit {
+    position: fixed;
+    top: 7rem;
+    background: yellow;
+    padding: 120px;
+    z-index: 10;
+}
+
 /*.form-control:focus {
     background: none;
     width: 400px;
@@ -94,6 +102,17 @@ tbody:hover,
 
 .grow:hover {
     transform: scale(1.3);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
 }
 
 .logo-i {
