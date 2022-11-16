@@ -32,5 +32,12 @@
         /// <param name="id">Id of the category that should be verified.</param>
         /// <returns></returns>
         Task VerifyAsync(int id);
+
+        /// <summary>
+        /// Delete a category from the list.
+        /// </summary>
+        /// <param name="id">Id of the category that should be deleted.</param>
+        /// <returns></returns>
+        Task DeleteAsync(int id);
     }
 }

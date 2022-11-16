@@ -55,5 +55,18 @@
                 RedirectPaths.UpdateCategoryPage,
                 RedirectPaths.UpdateCategoryController);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("PLACE", "HOLDER");
+            }
+
+            await categoryService.DeleteAsync(id);
+            return RedirectToAction(
+                RedirectPaths.UpdateCategoryPage,
+                RedirectPaths.UpdateCategoryController);
+        }
     }
 }

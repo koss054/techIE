@@ -91,5 +91,20 @@
                 await context.SaveChangesAsync();
             }
         }
+
+        /// <summary>
+        /// Delete a category from the list.
+        /// </summary>
+        /// <param name="id">Id of the category that should be deleted.</param>
+        /// <returns></returns>
+        public async Task DeleteAsync(int id)
+        {
+            var entity = await this.GetAsync(id);
+            if (entity != null)
+            {
+                context.Remove(entity);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
