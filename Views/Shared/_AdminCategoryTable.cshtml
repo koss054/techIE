@@ -1,4 +1,4 @@
-﻿@model AdminCategoryViewModel
+﻿@model IEnumerable<CategoryViewModel>
 
 <table>
     @*Table headers*@
@@ -18,7 +18,7 @@
     </tr>
 
     @*Category Name, IsOfficial toggle and options to Edit or Delete*@
-    @foreach (var category in Model.Categories)
+    @foreach (var category in Model)
     {
         <tr>
             <td>

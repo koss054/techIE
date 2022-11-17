@@ -42,9 +42,7 @@
                 return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
             }
 
-            AdminCategoryViewModel model
-                = await categoryService.GetAllAsync();
-
+            var model = await categoryService.GetAllAsync();
             return View(model);
         }
     }

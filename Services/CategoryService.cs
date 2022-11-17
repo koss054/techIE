@@ -34,7 +34,7 @@
         /// Gets all categories from the database.
         /// </summary>
         /// <returns>List of categories.</returns>
-        public async Task<AdminCategoryViewModel> GetAllAsync()
+        public async Task<IEnumerable<CategoryViewModel>> GetAllAsync()
         {
             var entities = await context.Categories
                 .Select(c => new CategoryViewModel()
@@ -44,16 +44,7 @@
                     IsOfficial = c.IsOfficial
                 }).ToListAsync();
 
-            var adminEntity = new AdminCategoryViewModel()
-            {
-                Categories = entities,
-                AddedCategory = new AddCategoryViewModel()
-                {
-                    IsOfficial = false
-                }
-            };
-
-            return adminEntity;
+            return entities;
         }
 
         /// <summary>

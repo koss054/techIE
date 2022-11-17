@@ -18,7 +18,7 @@
         /// Gets all categories from the database.
         /// </summary>
         /// <returns>List of categories.</returns>
-        Task<AdminCategoryViewModel> GetAllAsync();
+        Task<IEnumerable<CategoryViewModel>> GetAllAsync();
 
         /// <summary>
         /// Add a category to the database.
