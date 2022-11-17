@@ -42,7 +42,7 @@
                 return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
             }
 
-            var model = new AddProductViewModel()
+            var model = new ProductFormViewModel()
             {
                 Categories = await categoryService.GetOfficialAsync()
             };
@@ -57,7 +57,7 @@
         /// <param name="model"></param>
         /// <returns>Admin product panel on successful add. Otherwise, the user can try to add the product again.</returns>
         [HttpPost]
-        public async Task<IActionResult> Add(AddProductViewModel model)
+        public async Task<IActionResult> Add(ProductFormViewModel model)
         {
             // It's no issue that userId may be null.
             // IsAdminAsync returns false if no users' ID matches the provided one.

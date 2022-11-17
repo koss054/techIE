@@ -13,7 +13,7 @@
     /// View model used for adding a product to the database/stores.
     /// Only admin accounts can add products to the official store.
     /// </summary>
-    public class AddProductViewModel
+    public class ProductFormViewModel
     {
         /// <summary>
         /// Name of the product.

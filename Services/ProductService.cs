@@ -46,7 +46,7 @@
         /// Add a category to the database.
         /// </summary>
         /// <param name="model">Model with validation.</param>
-        public async Task AddAsync(AddProductViewModel model)
+        public async Task AddAsync(ProductFormViewModel model)
         {
             var entity = new Product()
             {

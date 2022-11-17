@@ -19,6 +19,6 @@
         /// Add a category to the database.
         /// </summary>
         /// <param name="model">Model with validation.</param>
-        Task AddAsync(AddProductViewModel model);
+        Task AddAsync(ProductFormViewModel model);
     }
 }
