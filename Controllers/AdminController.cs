@@ -44,6 +44,10 @@
             return View(model);
         }
 
+        /// <summary>
+        /// Checks if the current user is an admin. If not, they are redirected.
+        /// If user is admin, they can manage all official products.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Products()
         {
