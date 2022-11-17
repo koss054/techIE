@@ -16,9 +16,9 @@
         Task<IEnumerable<ProductAdminPanelViewModel>> GetAllOfficialAsync();
 
         /// <summary>
-        /// Get all of the official categories from the database.
+        /// Add a category to the database.
         /// </summary>
-        /// <returns>A list containing all of the official categories that are currently added to the database.</returns>
-        Task<IEnumerable<CategoryViewModel>> GetOfficialCategoriesAsync();
+        /// <param name="model">Model with validation.</param>
+        Task AddAsync(AddProductViewModel model);
     }
 }

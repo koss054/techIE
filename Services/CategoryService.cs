@@ -48,6 +48,22 @@
         }
 
         /// <summary>
+        /// Get all of the official categories from the database.
+        /// </summary>
+        /// <returns>A list containing all of the official categories that are currently added to the database.</returns>
+        public async Task<IEnumerable<CategoryViewModel>> GetOfficialAsync()
+        {
+            return await context.Categories
+                .Where(c => c.IsOfficial)
+                .Select(c => new CategoryViewModel()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    IsOfficial = c.IsOfficial
+                }).ToListAsync();
+        }
+
+        /// <summary>
         /// Add a category to the database.
         /// Only admins can add categories to the database.
         /// </summary>

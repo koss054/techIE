@@ -9,6 +9,8 @@
     using Models.Products;
     using Models.Categories;
     using Data;
+    using Data.Entities;
+    using Data.Entities.Enums;
 
     /// <summary>
     /// Handling all product logic.
@@ -41,19 +43,26 @@
         }
 
         /// <summary>
-        /// Get all of the official categories from the database.
+        /// Add a category to the database.
         /// </summary>
-        /// <returns>A list containing all of the official categories that are currently added to the database.</returns>
-        public async Task<IEnumerable<CategoryViewModel>> GetOfficialCategoriesAsync()
+        /// <param name="model">Model with validation.</param>
+        public async Task AddAsync(AddProductViewModel model)
         {
-            return await context.Categories
-                .Where(c => c.IsOfficial)
-                .Select(c => new CategoryViewModel()
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    IsOfficial = c.IsOfficial
-                }).ToListAsync();
+            var entity = new Product()
+            {
+                Name = model.Name,
+                Price = model.Price,
+                ImageUrl = model.ImageUrl,
+                Color = (Color)model.Color,
+                Description = model.Description,
+                IsOfficial = true,
+                CategoryId = model.CategoryId
+            };
+
+            await context.Products.AddAsync(entity);
+            await context.SaveChangesAsync();
         }
+
+        
     }
 }
