@@ -53,10 +53,19 @@ tbody:hover,
     overflow-y: auto;
 }
 
+.category-table {
+    margin-top: 7rem;
+    margin-bottom: 2rem;
+    max-height: 500px;
+}
+
 .category-options {
     margin-top: 7rem;
     margin-bottom: 2rem;
     max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-control {
