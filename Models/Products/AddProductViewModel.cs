@@ -3,7 +3,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Models.Categories;
     using Data.Entities;
+    using Data.Entities.Enums;
 
     using static Constants.DataConstants.Product;
 
@@ -42,7 +44,7 @@
         /// Changes the color of the product image.
         /// </summary>
         [Required]
-        public string Color { get; set; } = null!;
+        public Color Color { get; set; }
 
         /// <summary>
         /// Description of the product.
@@ -53,13 +55,6 @@
         public string Description { get; set; } = null!;
 
         /// <summary>
-        /// True if listed by techIE.
-        /// False if listed by user.
-        /// </summary>
-        [Required]
-        public bool IsOfficial { get; set; }
-
-        /// <summary>
         /// Foreign key for the category.
         /// </summary>
         [ForeignKey(nameof(Category))]
@@ -68,6 +63,6 @@
         /// <summary>
         /// Selection of categories for the product that is being added.
         /// </summary>
-        public IEnumerable<Category> Categories { get; set; } = new List<Category>();
+        public IEnumerable<CategoryViewModel> Categories { get; set; } = new List<CategoryViewModel>();
     }
 }
