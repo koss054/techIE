@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ProductAdminPanelViewModel>
+@{
+    ViewData["Title"] = "Admin - Categories";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/button-style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/admin-panel.css" asp-append-version="true" />
+</head>
+
+<div class="panel">
+    <img src="~/images/admin/admin-panel.jpg" />
+    <div class="panel-inputs">
+        <div class="category-table">
+            <partial name="_AdminProductTable" />
+        </div>
+        
+    </div>
+</div>
+
+<script src="~/js/alert/confrimation.js" asp-append-version="true"></script>
