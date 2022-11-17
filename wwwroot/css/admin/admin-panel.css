@@ -20,6 +20,10 @@ td {
     color: #06002e;
 }
 
+td.add-btn{
+    padding-bottom: 1rem;
+}
+
 th {
     padding: 7px;
     background-color: #1c0e72b5;
