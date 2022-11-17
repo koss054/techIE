@@ -24,13 +24,18 @@
         /// Add a category to the database.
         /// </summary>
         /// <param name="model"></param>
-        Task AddAsync(AddCategoryViewModel model);
+        Task AddAsync(CategoryFormViewModel model);
+
+        /// <summary>
+        /// Edit a category from the database
+        /// </summary>
+        /// <param name="model"></param>
+        Task EditAsync(CategoryFormViewModel model);
 
         /// <summary>
         /// Toggles the IsOfficial property for the selected category.
         /// </summary>
         /// <param name="id">Id of the category that should be verified.</param>
-        /// <returns></returns>
         Task VerifyAsync(int id);
 
         /// <summary>

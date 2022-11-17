@@ -44,7 +44,9 @@
                 </a>
             </td>
             <td>
-                <img class="grow" src="~/images/menus/edit.svg" style="width: 25px">
+                <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id">
+                    <img class="grow" src="~/images/menus/edit.svg" style="width: 25px">
+                </a>
             </td>
             <td>
                 @if (!category.IsOfficial)

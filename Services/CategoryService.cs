@@ -52,7 +52,7 @@
         /// Only admins can add categories to the database.
         /// </summary>
         /// <param name="model"></param>
-        public async Task AddAsync(AddCategoryViewModel model)
+        public async Task AddAsync(CategoryFormViewModel model)
         {
             var entity = new Category()
             {
@@ -63,6 +63,22 @@
 
             await context.Categories.AddAsync(entity);
             await context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Edit a category from the database.
+        /// </summary>
+        /// <param name="model"></param>
+        public async Task EditAsync(CategoryFormViewModel model)
+        {
+            var entity = await context.Categories
+                .FirstOrDefaultAsync(c => c.Id == model.Id);
+
+            if (entity != null)
+            {
+                entity.Name = model.Name;
+                await context.SaveChangesAsync();
+            }
         }
 
         /// <summary>
