@@ -1,0 +1,35 @@
+﻿@model ProductFormViewModel
+@{
+    ViewData["Title"] = "Admin - Edit Official Product";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/button-style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form-focus.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form-input.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/admin-panel.css" asp-append-version="true" />
+</head>
+
+<div class="panel">
+    <img src="~/images/admin/admin-panel.jpg" />
+    <div class="panel-inputs">
+        <div class="category-options">
+            <h2 class="mb-4">
+                ADMIN: Edit Official Product
+            </h2>
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <form method="post">
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control" asp-for="@Model.Name" aria-required="true" placeholder="Name..." />
+                </div>
+                <div class="mb-3 text-center">
+                    <input class="btn btn-primary text-center admin-btn" type="submit" value="Edit" data-confirm="Are you sure you want to update category name?" />
+                    <input class="btn btn-primary text-center admin-btn" type="button" value="Back" onclick="location.href='@Url.Action("Products", "Admin")'" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/js/alert/confrimation.js" asp-append-version="true"></script>
