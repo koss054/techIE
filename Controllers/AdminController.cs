@@ -4,9 +4,7 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    using Constants;
     using Contracts;
-    using Models.Categories;
 
     /// <summary>
     /// Controller for the admin access.
@@ -32,12 +30,9 @@
         [HttpGet]
         public async Task<IActionResult> Categories()
         {
-            var userId = User.Claims
-                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-
             // It's no issue that userId may be null.
             // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(userId))
+            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
                 return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
             }

@@ -1,5 +1,7 @@
 ﻿namespace techIE.Controllers
 {
+    using System.Security.Claims;
+
     using Microsoft.AspNetCore.Mvc;
 
     using Constants;
@@ -12,10 +14,14 @@
     /// </summary>
     public class CategoryController : BaseController
     {
+        private readonly IUserService userService;
         private readonly ICategoryService categoryService;
 
-        public CategoryController(ICategoryService _categoryService)
+        public CategoryController(
+            IUserService _userService,
+            ICategoryService _categoryService)
         {
+            userService = _userService;
             categoryService = _categoryService;
         }
 
@@ -27,6 +33,13 @@
 
         public IActionResult Add()
         {
+            // It's no issue that userId may be null.
+            // IsAdminAsync returns false if no users' ID matches the provided one.
+            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            {
+                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+            }
+
             var model = new CategoryFormViewModel();
             return View(model);
         }
@@ -58,6 +71,13 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            // It's no issue that userId may be null.
+            // IsAdminAsync returns false if no users' ID matches the provided one.
+            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            {
+                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+            }
+
             var entity = await categoryService.GetAsync(id);
             var model = new CategoryFormViewModel()
             {
