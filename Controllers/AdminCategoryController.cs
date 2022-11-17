@@ -12,12 +12,12 @@
     /// Controller managing the actions which are available in the admin category panel.
     /// No views pages are used here.
     /// </summary>
-    public class CategoryController : BaseController
+    public class AdminCategoryController : BaseController
     {
         private readonly IUserService userService;
         private readonly ICategoryService categoryService;
 
-        public CategoryController(
+        public AdminCategoryController(
             IUserService _userService,
             ICategoryService _categoryService)
         {
@@ -115,6 +115,11 @@
         /// <returns></returns>
         public async Task<IActionResult> Verify(int id)
         {
+            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            {
+                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+            }
+
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("PLACE", "HOLDER");
@@ -128,6 +133,11 @@
 
         public async Task<IActionResult> Delete(int id)
         {
+            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            {
+                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+            }
+
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("PLACE", "HOLDER");
