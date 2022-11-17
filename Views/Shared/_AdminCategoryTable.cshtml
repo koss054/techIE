@@ -56,11 +56,13 @@
             </td>
         </tr>
     }
-    @*Add Category input*@
-    <partial name="_AdminCategoryAdd" />
 
     @*Add to category list button*@
     <tr>
-        <td class="add-btn" colspan="4">+</td>
+        <td class="add-btn" colspan="4">
+            <a asp-controller="Category" asp-action="Add">
+                <img class="grow" src="~/images/menus/add.svg" style="width: 25px"/>
+            </a>
+        </td>
     </tr>
 </table>
