@@ -14,13 +14,16 @@
     {
         private readonly IUserService userService;
         private readonly ICategoryService categoryService;
+        private readonly IProductService productService;
 
         public AdminController(
             IUserService _userService, 
-            ICategoryService _categoryService)
+            ICategoryService _categoryService,
+            IProductService _productService)
         {
             userService = _userService;
             categoryService = _categoryService;
+            productService = _productService;
         }
 
         /// <summary>
@@ -38,6 +41,20 @@
             }
 
             var model = await categoryService.GetAllAsync();
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Products()
+        {
+            // It's no issue that userId may be null.
+            // IsAdminAsync returns false if no users' ID matches the provided one.
+            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            {
+                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+            }
+
+            var model = await productService.GetAllOfficialAsync();
             return View(model);
         }
     }
