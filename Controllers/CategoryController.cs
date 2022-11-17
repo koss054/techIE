@@ -19,20 +19,26 @@
             categoryService = _categoryService;
         }
 
+        public IActionResult Add()
+        {
+            var model = new AddCategoryViewModel();
+            return View(model);
+        }
+
         /// <summary>
         /// Post request for adding a category/updating existing categories.
         /// </summary>
         /// <param name="model">View model containing all of the categories and the add view model.</param>
         /// <returns>The same view page on successfull category update.</returns>
         [HttpPost]
-        public async Task<IActionResult> Add(AdminCategoryViewModel model)
+        public async Task<IActionResult> Add(AddCategoryViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("PLACE", "HOLDER");
+                return View(model);
             }
 
-            await categoryService.AddAsync(model.AddedCategory);
+            await categoryService.AddAsync(model);
             return RedirectToAction(
                 RedirectPaths.UpdateCategoryPage,
                 RedirectPaths.UpdateCategoryController);
