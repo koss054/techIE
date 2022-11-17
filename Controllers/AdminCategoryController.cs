@@ -52,6 +52,13 @@
         [HttpPost]
         public async Task<IActionResult> Add(CategoryFormViewModel model)
         {
+            // It's no issue that userId may be null.
+            // IsAdminAsync returns false if no users' ID matches the provided one.
+            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            {
+                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
