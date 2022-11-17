@@ -11,8 +11,3 @@
     transition: width .35s ease-in-out;
     text-align: center;
 }
-
-.form-control:focus {
-    background: none;
-    width: 400px;
-}

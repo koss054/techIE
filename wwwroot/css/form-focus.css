@@ -1,0 +1,4 @@
+﻿.form-control:focus {
+    background: none;
+    width: 400px;
+}
