@@ -7,7 +7,6 @@
 
     using Contracts;
     using Models.Products;
-    using Models.Categories;
     using Data;
     using Data.Entities;
     using Data.Entities.Enums;
@@ -22,6 +21,17 @@
         public ProductService(AppDbContext _context)
         {
             context = _context;
+        }
+
+        /// <summary>
+        /// Get a product with provided Id.
+        /// </summary>
+        /// <param name="id">Id of requested product.</param>
+        /// <returns>Product with matching Id.</returns>
+        public async Task<Product?> GetAsync(int id)
+        {
+            return await context.Products
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         /// <summary>
@@ -63,6 +73,39 @@
             await context.SaveChangesAsync();
         }
 
-        
+        /// <summary>
+        /// Edit a product from the database.
+        /// </summary>
+        /// <param name="model">Model with validation.</param>
+        public async Task EditAsync(ProductFormViewModel model)
+        {
+            var entity = await context.Products
+                .FirstOrDefaultAsync(p => p.Id == model.Id);
+
+            if (entity != null)
+            {
+                entity.Name = model.Name;
+                entity.Price = model.Price;
+                entity.ImageUrl = model.ImageUrl;
+                entity.Color = model.Color;
+                entity.Description = model.Description;
+                entity.CategoryId = model.CategoryId;
+                await context.SaveChangesAsync();
+            }
+        }
+
+        /// <summary>
+        /// Delete a product from the database;
+        /// </summary>
+        /// <param name="id">Id of deleted product.</param>
+        public async Task DeleteAsync(int id)
+        {
+            var entity = await this.GetAsync(id);
+            if (entity != null)
+            {
+                context.Remove(entity);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
