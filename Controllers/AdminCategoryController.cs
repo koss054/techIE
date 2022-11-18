@@ -138,6 +138,11 @@
                 RedirectPaths.UpdateCategoryController);
         }
 
+        /// <summary>
+        /// Delete category from database.
+        /// </summary>
+        /// <param name="id">Id of category that will be deleted.</param>
+        /// <returns>Returns to panel page if successful.</returns>
         public async Task<IActionResult> Delete(int id)
         {
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
