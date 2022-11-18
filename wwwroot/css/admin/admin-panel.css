@@ -1,4 +1,5 @@
 ﻿img {
+    max-height: 450px;
     max-width: 600px;
 }
 
@@ -54,11 +55,12 @@ tbody:hover,
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    max-height: 500px;
+    max-height: 450px;
     overflow-y: auto;
 }
 
-.category-table, .product-table {
+.category-table,
+ .product-table {
     margin-top: 7rem;
     margin-bottom: 2rem;
     max-height: 500px;
