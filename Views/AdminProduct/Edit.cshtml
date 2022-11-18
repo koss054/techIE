@@ -1,4 +1,5 @@
-﻿@model ProductFormViewModel
+﻿@using techIE.Data.Entities.Enums
+@model ProductFormViewModel
 @{
     ViewData["Title"] = "Admin - Edit Official Product";
 }
@@ -13,17 +14,50 @@
 <div class="panel">
     <img src="~/images/admin/admin-panel.jpg" />
     <div class="panel-inputs">
-        <div class="category-options">
+        <div class="category-options text-center">
             <h2 class="mb-4">
                 ADMIN: Edit Official Product
             </h2>
-            <span asp-validation-for="Name" class="text-danger"></span>
             <form method="post">
+                <span asp-validation-for="Name" class="text-danger"></span>
                 <div class="mb-4 mt-4 text-center">
                     <input class="form-control" asp-for="@Model.Name" aria-required="true" placeholder="Name..." />
                 </div>
+
+                <span asp-validation-for="Price" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control" asp-for="@Model.Price" aria-required="true" placeholder="Price..." />
+                </div>
+
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control" type="url" asp-for="@Model.ImageUrl" aria-required="true" placeholder="Image Url..." />
+                </div>
+
+                <div class="mb-4 mt-4 text-center">
+                    <select asp-for="Color"
+                            class="form-control"
+                            asp-items="Html.GetEnumSelectList<Color>()">
+                    </select>
+                </div>
+
+                <span asp-validation-for="Description" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <textarea class="form-control" asp-for="@Model.Description" aria-required="true" placeholder="Write product description here...">
+                    </textarea>
+                </div>
+
+                <div class="mb-4 mt-4 text-center">
+                    <select asp-for="@Model.CategoryId" class="form-control">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                    </select>
+                </div>
+
                 <div class="mb-3 text-center">
-                    <input class="btn btn-primary text-center admin-btn" type="submit" value="Edit" data-confirm="Are you sure you want to update category name?" />
+                    <input class="btn btn-primary text-center admin-btn" type="submit" value="Edit" data-confirm="Are you sure you want to edit product details?" />
                     <input class="btn btn-primary text-center admin-btn" type="button" value="Back" onclick="location.href='@Url.Action("Products", "Admin")'" />
                 </div>
             </form>
