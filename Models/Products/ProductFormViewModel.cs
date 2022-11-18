@@ -16,6 +16,12 @@
     public class ProductFormViewModel
     {
         /// <summary>
+        /// Id of the product.
+        /// </summary>
+        [Key]
+        public int Id { get; set; }
+
+        /// <summary>
         /// Name of the product.
         /// Visualized on all pages with product.
         /// </summary>
