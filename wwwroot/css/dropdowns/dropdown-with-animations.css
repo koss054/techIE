@@ -1,19 +1,18 @@
-﻿ul li {
+﻿.user-dropdown ul li {
     list-style: none;
     display: inline-block;
     text-decoration: none;
-    text-align: center;
 }
 
-li a {
+.user-dropdown li a {
     color: black;
 }
 
-li a:hover {
-    color: #3ca0e7;
+.user-dropdown li a:hover {
+    color: cornflowerblue;
 }
 
-li:hover {
+.user-dropdown li:hover {
     cursor: pointer;
 }
 
