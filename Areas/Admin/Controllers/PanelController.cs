@@ -28,6 +28,12 @@
             productService = _productService;
         }
 
+        /// <summary>
+        /// Index page for the Panel controller.
+        /// Admins can access all of the admin pages from here.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public IActionResult Index()
         {
             // It's no issue that userId may be null.
@@ -36,6 +42,8 @@
             {
                 return Unauthorized();
             }
+
+            return View();
         }
 
         /// <summary>
