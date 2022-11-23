@@ -94,11 +94,42 @@ tbody:hover,
     align-items: baseline;
 }
 
+.panel-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grow-img {
+    transition: all .2s ease-in-out;
+    transform: scale(1.05);
+    filter: blur(5px);
+}
+
+.category-text {
+    position: absolute;
+    display: none;
+    z-index: 2;
+    text-transform: uppercase;
+    color: white;
+    outline-color: #180d5b;
+    font-size: 50px;
+    font-weight: 700;
+    text-shadow: -1.75px -1.75px 0 #180d5b, 1.75px -1.75px 0 #180d5b, -1.75px 1.75px 0 #180d5b, 1.75px 1.75px 0 #180d5b;
+    text-align: center;
+}
+
+.return-to-panel {
+    position: absolute;
+    width: 40px;
+    left: 6%;
+    top: 15%;
+}
+
 /*.form-control:focus {
     background: none;
     width: 400px;
 }*/
-
 .single-btn {
     margin-top: 1rem;
     margin-bottom: 2rem;

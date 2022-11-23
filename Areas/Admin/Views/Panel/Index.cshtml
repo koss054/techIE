@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Admin Panel";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/button-style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/admin-panel.css" asp-append-version="true" />
+</head>
+
+<div class="panel">
+    <a asp-area="Admin" asp-controller="Panel" asp-action="Categories">
+        <div class="panel-img category">
+                <span class="category-text category">Categories</span>
+                <img id="category-img" class="hover-img" src="~/images/admin/admin-categories.jpg" />
+        </div>
+    </a>
+    <a asp-area="Admin" asp-controller="Panel" asp-action="Products">
+        <div class="panel-img product">
+                <span class="category-text product">Products</span>
+                <img id="product-img" class="hover-img" src="~/images/admin/admin-products.jpg" />
+        </div>
+    </a>
+</div>
+
+<style>
+    .panel {
+        padding: 1rem;
+        justify-content: space-evenly;
+    }
+</style>
+
+<script src="~/js/admin-hovers/image-hovers.js"></script>

@@ -1,4 +1,4 @@
-﻿namespace techIE.Controllers
+﻿namespace techIE.Areas.Admin.Controllers
 {
     using System.Security.Claims;
 
@@ -7,17 +7,19 @@
     using Constants;
     using Contracts;
     using Models.Products;
+    using techIE.Controllers;
 
     /// <summary>
     /// Controller for managing the official products from the admin product panel.
     /// </summary>
-    public class AdminProductController : Controller
+    [Area("Admin")]
+    public class ProductController : BaseController
     {
         private readonly IUserService userService;
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
 
-        public AdminProductController(
+        public ProductController(
             IUserService _userService,
             IProductService _productService,
             ICategoryService _categoryService)
@@ -39,7 +41,7 @@
             // IsAdminAsync returns false if no users' ID matches the provided one.
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
-                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+                return Unauthorized();
             }
 
             var model = new ProductFormViewModel()
@@ -63,7 +65,7 @@
             // IsAdminAsync returns false if no users' ID matches the provided one.
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
-                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+                return Unauthorized();
             }
 
             if (!ModelState.IsValid)
@@ -90,7 +92,7 @@
             // IsAdminAsync returns false if no users' ID matches the provided one.
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
-                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+                return Unauthorized();
             }
 
             // **********************************************************************************
@@ -141,7 +143,7 @@
         {
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
-                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+                return Unauthorized();
             }
 
             if (!ModelState.IsValid)
