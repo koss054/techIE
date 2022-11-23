@@ -41,7 +41,7 @@
             // IsAdminAsync returns false if no users' ID matches the provided one.
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
-                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+                return Unauthorized();
             }
 
             var model = new ProductFormViewModel()
@@ -65,7 +65,7 @@
             // IsAdminAsync returns false if no users' ID matches the provided one.
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
-                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+                return Unauthorized();
             }
 
             if (!ModelState.IsValid)
@@ -92,7 +92,7 @@
             // IsAdminAsync returns false if no users' ID matches the provided one.
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
-                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+                return Unauthorized();
             }
 
             // **********************************************************************************
@@ -143,7 +143,7 @@
         {
             if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
             {
-                return RedirectToAction("PLACEHOLDER", "PLACEHOLDER");
+                return Unauthorized();
             }
 
             if (!ModelState.IsValid)
