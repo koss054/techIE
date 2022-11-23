@@ -119,11 +119,17 @@ tbody:hover,
     text-align: center;
 }
 
+.return-to-panel {
+    position: absolute;
+    width: 40px;
+    left: 6%;
+    top: 15%;
+}
+
 /*.form-control:focus {
     background: none;
     width: 400px;
 }*/
-
 .single-btn {
     margin-top: 1rem;
     margin-bottom: 2rem;
