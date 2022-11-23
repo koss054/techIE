@@ -2,10 +2,12 @@
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
 
     using Entities;
 
     using static Constants.DataConstants.User;
+    using static AdminConstants;
 
     /// <summary>
     /// Context for our database.
@@ -38,6 +40,10 @@
             builder.Entity<UserProduct>()
                 .HasKey(up => new { up.UserId, up.ProductId});
 
+            SeedAdmin();
+            builder.Entity<User>()
+                .HasData(AdminUser);
+
             base.OnModelCreating(builder);
         }
 
@@ -46,5 +52,24 @@
         public DbSet<Order> Orders { get; set; } = null!;
 
         public DbSet<Product> Products { get; set; } = null!;
+
+        private void SeedAdmin()
+        {
+            var hasher = new PasswordHasher<User>();
+
+            AdminUser = new User()
+            {
+                Id = "sse3f072-d231-e1e1-ab26-1120hhj364e4",
+                Email = AdminEmail,
+                NormalizedEmail = AdminEmail,
+                UserName = AdminUserName,
+                NormalizedUserName = AdminUserName,
+            };
+
+            AdminUser.PasswordHash =
+                hasher.HashPassword(AdminUser, "Admin@dminAdm1n");
+        }
+
+        private User AdminUser { get; set; } = null!;
     }
 }

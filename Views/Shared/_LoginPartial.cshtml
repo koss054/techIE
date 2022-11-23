@@ -4,14 +4,25 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
+<head>
+    <link rel="stylesheet" href="~/css/dropdowns/dropdown-with-animations.css" />
+</head>
+
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Logout</a>
+    <li class="nav-item position-fixed user-greet">
+        <a  class="nav-link text-dark">Greetings, @User.Identity?.Name!</a>
+        <ul class="dropdown">
+            <li><a class="nav-link text-dark" asp-controller="User" asp-action="Logout">My Profile</a></li>
+            <li><a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Orders</a></li>
+                @if (this.User.IsAdmin())
+                {
+                    <li><a class="nav-link text-dark" asp-area="Admin" 
+                        asp-controller="Panel" asp-action="Index">Admin Panel</a></li>
+                }
+            <li><a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Logout</a></li>
+        </ul>
     </li>
 }
 else
