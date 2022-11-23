@@ -6,6 +6,7 @@
 
     using Constants;
     using Contracts;
+    using Infrastructure;
     using Models.Categories;
     using techIE.Controllers;
 
@@ -35,9 +36,7 @@
 
         public IActionResult Add()
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -54,9 +53,7 @@
         [HttpPost]
         public async Task<IActionResult> Add(CategoryFormViewModel model)
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -80,9 +77,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -106,6 +101,11 @@
         [HttpPost]
         public async Task<IActionResult> Edit(CategoryFormViewModel model)
         {
+            if (!this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -124,7 +124,7 @@
         /// <returns></returns>
         public async Task<IActionResult> Verify(int id)
         {
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -147,7 +147,7 @@
         /// <returns>Returns to panel page if successful.</returns>
         public async Task<IActionResult> Delete(int id)
         {
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }

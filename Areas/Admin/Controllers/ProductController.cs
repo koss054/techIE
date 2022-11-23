@@ -6,6 +6,7 @@
 
     using Constants;
     using Contracts;
+    using Infrastructure;
     using Models.Products;
     using techIE.Controllers;
 
@@ -37,9 +38,7 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -61,9 +60,7 @@
         [HttpPost]
         public async Task<IActionResult> Add(ProductFormViewModel model)
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -88,9 +85,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -122,6 +117,11 @@
         [HttpPost]
         public async Task<IActionResult> Edit(ProductFormViewModel model)
         {
+            if (!this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 model.Categories = await categoryService.GetOfficialAsync();
@@ -141,7 +141,7 @@
         /// <returns>Returns to panel page if successful.</returns>
         public async Task<IActionResult> Delete(int id)
         {
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
