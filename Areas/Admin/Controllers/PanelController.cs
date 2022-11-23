@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Contracts;
+    using Infrastructure;
     using techIE.Controllers;
 
     /// <summary>
@@ -36,9 +37,7 @@
         [HttpGet]
         public IActionResult Index()
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -53,9 +52,7 @@
         [HttpGet]
         public async Task<IActionResult> Categories()
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -71,9 +68,7 @@
         [HttpGet]
         public async Task<IActionResult> Products()
         {
-            // It's no issue that userId may be null.
-            // IsAdminAsync returns false if no users' ID matches the provided one.
-            if (!userService.IsAdminAsync(User.FindFirst(ClaimTypes.NameIdentifier)?.Value))
+            if (!this.User.IsAdmin())
             {
                 return Unauthorized();
             }
