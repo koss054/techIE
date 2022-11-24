@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/errors/errors.css" />
+</head>
+
+<div class="error-container">
+    <span class="error-name">Oops, page not found!</span>
+    <hr />
+    <img src="~/images/errors/page-not-found.jpg" />
+
+
+    <div class="back-to-home">
+        <a asp-controller="Home" asp-action="Index">
+            <span class="back-to-home-text">Back to Home</span>
+        </a>
+    </div>
+</div>
