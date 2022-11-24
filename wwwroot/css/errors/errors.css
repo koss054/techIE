@@ -1,0 +1,31 @@
+﻿div.error-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 750px;
+    align-items: center;
+    margin-left: 25%;
+}
+
+img {
+    max-width: 100%;
+    height: 500px;
+}
+
+.back-to-home {
+    max-width: 250px;
+    padding: 1rem;
+    background-color: #ffc801;
+    text-align: center;
+    border-radius: 2rem;
+}
+
+.back-to-home a {
+    text-decoration: none;
+}
+
+.back-to-home-text {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 20px;
+}
