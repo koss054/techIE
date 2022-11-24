@@ -25,7 +25,7 @@
 
         public IActionResult Error(int statusCode)
         {
-            if (statusCode == 400)
+            if (statusCode == 400 || statusCode == 404)
             {
                 return View("Error400");
             }
