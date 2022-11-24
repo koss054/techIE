@@ -1,21 +1,17 @@
 ﻿$(function () {
     $(".panel-img.category").hover(function () {
-        $("#category-img").toggleClass("grow-img", true, 1000);
-        $(".category-text.category").fadeIn(300);
+        $("#category-img").toggleClass("grow-img", true, 1500);
+        $(".category-text.category").fadeIn(50);
     }, function () {
-        hideText();
-        $("#category-img").removeClass("grow-img");
+        $("#category-img").toggleClass("grow-img");
+        $(".category-text.category").fadeOut(5);
     });
 
     $(".panel-img.product").hover(function () {
-        $("#product-img").toggleClass("grow-img", true, 1000);
-        $(".category-text.product").fadeIn(300);
+        $("#product-img").toggleClass("grow-img", true, 1500);
+        $(".category-text.product").fadeIn(50);
     }, function () {
-        hideText();
-        $("#product-img").removeClass("grow-img");
+        $("#product-img").toggleClass("grow-img");
+        $(".category-text.product").fadeOut(5);
     });
-
-    function hideText() {
-        $(".category-text").hide();
-    }
 });

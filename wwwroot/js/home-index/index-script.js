@@ -15,52 +15,41 @@
 
     $(".category-index-image.phone").hover(function () {
         $("#phone-img").toggleClass("grow-category-img", true, 1000);
-        $(".category-names.phone").fadeIn(300);
+        $(".category-names.phone").fadeIn(50);
     }, function () {
-        hideCategoryText();
-        $("#phone-img").removeClass("grow-category-img");
+        $("#phone-img").toggleClass("grow-category-img");
+        $(".category-names.phone").fadeOut(5);
     });
 
     $(".category-index-image.laptop").hover(function () {
         $("#laptop-img").toggleClass("grow-category-img", true, 1000);
-        $(".category-names.laptop").fadeIn(300);
+        $(".category-names.laptop").fadeIn(50);
     }, function () {
-        hideCategoryText();
-        $("#laptop-img").removeClass("grow-category-img");
+        $("#laptop-img").toggleClass("grow-category-img");
+        $(".category-names.laptop").fadeOut(5);
     });
 
     $(".category-index-image.smart-watch").hover(function () {
         $("#smart-watch-img").toggleClass("grow-category-img", true, 1000);
-        $(".category-names.smart-watch").fadeIn(300);
+        $(".category-names.smart-watch").fadeIn(50);
     }, function () {
-        hideCategoryText();
-        $("#smart-watch-img").removeClass("grow-category-img");
+        $("#smart-watch-img").toggleClass("grow-category-img");
+        $(".category-names.smart-watch").fadeOut(5);
     });
 
     $(".marketplace-index-image.explore").hover(function () {
         $("#explore-img").toggleClass("grow-category-img", true, 1000);
-        $(".marketplace-names.explore").fadeIn(300);
+        $(".marketplace-names.explore").fadeIn(50);
     }, function () {
-        hideMarketplaceText();
-        $("#explore-img").removeClass("grow-category-img");
+        $("#explore-img").toggleClass("grow-category-img");
+        $(".marketplace-names.explore").fadeOut(5);
     });
 
     $(".marketplace-index-image.create").hover(function () {
         $("#create-img").toggleClass("grow-category-img", true, 1000);
-        $(".marketplace-names.create").fadeIn(300);
+        $(".marketplace-names.create").fadeIn(50);
     }, function () {
-        hideMarketplaceText();
-        $("#create-img").removeClass("grow-category-img");
+        $("#create-img").toggleClass("grow-category-img");
+        $(".marketplace-names.create").fadeOut(5);
     });
-
-    function hideCategoryText() {
-        $(".category-names.phone").hide();
-        $(".category-names.laptop").hide();
-        $(".category-names.smart-watch").hide();
-    }
-
-    function hideMarketplaceText() {
-        $(".marketplace-names.explore").hide();
-        $(".marketplace-names.create").hide();
-    }
 });

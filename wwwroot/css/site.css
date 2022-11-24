@@ -61,6 +61,16 @@ header nav .navbar-brand {
     top: 13px;
 }
 
+.official-store-dropdown {
+    left: 11rem;
+    top: 13px;
+}
+
+.user-marketplace-dropdown {
+    left: 19rem;
+    top: 13px;
+}
+
 .heading-us {
     color: deeppink;
     font-weight: 700;
