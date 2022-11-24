@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Error - Page not Found";
+    ViewBag.Title = "Error - Processing Request";
 }
 
 <head>
@@ -8,7 +8,7 @@
 
 <div class="text-center">
     <div class="error-container">
-        <img src="~/images/errors/page-not-found.jpg" />
+        <img src="~/images/errors/page-error.jpg" />
 
         <div class="back-to-home">
             <a asp-controller="Home" asp-action="Index">
@@ -17,3 +17,9 @@
         </div>
     </div>
 </div>
+
+<style>
+    .back-to-home {
+        background-color: #ff4f5a;
+    }
+</style>
