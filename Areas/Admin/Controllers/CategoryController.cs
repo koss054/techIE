@@ -1,7 +1,5 @@
 ﻿namespace techIE.Areas.Admin.Controllers
 {
-    using System.Security.Claims;
-
     using Microsoft.AspNetCore.Mvc;
 
     using Constants;
