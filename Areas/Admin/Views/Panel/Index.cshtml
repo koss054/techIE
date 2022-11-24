@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="~/css/admin/admin-panel.css" asp-append-version="true" />
 </head>
 
+<a asp-area="" asp-controller="Home" asp-action="Index">
+    <img class="return-to-panel grow" src="~/images/menus/left-arrow-white.svg" />
+</a>
+
 <div class="panel">
+    
     <a asp-area="Admin" asp-controller="Panel" asp-action="Categories">
         <div class="panel-img category">
                 <span class="category-text category">Categories</span>
