@@ -1,0 +1,31 @@
+﻿img {
+    width: 250px;
+    height: 300px;
+}
+
+.store-heading {
+    margin: 0 60px 40px 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+span.below-hr {
+    margin-top: 10px;
+    color: #00000069;
+}
+
+.product-panel {
+    margin: 0 60px 60px 60px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.random-product {
+    border: solid;
+    border-color: #6495eda3;
+    border-radius: 10px;
+    padding: 10px;
+}
