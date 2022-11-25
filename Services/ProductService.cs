@@ -60,7 +60,8 @@
         public async Task<IEnumerable<ProductOverviewViewModel>> GetThreeRandomOfficialAsync()
         {
             return await context.Products
-                .OrderBy(r => EF.Functions.Random())
+                .Where(p => p.IsOfficial)
+                .OrderBy(r => Guid.NewGuid())
                 .Take(3)
                 .Select(p => new ProductOverviewViewModel()
                 {
