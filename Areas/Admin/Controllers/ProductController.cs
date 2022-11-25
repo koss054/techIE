@@ -69,6 +69,7 @@
                 return View(model);
             }
 
+            // Since this controller is in the Admin area, the added products are always official.
             model.IsOfficial = true;
             await productService.AddAsync(model);
             return RedirectToAction(
