@@ -1,7 +1,5 @@
 ﻿namespace techIE.Areas.Admin.Controllers
 {
-    using System.Security.Claims;
-
     using Microsoft.AspNetCore.Mvc;
 
     using Constants;
@@ -71,6 +69,7 @@
                 return View(model);
             }
 
+            model.IsOfficial = true;
             await productService.AddAsync(model);
             return RedirectToAction(
                 RedirectPaths.UpdateProductPage,
