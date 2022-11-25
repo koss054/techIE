@@ -14,42 +14,42 @@
     });
 
     $(".category-index-image.phone").hover(function () {
-        $("#phone-img").toggleClass("grow-category-img", true, 1000);
+        $("#phone-img").addClass("grow-category-img", true, 1000);
         $(".category-names.phone").fadeIn(50);
     }, function () {
-        $("#phone-img").toggleClass("grow-category-img");
+        $("#phone-img").removeClass("grow-category-img");
         $(".category-names.phone").fadeOut(5);
     });
 
     $(".category-index-image.laptop").hover(function () {
-        $("#laptop-img").toggleClass("grow-category-img", true, 1000);
+        $("#laptop-img").addClass("grow-category-img", true, 1000);
         $(".category-names.laptop").fadeIn(50);
     }, function () {
-        $("#laptop-img").toggleClass("grow-category-img");
+        $("#laptop-img").removeClass("grow-category-img");
         $(".category-names.laptop").fadeOut(5);
     });
 
     $(".category-index-image.smart-watch").hover(function () {
-        $("#smart-watch-img").toggleClass("grow-category-img", true, 1000);
+        $("#smart-watch-img").addClass("grow-category-img", true, 1000);
         $(".category-names.smart-watch").fadeIn(50);
     }, function () {
-        $("#smart-watch-img").toggleClass("grow-category-img");
+        $("#smart-watch-img").removeClass("grow-category-img");
         $(".category-names.smart-watch").fadeOut(5);
     });
 
     $(".marketplace-index-image.explore").hover(function () {
-        $("#explore-img").toggleClass("grow-category-img", true, 1000);
+        $("#explore-img").addClass("grow-category-img", true, 1000);
         $(".marketplace-names.explore").fadeIn(50);
     }, function () {
-        $("#explore-img").toggleClass("grow-category-img");
+        $("#explore-img").removeClass("grow-category-img");
         $(".marketplace-names.explore").fadeOut(5);
     });
 
     $(".marketplace-index-image.create").hover(function () {
-        $("#create-img").toggleClass("grow-category-img", true, 1000);
+        $("#create-img").addClass("grow-category-img", true, 1000);
         $(".marketplace-names.create").fadeIn(50);
     }, function () {
-        $("#create-img").toggleClass("grow-category-img");
+        $("#create-img").removeClass("grow-category-img");
         $(".marketplace-names.create").fadeOut(5);
     });
 });
