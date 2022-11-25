@@ -65,7 +65,7 @@
                 ImageUrl = model.ImageUrl,
                 Color = (Color)model.Color,
                 Description = model.Description,
-                IsOfficial = true,
+                IsOfficial = model.IsOfficial,
                 CategoryId = model.CategoryId
             };
 
