@@ -53,6 +53,25 @@
         }
 
         /// <summary>
+        /// Get three random products that are official.
+        /// They are displayed on the official store index page.
+        /// </summary>
+        /// <returns>Three random official products.</returns>
+        public async Task<IEnumerable<ProductOverviewViewModel>> GetThreeRandomOfficialAsync()
+        {
+            return await context.Products
+                .OrderBy(r => EF.Functions.Random())
+                .Take(3)
+                .Select(p => new ProductOverviewViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl
+                }).ToListAsync();
+        }
+
+        /// <summary>
         /// Add a category to the database.
         /// </summary>
         /// <param name="model">Model with validation.</param>

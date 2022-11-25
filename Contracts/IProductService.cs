@@ -23,6 +23,13 @@
         Task<IEnumerable<ProductAdminPanelViewModel>> GetAllOfficialAsync();
 
         /// <summary>
+        /// Get three random products that are official.
+        /// They are displayed on the official store index page.
+        /// </summary>
+        /// <returns>Three random official products.</returns>
+        Task<IEnumerable<ProductOverviewViewModel>> GetThreeRandomOfficialAsync();
+
+        /// <summary>
         /// Add a product to the database.
         /// </summary>
         /// <param name="model">Model with validation.</param>
