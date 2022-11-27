@@ -34,7 +34,7 @@
         /// Gets all categories from the database.
         /// </summary>
         /// <returns>List of categories.</returns>
-        public async Task<AdminCategoryViewModel> GetAllAsync()
+        public async Task<IEnumerable<CategoryViewModel>> GetAllAsync()
         {
             var entities = await context.Categories
                 .Select(c => new CategoryViewModel()
@@ -44,34 +44,57 @@
                     IsOfficial = c.IsOfficial
                 }).ToListAsync();
 
-            var adminEntity = new AdminCategoryViewModel()
-            {
-                Categories = entities,
-                AddedCategory = new AddCategoryViewModel()
-                {
-                    IsOfficial = false
-                }
-            };
+            return entities;
+        }
 
-            return adminEntity;
+        /// <summary>
+        /// Get all of the official categories from the database.
+        /// </summary>
+        /// <returns>A list containing all of the official categories that are currently added to the database.</returns>
+        public async Task<IEnumerable<CategoryViewModel>> GetOfficialAsync()
+        {
+            return await context.Categories
+                .Where(c => c.IsOfficial)
+                .Select(c => new CategoryViewModel()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    IsOfficial = c.IsOfficial
+                }).ToListAsync();
         }
 
         /// <summary>
         /// Add a category to the database.
-        /// Only admins can add categories to the database, so IsOfficial is always true.
+        /// Only admins can add categories to the database.
         /// </summary>
         /// <param name="model"></param>
-        public async Task AddAsync(AddCategoryViewModel model)
+        public async Task AddAsync(CategoryFormViewModel model)
         {
             var entity = new Category()
             {
                 Id = model.Id,
                 Name = model.Name,
-                IsOfficial = true
+                IsOfficial = false
             };
 
             await context.Categories.AddAsync(entity);
             await context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Edit a category from the database.
+        /// </summary>
+        /// <param name="model"></param>
+        public async Task EditAsync(CategoryFormViewModel model)
+        {
+            var entity = await context.Categories
+                .FirstOrDefaultAsync(c => c.Id == model.Id);
+
+            if (entity != null)
+            {
+                entity.Name = model.Name;
+                await context.SaveChangesAsync();
+            }
         }
 
         /// <summary>

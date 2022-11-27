@@ -1,4 +1,6 @@
-﻿<table>
+﻿@model IEnumerable<CategoryViewModel>
+
+<table>
     @*Table headers*@
     <tr>
         <th>
@@ -16,7 +18,7 @@
     </tr>
 
     @*Category Name, IsOfficial toggle and options to Edit or Delete*@
-    @foreach (var category in Model.Categories)
+    @foreach (var category in Model)
     {
         <tr>
             <td>
@@ -30,7 +32,7 @@
                 }
             </td>
             <td>
-                <a asp-controller="Category" asp-action="Verify" asp-route-id="@category.Id" onclick="return confirm('Are you want to change the official status of @category.Name?')">
+                <a asp-area="Admin" asp-controller="Category" asp-action="Verify" asp-route-id="@category.Id" onclick="return confirm('Are you want to change the official status of @category.Name?')">
                     @if (category.IsOfficial)
                     {
                         <img class="grow" src="~/images/menus/verified.svg" style="width: 25px">
@@ -42,11 +44,14 @@
                 </a>
             </td>
             <td>
-                <img class="grow" src="~/images/menus/edit.svg" style="width: 25px">
+                <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id">
+                    <img class="grow" src="~/images/menus/edit.svg" style="width: 25px">
+                </a>
             </td>
             <td>
-                @if (!category.IsOfficial) {
-                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" onclick="return confirm('Are you sure you want to delete @category.Name category?')">
+                @if (!category.IsOfficial)
+                {
+                    <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" onclick="return confirm('Are you sure you want to delete @category.Name category?')">
                         <img class="grow" src="~/images/menus/delete.svg" style="width: 25px">
                     </a>
                 }
@@ -56,6 +61,10 @@
 
     @*Add to category list button*@
     <tr>
-        <td class="add-btn" colspan="4">+</td>
+        <td class="add-btn" colspan="4">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Add">
+                <img class="grow" src="~/images/menus/add.svg" style="width: 25px"/>
+            </a>
+        </td>
     </tr>
 </table>

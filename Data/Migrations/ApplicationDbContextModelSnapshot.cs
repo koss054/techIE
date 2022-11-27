@@ -220,7 +220,7 @@ namespace techIE.Data.Migrations
                         .HasMaxLength(10000)
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -315,6 +315,25 @@ namespace techIE.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "sse3f072-d231-e1e1-ab26-1120hhj364e4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1c8042a4-f2c2-4d5e-8032-76e241f42ce4",
+                            Email = "admin@techie.com",
+                            EmailConfirmed = false,
+                            IsAdmin = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@techie.com",
+                            NormalizedUserName = "Admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL7e8Dd5XHcCeVc8RzcC5E/KLqkvmGwSKmdvnSlJvlL9I5zfl+nI9Ui4p2Ce70t7ZA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "67867c3a-cfc1-42f1-907e-5f9c19da69be",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("techIE.Data.Entities.UserProduct", b =>

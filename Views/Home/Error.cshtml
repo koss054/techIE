@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Error - Processing Request";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/errors/errors.css" />
+</head>
+
+<div class="text-center">
+    <div class="error-container">
+        <img src="~/images/errors/page-error.jpg" />
+
+        <div class="back-to-home">
+            <a asp-controller="Home" asp-action="Index">
+                <span class="back-to-home-text">Back to Home</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .back-to-home {
+        background-color: #ff4f5a;
+    }
+</style>

@@ -30,6 +30,7 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-height: 480px;
 }
 
 .account-page h2 {
@@ -44,20 +45,6 @@ ul {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-
-.form-control {
-    width: 200px;
-    background: none;
-    font-size: 15px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    border: none;
-    border-radius: 1px;
-    border-bottom: 1px solid #0000002e;
-    -webkit-transition: width .35s ease-in-out;
-    transition: width .35s ease-in-out;
-    text-align: center;
 }
 
 .show-pass-div {
@@ -78,11 +65,6 @@ ul {
 .show-pass-text, .hide-pass-text {
     font-size: 12px;
     color: black;
-}
-
-.form-control:focus {
-    background: none;
-    width: 400px;
 }
 
 .error {

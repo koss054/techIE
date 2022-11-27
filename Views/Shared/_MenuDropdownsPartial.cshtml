@@ -1,0 +1,31 @@
+﻿<head>
+    <link rel="stylesheet" href="~/css/dropdowns/dropdown-with-animations.css" />
+</head>
+
+<ul class="navbar-nav dropdowns">
+    <li class="nav-item position-fixed official-store-dropdown">
+        <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Official Shop</a>
+        <ul class="dropdown">
+            <li><a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Phones</a></li>
+            <li><a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Laptops</a></li>
+            <li><a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout">Smart Watches</a></li>
+        </ul>
+    </li>
+    <li class="nav-item position-fixed user-marketplace-dropdown">
+        <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">User Marketplace</a>
+        <ul class="dropdown">
+            <li><a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Explore Marketplace</a></li>
+            <li><a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Create Listing</a></li>
+        </ul>
+    </li>
+</ul>
+
+<style>
+    ul li.official-store-dropdown ul li a:hover {
+        border-left: 2px solid cornflowerblue;
+    }
+
+    ul li.user-marketplace-dropdown ul li a:hover {
+        border-left: 2px solid deeppink;
+    }
+</style>

@@ -5,9 +5,9 @@
     using static Constants.DataConstants.Category;
 
     /// <summary>
-    /// View model used to add a category to the database.
+    /// View model used to manage categories in forms, where input may be incorrect.
     /// </summary>
-    public class AddCategoryViewModel
+    public class CategoryFormViewModel
     {
         /// <summary>
         /// Category ID.

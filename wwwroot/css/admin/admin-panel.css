@@ -1,5 +1,11 @@
 ﻿img {
+    max-height: 450px;
     max-width: 600px;
+}
+
+select option {
+    background: #2f7b9f8c;
+    color: #000;
 }
 
 table {
@@ -18,6 +24,10 @@ td {
     padding-top: 1rem;
     background-color: rgb(189 255 252 / 17%);
     color: #06002e;
+}
+
+td.add-btn{
+    padding-bottom: 1rem;
 }
 
 th {
@@ -45,14 +55,24 @@ tbody:hover,
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    max-height: 500px;
+    max-height: 450px;
     overflow-y: auto;
+}
+
+.category-table,
+ .product-table {
+    margin-top: 7rem;
+    margin-bottom: 2rem;
+    max-height: 500px;
 }
 
 .category-options {
     margin-top: 7rem;
     margin-bottom: 2rem;
     max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-control {
@@ -74,19 +94,42 @@ tbody:hover,
     align-items: baseline;
 }
 
-.category-edit {
-    position: fixed;
-    top: 7rem;
-    background: yellow;
-    padding: 120px;
-    z-index: 10;
+.panel-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grow-img {
+    transition: all .2s ease-in-out;
+    transform: scale(1.05);
+    filter: blur(5px);
+}
+
+.category-text {
+    position: absolute;
+    display: none;
+    z-index: 2;
+    text-transform: uppercase;
+    color: white;
+    outline-color: #180d5b;
+    font-size: 50px;
+    font-weight: 700;
+    text-shadow: -1.75px -1.75px 0 #180d5b, 1.75px -1.75px 0 #180d5b, -1.75px 1.75px 0 #180d5b, 1.75px 1.75px 0 #180d5b;
+    text-align: center;
+}
+
+.return-to-panel {
+    position: absolute;
+    width: 40px;
+    left: 6%;
+    top: 15%;
 }
 
 /*.form-control:focus {
     background: none;
     width: 400px;
 }*/
-
 .single-btn {
     margin-top: 1rem;
     margin-bottom: 2rem;

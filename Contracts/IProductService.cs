@@ -1,5 +1,6 @@
 ﻿namespace techIE.Contracts
 {
+    using Models.Products;
     using Data.Entities;
 
     /// <summary>
@@ -8,9 +9,35 @@
     public interface IProductService
     {
         /// <summary>
-        /// Get all of the official categories from the database.
+        /// Get a product with provided Id.
         /// </summary>
-        /// <returns>A list containing all of the official categories that are currently added to the database.</returns>
-        Task<IEnumerable<Category>> GetOfficialCategoriesAsync();
+        /// <param name="id">Id of requested product.</param>
+        /// <returns>Product with matching Id.</returns>
+        Task<Product?> GetAsync(int id);
+
+        /// <summary>
+        /// Get all products with IsOfficial == true.
+        /// Main use is in the admin product panel.
+        /// </summary>
+        /// <returns>List of official products.</returns>
+        Task<IEnumerable<ProductAdminPanelViewModel>> GetAllOfficialAsync();
+
+        /// <summary>
+        /// Add a product to the database.
+        /// </summary>
+        /// <param name="model">Model with validation.</param>
+        Task AddAsync(ProductFormViewModel model);
+
+        /// <summary>
+        /// Edit a product from the database.
+        /// </summary>
+        /// <param name="model">Model with validation.</param>
+        Task EditAsync(ProductFormViewModel model);
+
+        /// <summary>
+        /// Delete a product from the database;
+        /// </summary>
+        /// <param name="id">Id of deleted product.</param>
+        Task DeleteAsync(int id);
     }
 }

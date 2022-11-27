@@ -22,6 +22,9 @@
 
         // ---------- Admin Controller Redirects ----------
         public const string UpdateCategoryPage = "Categories";
-        public const string UpdateCategoryController = "Admin";
+        public const string UpdateCategoryController = "Panel";
+
+        public const string UpdateProductPage = "Products";
+        public const string UpdateProductController = "Panel";
     }
 }

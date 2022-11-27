@@ -14,23 +14,35 @@
         /// <param name="id">The Id of the searched category.</param>
         /// <returns></returns>
         Task<Category?> GetAsync(int id);
+
         /// <summary>
         /// Gets all categories from the database.
         /// </summary>
         /// <returns>List of categories.</returns>
-        Task<AdminCategoryViewModel> GetAllAsync();
+        Task<IEnumerable<CategoryViewModel>> GetAllAsync();
+
+        /// <summary>
+        /// Get all of the official categories from the database.
+        /// </summary>
+        /// <returns>A list containing all of the official categories that are currently added to the database.</returns>
+        Task<IEnumerable<CategoryViewModel>> GetOfficialAsync();
 
         /// <summary>
         /// Add a category to the database.
         /// </summary>
         /// <param name="model"></param>
-        Task AddAsync(AddCategoryViewModel model);
+        Task AddAsync(CategoryFormViewModel model);
+
+        /// <summary>
+        /// Edit a category from the database
+        /// </summary>
+        /// <param name="model"></param>
+        Task EditAsync(CategoryFormViewModel model);
 
         /// <summary>
         /// Toggles the IsOfficial property for the selected category.
         /// </summary>
         /// <param name="id">Id of the category that should be verified.</param>
-        /// <returns></returns>
         Task VerifyAsync(int id);
 
         /// <summary>
