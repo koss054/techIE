@@ -39,7 +39,7 @@
         /// Main use is in the admin product panel.
         /// </summary>
         /// <returns>List of official products.</returns>
-        public async Task<IEnumerable<ProductAdminPanelViewModel>> GetAllOfficialAsync()
+        public async Task<IEnumerable<ProductAdminPanelViewModel>> GetAllAdminAsync()
         {
             return await context.Products
                 .Where(p => p.IsOfficial)
@@ -49,6 +49,25 @@
                     Name = p.Name,
                     Category = p.Category.Name,
                     IsOfficial = p.IsOfficial
+                }).ToListAsync();
+        }
+
+        /// <summary>
+        /// Get all product with IsOfficial == true.
+        /// Main use is in the official store page.
+        /// </summary>
+        /// <returns>List of official products for store.</returns>
+        public async Task<IEnumerable<ProductOverviewViewModel>> GetAllOfficialAsync()
+        {
+            return await context.Products
+                .Where(p => p.IsOfficial)
+                .Select(p => new ProductOverviewViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                    Category = p.Category.Name
                 }).ToListAsync();
         }
 
@@ -68,7 +87,8 @@
                     Id = p.Id,
                     Name = p.Name,
                     Price = p.Price,
-                    ImageUrl = p.ImageUrl
+                    ImageUrl = p.ImageUrl,
+                    Category = p.Category.Name
                 }).ToListAsync();
         }
 
