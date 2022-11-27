@@ -23,9 +23,9 @@ span.below-hr {
     flex-direction: row;
 }
 
-.random-product {
+.product {
     border: solid;
     border-color: #6495eda3;
     border-radius: 10px;
-    padding: 10px;
+    padding: 1rem;
 }

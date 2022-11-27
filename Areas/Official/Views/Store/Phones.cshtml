@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ProductOverviewViewModel>
+
+@{
+    ViewBag.Title = "techIE Phones";
+    ViewData["Product"] = "Phones";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/horizontal-row/rows.css" />
+    <link rel="stylesheet" href="~/css/store/official-store.css" />
+    <link rel="stylesheet" href="~/css/animations/grow-on-hover.css" />
+</head>
+
+<div class="store-heading">
+    <h1 class="text-center mt-4">@ViewBag.Title</h1>
+    <hr class="official text-center" />
+</div>
+
+<partial name="~/Areas/Official/Views/Store/_OfficialProductsPartial.cshtml" view-data="ViewData" />

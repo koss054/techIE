@@ -19,8 +19,15 @@
         /// Get all products with IsOfficial == true.
         /// Main use is in the admin product panel.
         /// </summary>
-        /// <returns>List of official products.</returns>
-        Task<IEnumerable<ProductAdminPanelViewModel>> GetAllOfficialAsync();
+        /// <returns>List of official products for admin panel.</returns>
+        Task<IEnumerable<ProductAdminPanelViewModel>> GetAllAdminAsync();
+
+        /// <summary>
+        /// Get all product with IsOfficial == true.
+        /// Main use is in the official store page.
+        /// </summary>
+        /// <returns>List of official products for store.</returns>
+        Task<IEnumerable<ProductOverviewViewModel>> GetAllOfficialAsync();
 
         /// <summary>
         /// Get three random products that are official.

@@ -73,7 +73,7 @@
                 return Unauthorized();
             }
 
-            var model = await productService.GetAllOfficialAsync();
+            var model = await productService.GetAllAdminAsync();
             return View(model);
         }
     }
