@@ -32,5 +32,41 @@
             var model = await productService.GetThreeRandomOfficialAsync();
             return View(model);
         }
+
+        /// <summary>
+        /// Page for all of techIE's official phones.
+        /// Used in the official StoreController.
+        /// </summary>
+        /// <returns>Store page for all official phones.</returns>
+        [AllowAnonymous]
+        public async Task<IActionResult> Phones()
+        {
+            var model = await productService.GetAllOfficialAsync();
+            return View(model);
+        }
+
+        /// <summary>
+        /// Page for all of techIE's official laptops.
+        /// Used in the official StoreController.
+        /// </summary>
+        /// <returns>Store page for all official laptops.</returns>
+        [AllowAnonymous]
+        public async Task<IActionResult> Laptops()
+        {
+            var model = await productService.GetAllOfficialAsync();
+            return View(model);
+        }
+
+        /// <summary>
+        /// Page for all of techIE's official smart watches.
+        /// Used in the official StoreController.
+        /// </summary>
+        /// <returns>Store page for all official smart watches.</returns>
+        [AllowAnonymous]
+        public async Task<IActionResult> Smart()
+        {
+            var model = await productService.GetAllOfficialAsync();
+            return View(model);
+        }
     }
 }
