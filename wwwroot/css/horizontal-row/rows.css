@@ -1,0 +1,19 @@
+﻿hr.official {
+    width: 400px;
+    height: 8px;
+    background-color: cornflowerblue;
+    opacity: 70%;
+    border-radius: 10px;
+    margin: auto;
+}
+
+hr.img-seperator {
+    width: 200px;
+    height: 4px;
+    background-color: cornflowerblue;
+    opacity: 70%;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

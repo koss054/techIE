@@ -61,6 +61,13 @@
         public string Description { get; set; } = null!;
 
         /// <summary>
+        /// True if listed by techIE.
+        /// False if listed by user.
+        /// </summary>
+        [Required]
+        public bool IsOfficial { get; set; }
+
+        /// <summary>
         /// Foreign key for the category.
         /// </summary>
         [ForeignKey(nameof(Category))]
