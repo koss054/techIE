@@ -5,13 +5,13 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/horizontal-row/rows.css" />
+    <link rel="stylesheet" href="~/css/horizontal-row/official-rows.css" />
     <link rel="stylesheet" href="~/css/store/official-store.css" />
     <link rel="stylesheet" href="~/css/animations/grow-on-hover.css" />
 </head>
 
 <div class="store-heading">
-    <h1 class="text-center mt-4">techIE's Official Store</h1>
+    <h1 class="text-center mt-4">@ViewBag.Title</h1>
     <hr class="official text-center" />
     <span class="below-hr">You could check out:</span>
 </div>
@@ -21,7 +21,7 @@
     {
         <div class="product grow">
             <img src="@product.ImageUrl">
-            <hr class="img-seperator" />
+            <hr class="img-seperator official" />
             <h4 class="text-center">@product.Name</h4>
             <h6 class="text-center">$@product.Price</h6>
         </div>
