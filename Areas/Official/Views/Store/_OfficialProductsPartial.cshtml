@@ -1,5 +1,11 @@
 ﻿@model IEnumerable<ProductOverviewViewModel>
 
+<div class="text-center back-to-store">
+    <a asp-area="Official" asp-controller="Store" asp-action="Index">
+        <p>Go Back</p>
+    </a>
+</div>
+
 <div class="product-panel">
     @foreach (var product in Model)
     {
