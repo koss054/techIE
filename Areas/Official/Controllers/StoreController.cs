@@ -29,7 +29,7 @@
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var model = await productService.GetThreeRandomOfficialAsync();
+            var model = await productService.GetThreeRandomAsync(true);
             return View(model);
         }
 
