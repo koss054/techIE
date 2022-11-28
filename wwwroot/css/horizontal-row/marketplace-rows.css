@@ -1,16 +1,16 @@
-﻿hr.official {
+﻿hr.marketplace {
     width: 400px;
     height: 8px;
-    background-color: cornflowerblue;
+    background-color: deeppink;
     opacity: 70%;
     border-radius: 10px;
     margin: auto;
 }
 
-hr.img-seperator {
+hr.img-seperator.marketplace {
     width: 200px;
     height: 4px;
-    background-color: cornflowerblue;
+    background-color: deeppink;
     opacity: 70%;
     border-radius: 10px;
     margin: auto;
