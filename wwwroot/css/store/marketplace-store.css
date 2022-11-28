@@ -1,0 +1,66 @@
+﻿.logo-i {
+    color: deeppink;
+}
+
+.logo-e {
+    color: deeppink;
+}
+
+img {
+    width: 250px;
+    height: 300px;
+}
+
+.store-heading {
+    margin: 0 60px 0 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.back-to-store {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    background-color: deeppink;
+    border-radius: 10px;
+    width: 100px;
+}
+
+.back-to-store a {
+    text-decoration: none;
+}
+
+.back-to-store a p {
+    text-transform: uppercase;
+    color: white;
+}
+
+span.below-hr {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #00000069;
+}
+
+.product-panel {
+    margin: 0 60px 60px 60px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.product {
+    border: solid;
+    border-color: deeppink;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+footer .bottom-nav {
+    background-color: #ffebf6;
+}
+
+footer .bottom-footer {
+    background-color: #ffcde8;
+}

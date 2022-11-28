@@ -29,7 +29,8 @@
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var model = await productService.GetThreeRandomOfficialAsync();
+            // Value in async method is true so only official products are taken.
+            var model = await productService.GetThreeRandomAsync(true);
             return View(model);
         }
 

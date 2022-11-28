@@ -30,11 +30,12 @@
         Task<IEnumerable<ProductOverviewViewModel>> GetAllOfficialAsync();
 
         /// <summary>
-        /// Get three random products that are official.
-        /// They are displayed on the official store index page.
+        /// Get three random products.
+        /// They are displayed on the store index pages.
         /// </summary>
-        /// <returns>Three random official products.</returns>
-        Task<IEnumerable<ProductOverviewViewModel>> GetThreeRandomOfficialAsync();
+        /// <param name="isOfficial">Checks if the returned products should be official or not.</param>
+        /// <returns>Three random products.</returns>
+        Task<IEnumerable<ProductOverviewViewModel>> GetThreeRandomAsync(bool isOfficial);
 
         /// <summary>
         /// Add a product to the database.
