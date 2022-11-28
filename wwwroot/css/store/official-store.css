@@ -4,15 +4,34 @@
 }
 
 .store-heading {
-    margin: 0 60px 40px 60px;
+    margin: 0 60px 0 60px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
 }
 
+.back-to-store {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    background-color: #93b5f2;
+    border-radius: 10px;
+    width: 100px;
+}
+
+.back-to-store a {
+    text-decoration: none;
+}
+
+.back-to-store a p {
+    text-transform: uppercase;
+    color: white;
+}
+
 span.below-hr {
     margin-top: 10px;
+    margin-bottom: 30px;
     color: #00000069;
 }
 
