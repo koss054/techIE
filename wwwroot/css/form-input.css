@@ -7,7 +7,5 @@
     border: none;
     border-radius: 1px;
     border-bottom: 1px solid #0000002e;
-    -webkit-transition: width .35s ease-in-out;
-    transition: width .35s ease-in-out;
     text-align: center;
 }

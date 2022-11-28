@@ -1,4 +1,9 @@
-﻿.form-control:focus {
+﻿.form-control {
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+}
+
+.form-control:focus {
     background: none;
     width: 400px;
 }
