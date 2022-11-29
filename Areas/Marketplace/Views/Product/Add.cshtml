@@ -1,0 +1,140 @@
+﻿@model ProductFormViewModel
+
+@{
+    ViewBag.Title = "Add Marketplace Listing";
+}
+
+<div class="panel">
+    <img class="product-image" src="" />
+    <div class="panel-inputs">
+        <div class="category-options text-center">
+            <h2 class="mb-4">
+                @ViewBag.Title
+            </h2>
+            <form method="post">
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control" asp-for="@Model.Name" aria-required="true" placeholder="Name..." />
+                </div>
+
+                <span asp-validation-for="Price" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control" asp-for="@Model.Price" aria-required="true" placeholder="Price..." />
+                </div>
+
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control img-url" type="url" asp-for="@Model.ImageUrl" aria-required="true" placeholder="Image Url..." />
+                </div>
+
+                <div class="mb-4 mt-4 text-center">
+                    <select asp-for="Color"
+                            class="form-control"
+                            asp-items="Html.GetEnumSelectList<Color>()">
+                    </select>
+                </div>
+
+                <span asp-validation-for="Description" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <textarea class="form-control" asp-for="@Model.Description" aria-required="true" placeholder="Write product description here...">
+                    </textarea>
+                </div>
+
+                <div class="mb-4 mt-4 text-center">
+                    <select asp-for="@Model.CategoryId" class="form-control">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <input class="btn btn-primary text-center marketplace-btn" type="submit" value="Add" data-confirm="Are you sure you want to add this product?" />
+                    <input class="btn btn-primary text-center marketplace-btn" type="button" value="Back" onclick="location.href='@Url.Action("Index", "Store")'" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $(".img-url").change(function() {
+            var imgUrl = $(".img-url").val();
+            $(".product-image").attr("src", imgUrl.toString());
+            console.log(imgUrl.toString());
+        })
+    })
+</script>
+
+@* *********************************************************
+TODO: Move the styling below to a separate CSS file.
+It's also used in the admin-panel file so it can be reused. 
+This way duplicate styles can be avoided in different files.
+********************************************************* *@
+<style>
+    img {
+        width: 500px;
+    }
+
+    .panel {
+        margin: 1rem 60px 0 60px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        background-image: linear-gradient(to top, #ffe6f4, #ffa9d8);
+    }
+
+    .panel-inputs {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        max-height: 450px;
+        overflow-y: auto;
+        padding-top: 10rem;
+    }
+
+    .panel-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-control {
+        width: 400px;
+        font-size: 15px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        border: none;
+        background-color: none;
+        border-radius: 1px;
+        border-bottom: 1px solid #ff40a9;
+        -webkit-transition: width .35s ease-in-out;
+        transition: width .35s ease-in-out;
+        text-align: center;
+    }
+
+    .marketplace-btn {
+        background-image: radial-gradient(100% 100% at 100% 0, #ff80c5 0, #ff46b1 100%);
+    }
+
+    .logo-i {
+        color: deeppink;
+    }
+
+    .logo-e {
+        color: deeppink;
+    }
+
+    footer .bottom-nav {
+        background-color: #ffebf6;
+    }
+
+    footer .bottom-footer {
+        background-color: #ffcde8;
+    }
+</style>
