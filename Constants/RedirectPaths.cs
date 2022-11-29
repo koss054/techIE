@@ -26,5 +26,9 @@
 
         public const string UpdateProductPage = "Products";
         public const string UpdateProductController = "Panel";
+
+        // ---------- Marketplace Controllers Redirects ----------
+        public const string AddMarketplaceProductPage = "Index";
+        public const string AddMarketplaceProductController = "Store";
     }
 }
