@@ -62,10 +62,27 @@
 <script>
     $(function () {
         $(".img-url").change(function() {
-            var imgUrl = $(".img-url").val();
-            $(".product-image").attr("src", imgUrl.toString());
-            console.log(imgUrl.toString());
+            let imgUrl = $(".img-url").val();
+            let productImg = $(".product-image");
+            
+            checkImage(imgUrl, productImg);
         })
+
+        function checkImage(url, img) {
+            var request = new XMLHttpRequest();
+
+            request.open("GET", url, true);
+            request.send();
+            request.onload = function () {
+                status = request.status;
+                if (request.status == 200) {
+                    img.attr("src", url.toString());
+                } else if (request.status == 404) {
+                    console.log("not found local");
+                } else {
+                }
+            }
+        }
     })
 </script>
 
