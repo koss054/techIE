@@ -53,11 +53,11 @@
         }
 
         /// <summary>
-        /// Get all product with IsOfficial == true.
-        /// Main use is in the official store page.
+        /// Get all products from database.
         /// </summary>
-        /// <returns>List of official products for store.</returns>
-        public async Task<IEnumerable<ProductOverviewViewModel>> GetAllOfficialAsync()
+        /// <param name="isOfficial">Checks if the returned products should be official or not.</param>
+        /// <returns>List of products for both stores.</returns>
+        public async Task<IEnumerable<ProductOverviewViewModel>> GetAllAsync(bool isOfficial)
         {
             return await context.Products
                 .Where(p => p.IsOfficial)
