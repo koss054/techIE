@@ -1,0 +1,44 @@
+﻿img {
+    max-width: 375px;
+    min-width: 375px;
+    height: 450px;
+}
+
+.panel {
+    margin: 1rem 60px 0 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-image: linear-gradient(to top, #ffe6f4, #ffa9d8);
+}
+
+.panel-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    max-height: 450px;
+    overflow-y: auto;
+    padding-top: 10rem;
+}
+
+.panel-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    width: 400px;
+    font-size: 15px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    border: none;
+    background-color: none;
+    border-radius: 1px;
+    border-bottom: 1px solid #ff40a9;
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+    text-align: center;
+}
