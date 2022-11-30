@@ -4,8 +4,14 @@
     ViewBag.Title = "Add Marketplace Listing";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/marketplace/product-form.css" />
+    <link rel="stylesheet" href="~/css/marketplace/button.css" />
+    <link rel="stylesheet" href="~/css/marketplace/footer.css" />
+</head>
+
 <div class="panel">
-    <img class="product-image" src="" />
+    <img class="product-image" src="~/images/store/phone-template.jpg" />
     <div class="panel-inputs">
         <div class="category-options text-center">
             <h2 class="mb-4">
@@ -41,7 +47,7 @@
                 </div>
 
                 <div class="mb-4 mt-4 text-center">
-                    <select asp-for="@Model.CategoryId" class="form-control">
+                    <select asp-for="@Model.CategoryId" class="form-control" id="product-category">
                         @foreach (var category in Model.Categories)
                         {
                             <option value="@category.Id">@category.Name</option>
@@ -59,99 +65,4 @@
     </div>
 </div>
 
-<script>
-    $(function () {
-        $(".img-url").change(function() {
-            let imgUrl = $(".img-url").val();
-            let productImg = $(".product-image");
-            
-            checkImage(imgUrl, productImg);
-        })
-
-        function checkImage(url, img) {
-            var request = new XMLHttpRequest();
-
-            request.open("GET", url, true);
-            request.send();
-            request.onload = function () {
-                status = request.status;
-                if (request.status == 200) {
-                    img.attr("src", url.toString());
-                } else if (request.status == 404) {
-                    console.log("not found local");
-                } else {
-                }
-            }
-        }
-    })
-</script>
-
-@* *********************************************************
-TODO: Move the styling below to a separate CSS file.
-It's also used in the admin-panel file so it can be reused. 
-This way duplicate styles can be avoided in different files.
-********************************************************* *@
-<style>
-    img {
-        width: 500px;
-    }
-
-    .panel {
-        margin: 1rem 60px 0 60px;
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        background-image: linear-gradient(to top, #ffe6f4, #ffa9d8);
-    }
-
-    .panel-inputs {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        align-items: center;
-        max-height: 450px;
-        overflow-y: auto;
-        padding-top: 10rem;
-    }
-
-    .panel-img {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .form-control {
-        width: 400px;
-        font-size: 15px;
-        padding: 10px 10px 10px 5px;
-        display: block;
-        border: none;
-        background-color: none;
-        border-radius: 1px;
-        border-bottom: 1px solid #ff40a9;
-        -webkit-transition: width .35s ease-in-out;
-        transition: width .35s ease-in-out;
-        text-align: center;
-    }
-
-    .marketplace-btn {
-        background-image: radial-gradient(100% 100% at 100% 0, #ff80c5 0, #ff46b1 100%);
-    }
-
-    .logo-i {
-        color: deeppink;
-    }
-
-    .logo-e {
-        color: deeppink;
-    }
-
-    footer .bottom-nav {
-        background-color: #ffebf6;
-    }
-
-    footer .bottom-footer {
-        background-color: #ffcde8;
-    }
-</style>
+<script src="~/js/marketplace/add-marketplace-product.js"></script>
