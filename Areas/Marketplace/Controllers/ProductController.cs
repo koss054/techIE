@@ -45,7 +45,7 @@
         {
             if (!ModelState.IsValid)
             {
-                model.Categories = await categoryService.GetOfficialAsync();
+                model.Categories = await categoryService.GetAllAsync();
                 return View(model);
             }
 
