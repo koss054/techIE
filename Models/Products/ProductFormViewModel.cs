@@ -6,6 +6,7 @@
     using Models.Categories;
     using Data.Entities;
     using Data.Entities.Enums;
+    using Constants;
 
     using static Constants.DataConstants.Product;
 
@@ -25,8 +26,12 @@
         /// Name of the product.
         /// Visualized on all pages with product.
         /// </summary>
-        [Required]
-        [StringLength(MaxNameLength, MinimumLength = MinNameLength)]
+        [Required(
+            ErrorMessage = ErrorMessages.ProductNameRequiredErrorMessage)]
+        [StringLength(
+            MaxNameLength, 
+            MinimumLength = MinNameLength, 
+            ErrorMessage = ErrorMessages.ProductNameRangeErrorMessage)]
         public string Name { get; set; } = null!;
 
         /// <summary>

@@ -1,21 +1,22 @@
 ﻿@model ProductFormViewModel
+
 @{
-    ViewData["Title"] = "Admin - Add Official Product";
+    ViewBag.Title = "Add Marketplace Listing";
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/button-style.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/form-focus.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/form-input.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/admin/admin-panel.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/marketplace/product-form.css" />
+    <link rel="stylesheet" href="~/css/marketplace/button.css" />
+    <link rel="stylesheet" href="~/css/marketplace/footer.css" />
+    <link rel="stylesheet" href="~/css/marketplace/logo.css" />
 </head>
 
 <div class="panel">
-    <img src="~/images/admin/admin-panel.jpg" />
+    <img class="product-image" src="~/images/store/phone-template.jpg" />
     <div class="panel-inputs">
         <div class="category-options text-center">
             <h2 class="mb-4">
-                ADMIN: Add Official Product
+                @ViewBag.Title
             </h2>
             <form method="post">
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -30,7 +31,7 @@
 
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 <div class="mb-4 mt-4 text-center">
-                    <input class="form-control" type="url" asp-for="@Model.ImageUrl" aria-required="true" placeholder="Image Url..." />
+                    <input class="form-control img-url" type="url" asp-for="@Model.ImageUrl" aria-required="true" placeholder="Image Url..." />
                 </div>
 
                 <div class="mb-4 mt-4 text-center">
@@ -47,17 +48,17 @@
                 </div>
 
                 <div class="mb-4 mt-4 text-center">
-                    <select asp-for="@Model.CategoryId" class="form-control">
-                    @foreach (var category in Model.Categories)
-                    {
-                        <option value="@category.Id">@category.Name</option>
-                    }
+                    <select asp-for="@Model.CategoryId" class="form-control" id="product-category">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
                     </select>
                 </div>
 
                 <div class="mb-3 text-center">
-                    <input class="btn btn-primary text-center admin-btn" type="submit" value="Add" data-confirm="Are you sure you want to add product to official store?" />
-                    <input class="btn btn-primary text-center admin-btn" type="button" value="Back" onclick="location.href='@Url.Action("Products", "Panel")'" />
+                    <input class="btn btn-primary text-center marketplace-btn" type="submit" value="Add" data-confirm="Are you sure you want to add this product?" />
+                    <input class="btn btn-primary text-center marketplace-btn" type="button" value="Back" onclick="location.href='@Url.Action("Index", "Store")'" />
                 </div>
             </form>
         </div>
@@ -65,4 +66,4 @@
     </div>
 </div>
 
-<script src="~/js/alert/confrimation.js" asp-append-version="true"></script>
+<script src="~/js/marketplace/add-marketplace-product.js"></script>

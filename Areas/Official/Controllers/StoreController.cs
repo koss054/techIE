@@ -42,7 +42,8 @@
         [AllowAnonymous]
         public async Task<IActionResult> Phones()
         {
-            var model = await productService.GetAllOfficialAsync();
+            // Value in async method is true so only official products are taken.
+            var model = await productService.GetAllAsync(true);
             return View(model);
         }
 
@@ -54,7 +55,8 @@
         [AllowAnonymous]
         public async Task<IActionResult> Laptops()
         {
-            var model = await productService.GetAllOfficialAsync();
+            // Value in async method is true so only official products are taken.
+            var model = await productService.GetAllAsync(true);
             return View(model);
         }
 
@@ -66,7 +68,8 @@
         [AllowAnonymous]
         public async Task<IActionResult> Smart()
         {
-            var model = await productService.GetAllOfficialAsync();
+            // Value in async method is true so only official products are taken.
+            var model = await productService.GetAllAsync(true);
             return View(model);
         }
     }

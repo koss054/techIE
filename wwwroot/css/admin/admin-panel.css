@@ -59,6 +59,12 @@ tbody:hover,
     overflow-y: auto;
 }
 
+.panel-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .category-table,
  .product-table {
     margin-top: 7rem;
@@ -92,12 +98,6 @@ tbody:hover,
     display: flex;
     flex-direction: row;
     align-items: baseline;
-}
-
-.panel-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .grow-img {
