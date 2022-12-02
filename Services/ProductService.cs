@@ -7,6 +7,7 @@
 
     using Contracts;
     using Models.Products;
+    using Services.Products;
     using Data;
     using Data.Entities;
     using Data.Entities.Enums;
@@ -91,6 +92,63 @@
                     ImageUrl = p.ImageUrl,
                     Category = p.Category.Name
                 }).ToListAsync();
+        }
+
+        /// <summary>
+        /// Gets products for the Explore page in the user marketplace.
+        /// </summary>
+        /// <param name="category">Searched category.</param>
+        /// <param name="searchTerm">Term contained in one of the searched products.</param>
+        /// <param name="sorting">Sorting method for products.</param>
+        /// <param name="currentPage">Page that the user is on.</param>
+        /// <param name="productsPerPage">Products that are visualized per page.</param>
+        /// <returns></returns>
+        public async Task<ProductQueryServiceModel> GetSearchResultAsync(
+            string? category = null,
+            string? searchTerm = null,
+            ProductSorting sorting = ProductSorting.Newest,
+            int currentPage = 1,
+            int productsPerPage = 1)
+        {
+            var productQuery = context.Products.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                productQuery = context.Products
+                    .Where(p => p.Category.Name == category);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                productQuery = context.Products.Where(p =>
+                    p.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                    p.Description.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            productQuery = sorting switch
+            {
+                ProductSorting.Newest => productQuery.OrderBy(p => p.Id),
+                ProductSorting.Price => productQuery.OrderBy(p => p.Price),
+                _ => productQuery.OrderBy(p => p.Name)
+            };
+
+            var products = await productQuery
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .Select(p => new ProductOverviewViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                    Category = p.Category.Name
+                }).ToListAsync();
+
+            var totalProducts = productQuery.Count();
+            return new ProductQueryServiceModel()
+            {
+                TotalProductCount = totalProducts,
+                Products = products
+            };
         }
 
         /// <summary>

@@ -1,7 +1,9 @@
 ﻿namespace techIE.Contracts
 {
     using Models.Products;
+    using Services.Products;
     using Data.Entities;
+    using Data.Entities.Enums;
 
     /// <summary>
     /// Handling all product logic.
@@ -36,6 +38,22 @@
         /// <param name="isOfficial">Checks if the returned products should be official or not.</param>
         /// <returns>Three random products.</returns>
         Task<IEnumerable<ProductOverviewViewModel>> GetThreeRandomAsync(bool isOfficial);
+
+        /// <summary>
+        /// Gets products for the Explore page in the user marketplace.
+        /// </summary>
+        /// <param name="category">Searched category.</param>
+        /// <param name="searchTerm">Term contained in one of the searched products.</param>
+        /// <param name="sorting">Sorting method for products.</param>
+        /// <param name="currentPage">Page that the user is on.</param>
+        /// <param name="productsPerPage">Products that are visualized per page.</param>
+        /// <returns></returns>
+        Task<ProductQueryServiceModel> GetSearchResultAsync(
+            string? category = null,
+            string? searchTerm = null,
+            ProductSorting sorting = ProductSorting.Newest,
+            int currentPage = 1,
+            int productsPerPage = 1);
 
         /// <summary>
         /// Add a product to the database.
