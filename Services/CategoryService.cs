@@ -31,6 +31,17 @@
         }
 
         /// <summary>
+        /// Get the names of all the categories in the database.
+        /// </summary>
+        /// <returns>Names of all categories.</returns>
+        public async Task<IEnumerable<string>> GetAllNamesAsync()
+        {
+            return await context.Categories
+                .Select(c => c.Name)
+                .ToListAsync();
+        }
+
+        /// <summary>
         /// Gets all categories from the database.
         /// </summary>
         /// <returns>List of categories.</returns>
