@@ -1,4 +1,4 @@
-﻿namespace techIE.Services.Product
+﻿namespace techIE.Services.Products
 {
     using Models.Products;
 
