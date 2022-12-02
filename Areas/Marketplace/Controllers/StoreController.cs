@@ -32,5 +32,16 @@
             var model = await productService.GetThreeRandomAsync(false);
             return View(model);
         }
+
+        /// <summary>
+        /// The explore page of the user marketplace.
+        /// Users can see all of the products listed by each user.
+        /// They can sort the categories from the search bar.
+        /// </summary>
+        /// <returns>The explore page of the marketplace StoreController.</returns>
+        public async Task<IActionResult> Explore()
+        {
+            return View();
+        }
     }
 }
