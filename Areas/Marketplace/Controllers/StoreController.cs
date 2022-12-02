@@ -4,6 +4,7 @@
 
     using techIE.Contracts;
     using techIE.Controllers;
+    using techIE.Models.Products;
 
     /// <summary>
     /// Store controller for the user marketplace.
@@ -13,10 +14,14 @@
     public class StoreController : BaseController
     {
         private readonly IProductService productService;
+        private readonly ICategoryService categoryService;
 
-        public StoreController(IProductService _productService)
+        public StoreController(
+            IProductService _productService,
+            ICategoryService _categoryService)
         {
             productService = _productService;
+            categoryService = _categoryService;
         }
 
         /// <summary>
@@ -31,6 +36,28 @@
             // Value in async method is false so only user added products are added.
             var model = await productService.GetThreeRandomAsync(false);
             return View(model);
+        }
+
+        /// <summary>
+        /// The explore page of the user marketplace.
+        /// Users can see all of the products listed by each user.
+        /// They can sort the categories from the search bar.
+        /// </summary>
+        /// <returns>The explore page of the marketplace StoreController.</returns>
+        public async Task<IActionResult> Explore([FromQuery] ProductQueryViewModel query)
+        {
+            var productCategories = await categoryService.GetAllNamesAsync();
+            var queryResult = await productService.GetSearchResultAsync(
+                query.Category,
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                ProductQueryViewModel.ProductsPerPage);
+
+            query.TotalProductsCount = queryResult.TotalProductCount;
+            query.Products = queryResult.Products;
+            query.Categories = productCategories;
+            return View(query);
         }
     }
 }

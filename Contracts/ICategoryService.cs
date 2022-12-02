@@ -16,6 +16,12 @@
         Task<Category?> GetAsync(int id);
 
         /// <summary>
+        /// Get the names of all the categories in the database.
+        /// </summary>
+        /// <returns>Names of all categories.</returns>
+        Task<IEnumerable<string>> GetAllNamesAsync();
+
+        /// <summary>
         /// Gets all categories from the database.
         /// </summary>
         /// <returns>List of categories.</returns>
