@@ -15,6 +15,7 @@
 
     category.change(function () {
         setCategoryImage(productImg, imgUrl.val());
+        console.log(category.val());
     })
 
     function checkImage(productImg, url) {
@@ -34,11 +35,11 @@
 
     function setCategoryImage(img, url) {
         if (url == "") {
-            if (category.val() == 1) {
+            if (category.val() == "Phones") {
                 img.attr("src", "https://i.imgur.com/MBPYVWU.jpeg");
-            } else if (category.val() == 2) {
+            } else if (category.val() == "Laptops") {
                 img.attr("src", "https://i.imgur.com/g0mVLnw.jpeg");
-            } else if (category.val() == 3) {
+            } else if (category.val() == "Smart Watches") {
                 img.attr("src", "https://i.imgur.com/L0UbSPc.jpeg");
             } else {
                 img.attr("src", "https://i.imgur.com/DmgfDVd.jpeg");
