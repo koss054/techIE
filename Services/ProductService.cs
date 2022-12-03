@@ -110,7 +110,7 @@
             int currentPage = 1,
             int productsPerPage = 1)
         {
-            var productQuery = context.Products.AsQueryable();
+            var productQuery = context.Products.Where(p => p.IsOfficial == false).AsQueryable();
             if (!string.IsNullOrWhiteSpace(category))
             {
                 productQuery = context.Products
