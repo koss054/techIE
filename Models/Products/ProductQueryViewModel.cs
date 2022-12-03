@@ -1,5 +1,8 @@
 ﻿namespace techIE.Models.Products
 {
+    using System.ComponentModel.DataAnnotations;
+
+    using Constants;
     using Data.Entities.Enums;
 
     /// <summary>
@@ -20,6 +23,7 @@
         /// <summary>
         /// Search term that shows products which contain it in their name or description.
         /// </summary>
+        [Display(Name = DisplayNames.MarketplaceSearchTerm)]
         public string SearchTerm { get; set; } = null!;
 
         /// <summary>
