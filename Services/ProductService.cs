@@ -110,6 +110,7 @@
             int currentPage = 1,
             int productsPerPage = 1)
         {
+            // We only take the unofficial products as the search bar is only used in the Marketplace section.
             var productQuery = context.Products.Where(p => p.IsOfficial == false).AsQueryable();
             if (!string.IsNullOrWhiteSpace(category))
             {
