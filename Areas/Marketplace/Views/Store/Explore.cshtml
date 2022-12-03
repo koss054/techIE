@@ -7,6 +7,8 @@
 <head>
     <link rel="stylesheet" href="~/css/marketplace/footer.css" />
     <link rel="stylesheet" href="~/css/marketplace/logo.css" />
+    <link rel="stylesheet" href="~/css/marketplace/search-bar.css" />
+    <link rel="stylesheet" href="~/css/marketplace/button.css" />
     <link rel="stylesheet" href="~/css/horizontal-row/marketplace-rows.css" />
     <link rel="stylesheet" href="~/css/store/marketplace-store.css" />
     <link rel="stylesheet" href="~/css/animations/grow-on-hover.css" />
@@ -19,8 +21,8 @@
 
 
 <form method="get"> 
-    <div class="row"> 
-        <div class="form-group col-md-3 d-flex justify-content-between"> 
+    <div class="search-bar"> 
+        <div class="form-group"> 
             <div class="form-group"> 
                 <label asp-for="Category"></label> 
                 <select asp-for="Category" class="form-control"> 
@@ -33,12 +35,12 @@
             </div> 
         </div> 
 
-        <div class="form-group col-md-3"> 
+        <div> 
             <label asp-for="SearchTerm"></label> 
             <input asp-for="SearchTerm" class="form-control" placeholder="..."> 
         </div> 
 
-        <div class="form-group col-md-3"> 
+        <div> 
             <div class="form-group"> 
                 <label asp-for="Sorting"></label> 
                 <select asp-for="Sorting" class="form-control"> 
@@ -50,8 +52,8 @@
         </div> 
 
  
-        <div class="col-md-3"> 
-            <div class="form-group mt-4 p-2"> 
+        <div> 
+            <div class="form-group" id="search-button"> 
                 <input type="submit" value="Search" class="btn btn-primary" /> 
             </div> 
         </div> 
@@ -68,9 +70,9 @@
     var maxPage = Math.Ceiling((double)Model.TotalProductsCount / ProductQueryViewModel.ProductsPerPage); 
 } 
 
-<div class="row mb-5"> 
-    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start"> 
-        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" 
+<div class="navigation-bar"> 
+    <div> 
+        <a class="btn btn-primary navigation @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" 
            asp-area="Marketplace"
            asp-controller="Store" 
            asp-action="Explore" 
@@ -85,9 +87,8 @@
         !Model.Products.Any(); 
     } 
 
-    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end"> 
-        <a class="btn btn-primary  
-           @(shouldButtonBeDisabled ? "disabled" : string.Empty)" 
+    <div> 
+        <a class="btn btn-primary navigation @(shouldButtonBeDisabled ? "disabled" : string.Empty)" 
            asp-area="Marketplace"
            asp-controller="Store" 
            asp-action="Explore" 

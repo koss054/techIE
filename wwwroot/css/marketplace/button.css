@@ -1,13 +1,25 @@
-﻿.marketplace-btn {
+﻿.marketplace-btn,
+.btn-primary {
     background-image: radial-gradient(100% 100% at 100% 0, #ff80c5 0, #ff46b1 100%);
     border: 1px solid #ff40a9;
 }
 
-.marketplace-btn:hover {
+.marketplace-btn:hover,
+.btn-primary:hover {
     border-color: #ffdcef;
 }
 
-.marketplace-btn:focus {
+.marketplace-btn:focus,
+.btn-primary:focus {
     border-color: #ff63bc;
     box-shadow: 0 0 0 0.25rem rgb(252 146 204);
+}
+
+.btn-primary:active:focus {
+    box-shadow: 0 0 0 0.25rem rgb(255 138 205 / 42%);
+}
+
+
+.btn-primary.disabled {
+    border-color: #ff63bc;
 }

@@ -110,18 +110,31 @@
             int currentPage = 1,
             int productsPerPage = 1)
         {
-            var productQuery = context.Products.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(category))
-            {
-                productQuery = context.Products
-                    .Where(p => p.Category.Name == category);
-            }
+            // We only take the unofficial products as the search bar is only used in the Marketplace section.
+            var productQuery = context.Products.Where(p => p.IsOfficial == false).AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(searchTerm))
+            // Made the if statement a lot bigger than necessary because the search term was overriding the category.
+            // Will try to reduce the lines of code when I'm refactoring the app, if I have time D:
+            if (!string.IsNullOrWhiteSpace(category) && !string.IsNullOrWhiteSpace(searchTerm))
             {
                 productQuery = context.Products.Where(p =>
-                    p.Name.ToLower().Contains(searchTerm.ToLower()) ||
-                    p.Description.ToLower().Contains(searchTerm.ToLower()));
+                    (p.Category.Name == category &&
+                    (p.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                    p.Description.ToLower().Contains(searchTerm.ToLower()))) &&
+                    p.IsOfficial == false);
+            }
+            else if (!string.IsNullOrWhiteSpace(category))
+            {
+                productQuery = context.Products.Where(p => 
+                    p.Category.Name == category &&
+                    p.IsOfficial == false);
+            }
+            else if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                productQuery = context.Products.Where(p =>
+                    (p.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                    p.Description.ToLower().Contains(searchTerm.ToLower())) &&
+                    p.IsOfficial == false);
             }
 
             productQuery = sorting switch
