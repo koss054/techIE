@@ -7,6 +7,7 @@
 <head>
     <link rel="stylesheet" href="~/css/marketplace/footer.css" />
     <link rel="stylesheet" href="~/css/marketplace/logo.css" />
+    <link rel="stylesheet" href="~/css/marketplace/search-bar.css" />
     <link rel="stylesheet" href="~/css/horizontal-row/marketplace-rows.css" />
     <link rel="stylesheet" href="~/css/store/marketplace-store.css" />
     <link rel="stylesheet" href="~/css/animations/grow-on-hover.css" />
@@ -19,8 +20,8 @@
 
 
 <form method="get"> 
-    <div class="row"> 
-        <div class="form-group col-md-3 d-flex justify-content-between"> 
+    <div class="search-bar"> 
+        <div class="form-group"> 
             <div class="form-group"> 
                 <label asp-for="Category"></label> 
                 <select asp-for="Category" class="form-control"> 
@@ -33,12 +34,12 @@
             </div> 
         </div> 
 
-        <div class="form-group col-md-3"> 
+        <div> 
             <label asp-for="SearchTerm"></label> 
             <input asp-for="SearchTerm" class="form-control" placeholder="..."> 
         </div> 
 
-        <div class="form-group col-md-3"> 
+        <div> 
             <div class="form-group"> 
                 <label asp-for="Sorting"></label> 
                 <select asp-for="Sorting" class="form-control"> 
@@ -50,8 +51,8 @@
         </div> 
 
  
-        <div class="col-md-3"> 
-            <div class="form-group mt-4 p-2"> 
+        <div> 
+            <div class="form-group" id="search-button"> 
                 <input type="submit" value="Search" class="btn btn-primary" /> 
             </div> 
         </div> 
