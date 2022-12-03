@@ -11,3 +11,13 @@
 #search-button {
     margin-top: 25px;
 }
+
+.navigation-bar {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.btn.navigation {
+    margin: 0 100px;
+}
