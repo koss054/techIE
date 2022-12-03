@@ -29,6 +29,15 @@
                     <input class="form-control" asp-for="@Model.Price" aria-required="true" placeholder="Price..." />
                 </div>
 
+                <div class="mb-4 mt-4 text-center">
+                    <select asp-for="@Model.CategoryId" class="form-control" id="product-category">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option id="@category.Name" value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                </div>
+
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 <div class="mb-4 mt-4 text-center">
                     <input class="form-control img-url" type="url" asp-for="@Model.ImageUrl" aria-required="true" placeholder="Image Url..." />
@@ -45,16 +54,7 @@
                 <div class="mb-4 mt-4 text-center">
                     <textarea class="form-control" asp-for="@Model.Description" aria-required="true" placeholder="Write product description here...">
                     </textarea>
-                </div>
-
-                <div class="mb-4 mt-4 text-center">
-                    <select asp-for="@Model.CategoryId" class="form-control" id="product-category">
-                        @foreach (var category in Model.Categories)
-                        {
-                            <option value="@category.Name">@category.Name</option>
-                        }
-                    </select>
-                </div>
+                </div
 
                 <div class="mb-3 text-center">
                     <input class="btn btn-primary text-center marketplace-btn" type="submit" value="Add" data-confirm="Are you sure you want to add this product?" />
