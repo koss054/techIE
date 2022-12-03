@@ -15,6 +15,10 @@
     box-shadow: 0 0 0 0.25rem rgb(252 146 204);
 }
 
+.btn-primary:active:focus {
+    box-shadow: 0 0 0 0.25rem rgb(255 138 205 / 42%);
+}
+
 
 .btn-primary.disabled {
     border-color: #ff63bc;
