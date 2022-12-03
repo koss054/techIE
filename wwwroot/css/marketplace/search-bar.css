@@ -8,6 +8,11 @@
     padding: 0 10px;
 }
 
+.form-control:focus {
+    border-color: #ff78c2;
+    box-shadow: 0 0 0 0.25rem rgb(255 156 212 / 28%);
+}
+
 #search-button {
     margin-top: 25px;
 }
@@ -20,4 +25,9 @@
 
 .btn.navigation {
     margin: 0 100px;
+}
+
+select option {
+    color: dimgray;
+    background: #ffabd838;
 }
