@@ -3,15 +3,15 @@
         <div class="footer-links">
             <ul>
                 <li class="list-title">Our Categories</li>
-                <li><a href="#">Phones</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smart Watches</a></li>
+                <li><a asp-area="Official" asp-controller="Store" asp-action="Phones">Phones</a></li>
+                <li><a asp-area="Official" asp-controller="Store" asp-action="Laptops">Laptops</a></li>
+                <li><a asp-area="Official" asp-controller="Store" asp-action="Smart">Smart Watches</a></li>
             </ul>
 
             <ul>
                 <li class="list-title">User Marketplace</li>
-                <li><a href="#">Explore Marketplace</a></li>
-                <li><a href="#">Create Listing</a></li>
+                <li><a asp-area="Marketplace" asp-controller="Store" asp-action="Explore">Explore Marketplace</a></li>
+                <li><a asp-area="Marketplace" asp-controller="Product" asp-action="Add">Create Listing</a></li>
             </ul>
 
             <ul>
