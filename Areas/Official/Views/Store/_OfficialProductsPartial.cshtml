@@ -11,12 +11,21 @@
     {
         @if (product.Category == (string)ViewData["Product"])
         {
-            <div class="product grow">
-                <img src="@product.ImageUrl">
-            <hr class="img-seperator official" />
-            <h4 class="text-center">@product.Name</h4>
-            <h6 class="text-center">$@product.Price</h6>
-            </div>
+            <a asp-area="Official" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
+                <div class="product grow">
+                    <img src="@product.ImageUrl">
+                    <hr class="img-seperator official" />
+                    <h4 class="text-center">@product.Name</h4>
+                    <h6 class="text-center">$@product.Price</h6>
+                </div>
+            </a>
         }
     }
 </div>
+
+<style>
+    a {
+        color: black;
+        text-decoration: none;
+    }
+</style>
