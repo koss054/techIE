@@ -1,0 +1,85 @@
+﻿@model ProductDetailedViewModel
+
+@{
+    ViewBag.Title = Model.Name + " Details:";
+}
+
+<h2 class="text-center details-header">@ViewBag.Title</h2>
+<hr />
+
+<div class="panel-details">
+    <div class="details-img">
+        <img src="@Model.ImageUrl" />
+    </div>
+    <div class="details-info">
+        <h4 class="details-category">Category: @Model.Category</h4>
+        <h5 class="details-color">Color: <span id="product-color">@Model.Color</span></h5>
+        <hr class="details-description-separator" />
+            <span class="details-description-header">Description:</span>
+            <p class="details-description">@Model.Description</p>
+        <hr class="details-price-separator" />
+        <h3 class="details-price">Price: $@Model.Price</h3>
+    </div>
+</div>
+
+<style>
+    img {
+        width: 400px;
+        height: 600px;
+    }
+
+    .details-header {
+        margin-top: 20px;
+    }
+
+    .panel-details {
+        display: flex;
+        flex-direction: row;
+        margin: 30px 60px;
+        max-width: 1200px;
+    }
+
+    .details-info {
+        margin-top: 100px;
+        margin-left: 10rem;
+    }
+
+    .details-category {
+        color: #5377b9;
+    }
+
+    .details-description-separator {
+        margin-top: 2rem;
+    }
+
+    .details-description-header {
+        color: #8080808f;
+        font-size: 14px;
+    }
+
+    .details-price-separator {
+        margin-bottom: 2rem;
+    }
+</style>
+
+<script>
+    $(function() {
+        const productColor = $("#product-color");
+        const colorText = productColor.text().toLowerCase();
+
+        if (colorText !== "colorful") {
+            $("#product-color").css({"color": colorText});
+        } else {
+            productColor.css({
+                "background": "linear-gradient(to bottom right, #ff98f6, #b5a2ff)",
+                "-webkit-background-clip": "text",
+                "text-fill-color": "transparent"
+            });
+        }
+
+        let productDescription = $(".details-description");
+        let newDescription = productDescription.text().replace(/\n/g, '<br />');
+        productDescription.html(newDescription);
+
+    });
+</script>

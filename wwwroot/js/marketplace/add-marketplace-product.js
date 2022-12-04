@@ -22,7 +22,6 @@
 
     category.change(function () {
         setCategoryImage(productImg, imgUrl.val());
-        console.log(category.children(":selected").attr("id"));
     })
 
     function checkImage(productImg, url) {

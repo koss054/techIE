@@ -1,5 +1,7 @@
 ﻿namespace techIE.Models.Products
 {
+    using Data.Entities.Enums;
+
     /// <summary>
     /// Product detailed view model.
     /// Used when the user selects a product and opens its page.
@@ -27,5 +29,22 @@
         /// techIE "owns" imgur and they use it to host the images.
         /// </summary>
         public string ImageUrl { get; set; } = null!;
+
+        /// <summary>
+        /// Category of the product.
+        /// Depending on it the product is visualized or not (in the store/marketplace).
+        /// </summary>
+        public string Category { get; set; } = null!;
+
+        /// <summary>
+        /// Color of the product.
+        /// </summary>
+        public Color Color { get; set; }
+
+        /// <summary>
+        /// Description of the product.
+        /// Visualized only on product page.
+        /// </summary>
+        public string Description { get; set; } = null!;
     }
 }

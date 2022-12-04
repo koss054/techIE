@@ -36,10 +36,11 @@ span.below-hr {
 }
 
 .product-panel {
-    margin: 0 60px 60px 60px;
+    margin: 0 60px 0 60px;
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .product {
@@ -47,4 +48,27 @@ span.below-hr {
     border-color: #6495eda3;
     border-radius: 10px;
     padding: 1rem;
+    margin-bottom: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.product {
+    color: black;
+    border: none;
+}
+
+.no-products {
+    margin-top: 50px;
+    margin-bottom: 78px;
+}
+
+a.official-redirect {
+    color: cornflowerblue;
+}
+
+a.marketplace-redirect {
+    color: deeppink;
 }

@@ -52,7 +52,6 @@
 
         /// <summary>
         /// Color of the product.
-        /// Changes the color of the product image.
         /// </summary>
         [Required]
         public Color Color { get; set; }

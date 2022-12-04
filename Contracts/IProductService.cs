@@ -18,6 +18,14 @@
         Task<Product?> GetAsync(int id);
 
         /// <summary>
+        /// Get product with more details.
+        /// Used in product detail pages.
+        /// </summary>
+        /// <param name="id">Id of the product that we are looking for.</param>
+        /// <returns>Product with additional details.</returns>
+        Task<ProductDetailedViewModel?> GetDetailedAsync(int id);
+
+        /// <summary>
         /// Get all products with IsOfficial == true.
         /// Main use is in the admin product panel.
         /// </summary>
