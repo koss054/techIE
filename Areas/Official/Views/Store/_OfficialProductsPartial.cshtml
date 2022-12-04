@@ -7,11 +7,13 @@
 </div>
 
 <div class="product-panel">
+    @{ var count = 0; }
+
     @foreach (var product in Model)
     {
         @if (product.Category == (string)ViewData["Product"])
         {
-            <a asp-area="Official" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
+            <a class="product" asp-area="Official" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
                 <div class="product grow">
                     <img src="@product.ImageUrl">
                     <hr class="img-seperator official" />
@@ -19,13 +21,24 @@
                     <h6 class="text-center">$@product.Price</h6>
                 </div>
             </a>
+            count++;
         }
+    }
+
+    @if (count == 0)
+    {
+        <div class="no-products text-center">
+            <h2>Currently no products available in this category. Our apologies.</h2>
+            <h4 class="mt-4">Check out our 
+                <a class="official-redirect" asp-area="Official" asp-controller="Store" asp-action="Index">Official Store</a> 
+                or our 
+                <a class="marketplace-redirect" asp-area="Marketplace" asp-controller="Store" asp-action="Index">User Marketplace</a>
+                for more products!
+            </h4>
+        </div>
     }
 </div>
 
 <style>
-    a {
-        color: black;
-        text-decoration: none;
-    }
+    
 </style>
