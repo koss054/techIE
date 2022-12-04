@@ -36,6 +36,28 @@
         }
 
         /// <summary>
+        /// Get product with more details.
+        /// Used in product detail pages.
+        /// </summary>
+        /// <param name="id">Id of the product that we are looking for.</param>
+        /// <returns>Product with additional details.</returns>
+        public async Task<ProductDetailedViewModel?> GetDetailedAsync(int id)
+        {
+            return await context.Products
+                .Where(p => p.Id == id)
+                .Select(p => new ProductDetailedViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                    Category = p.Category.Name,
+                    Color = p.Color,
+                    Description = p.Description
+                }).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
         /// Get all products with IsOfficial == true.
         /// Main use is in the admin product panel.
         /// </summary>
