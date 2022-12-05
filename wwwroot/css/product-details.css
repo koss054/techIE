@@ -1,0 +1,32 @@
+﻿img {
+    width: 400px;
+    height: 600px;
+}
+
+.details-header {
+    margin-top: 20px;
+}
+
+.panel-details {
+    display: flex;
+    flex-direction: row;
+    margin: 30px 60px;
+    max-width: 1200px;
+}
+
+.details-info {
+    margin-top: 100px;
+    margin-left: 10rem;
+}
+
+.details-description-separator {
+    margin-top: 2rem;
+}
+
+.details-description-header {
+    font-size: 14px;
+}
+
+.details-price-separator {
+    margin-bottom: 2rem;
+}
