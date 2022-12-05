@@ -46,5 +46,10 @@
         /// Visualized only on product page.
         /// </summary>
         public string Description { get; set; } = null!;
+
+        /// <summary>
+        /// Id of the user who is selling the product.
+        /// </summary>
+        public UserViewModel Seller { get; set; } = null!;
     }
 }
