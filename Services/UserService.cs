@@ -30,24 +30,24 @@
                 {
                     Id = u.Id,
                     UserName = u.UserName,
-                    Email = u.Email,
-                    IsAdmin = u.IsAdmin
+                    Email = u.Email
                 }).FirstOrDefaultAsync(u => u.Id == userId);
         }
 
         /// <summary>
-        /// Checks if the current user is an admin or not.
+        /// Get user by product Id.
+        /// Method used to display who has listed the product.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>Value of the bool user property IsAdmin.</returns>
-        public bool IsAdminAsync(string userId)
+        /// <param name="productId">Id of the product whose user we want to find.</param>
+        /// <returns>User if successful. Otherwise, null.</returns>
+        public async Task<UserViewModel?> GetUserByProductIdAsync(int productId)
         {
-            var user = context.Users
-                .FirstOrDefault(u => u.Id == userId);
-
-            return user == null
-                ? false
-                : user.IsAdmin;
+            var userProduct = await context.UsersProducts.FirstOrDefaultAsync(up => up.ProductId == productId);
+            if (userProduct != null)
+            {
+                return await this.GetUserAsync(userProduct.UserId) ?? null;
+            }
+            return null;
         }
     }
 }
