@@ -40,6 +40,12 @@
             return View(model);
         }
 
+        /// <summary>
+        /// Adds a product to the user marketplace if the model is valid.
+        /// IsOfficial is always false, as the product is just for the marketplace.
+        /// </summary>
+        /// <param name="model">Product that we are adding to the marketplace.</param>
+        /// <returns>Redirects to marketplace index page if successful. Otherwise, the user is promted to enter their product again.</returns>
         [HttpPost]
         public async Task<IActionResult> Add(ProductFormViewModel model)
         {
@@ -55,6 +61,18 @@
             return RedirectToAction(
                 RedirectPaths.AddMarketplaceProductPage,
                 RedirectPaths.AddMarketplaceProductController);
+        }
+
+        /// <summary>
+        /// Product details for marketplace products.
+        /// </summary>
+        /// <param name="id">Id of the product the user wants to see.</param>
+        /// <returns>Page with more details about the selected product.</returns>
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await productService.GetDetailedAsync(id);
+            return View(model);
         }
     }
 }
