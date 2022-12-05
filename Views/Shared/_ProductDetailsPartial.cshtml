@@ -1,0 +1,19 @@
+﻿<h2 class="text-center details-header">@ViewBag.Title</h2>
+<hr />
+
+<div class="panel-details">
+    <div class="details-img">
+        <img src="@Model.ImageUrl" />
+    </div>
+    <div class="details-info">
+        <h4 class="details-category">Category: @Model.Category</h4>
+        <h5 class="details-color">Color: <span id="product-color">@Model.Color</span></h5>
+        <hr class="details-description-separator" />
+            <span class="details-description-header">Description:</span>
+            <p class="details-description">@Model.Description</p>
+        <hr class="details-price-separator" />
+        <h3 class="details-price">Price: $@Model.Price</h3>
+    </div>
+</div>
+
+<script src="~/js/details-page.js"></script>
