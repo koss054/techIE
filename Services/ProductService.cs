@@ -6,8 +6,12 @@
     using Microsoft.EntityFrameworkCore;
 
     using Contracts;
+
+    using Models;
     using Models.Products;
+
     using Services.Products;
+
     using Data;
     using Data.Entities;
     using Data.Entities.Enums;
@@ -24,6 +28,7 @@
             context = _context;
         }
 
+        #region GetProduct
         /// <summary>
         /// Get a product with provided Id.
         /// </summary>
@@ -41,7 +46,7 @@
         /// </summary>
         /// <param name="id">Id of the product that we are looking for.</param>
         /// <returns>Product with additional details.</returns>
-        public async Task<ProductDetailedViewModel?> GetDetailedAsync(int id)
+        public async Task<ProductDetailedViewModel?> GetDetailedAsync(int id, UserViewModel seller)
         {
             return await context.Products
                 .Where(p => p.Id == id)
@@ -53,7 +58,8 @@
                     ImageUrl = p.ImageUrl,
                     Category = p.Category.Name,
                     Color = p.Color,
-                    Description = p.Description
+                    Description = p.Description,
+                    Seller = seller
                 }).FirstOrDefaultAsync();
         }
 
@@ -169,6 +175,7 @@
             var products = await productQuery
                 .Skip((currentPage - 1) * productsPerPage)
                 .Take(productsPerPage)
+                .Distinct()
                 .Select(p => new ProductOverviewViewModel
                 {
                     Id = p.Id,
@@ -185,14 +192,17 @@
                 Products = products
             };
         }
+        #endregion
 
+        #region AddProduct
         /// <summary>
-        /// Add a category to the database.
+        /// Add a product to the database.
         /// </summary>
         /// <param name="model">Model with validation.</param>
-        public async Task AddAsync(ProductFormViewModel model)
+        /// <param name="userId">User adding the product.</param>
+        public async Task AddAsync(ProductFormViewModel model, string userId)
         {
-            var entity = new Product()
+            var product = new Product()
             {
                 Name = model.Name,
                 Price = model.Price,
@@ -203,10 +213,13 @@
                 CategoryId = model.CategoryId
             };
 
-            await context.Products.AddAsync(entity);
+            await context.Products.AddAsync(product);
+            await this.AddToUserProduct(product, userId);
             await context.SaveChangesAsync();
         }
+        #endregion
 
+        #region EditProduct
         /// <summary>
         /// Edit a product from the database.
         /// </summary>
@@ -227,7 +240,9 @@
                 await context.SaveChangesAsync();
             }
         }
+        #endregion
 
+        #region DeleteProduct
         /// <summary>
         /// Delete a product from the database;
         /// </summary>
@@ -241,5 +256,30 @@
                 await context.SaveChangesAsync();
             }
         }
+        #endregion
+
+        #region PrivateMethods
+        /// <summary>
+        /// Adding the product to the mapping table.
+        /// This way the product and the user are tied together.
+        /// </summary>
+        /// <param name="product">Product that is being added to the database.</param>
+        /// <param name="userId">User that is adding the product.</param>
+        private async Task AddToUserProduct(Product product, string userId)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user != null)
+            {
+                user.UsersProducts.Add(new UserProduct()
+                {
+                    UserId = userId,
+                    User = user,
+                    ProductId = product.Id,
+                    Product = product
+                });
+            }
+            await context.SaveChangesAsync();
+        }
+        #endregion
     }
 }
