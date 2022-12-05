@@ -64,3 +64,8 @@ footer .bottom-nav {
 footer .bottom-footer {
     background-color: #ffcde8;
 }
+
+a.product-details {
+    text-decoration: none!important;
+    color: black;
+}

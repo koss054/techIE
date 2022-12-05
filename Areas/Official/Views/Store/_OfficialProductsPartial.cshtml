@@ -13,7 +13,7 @@
     {
         @if (product.Category == (string)ViewData["Product"])
         {
-            <a class="product" asp-area="Official" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
+            <a class="product-details" asp-area="Official" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
                 <div class="product grow">
                     <img src="@product.ImageUrl">
                     <hr class="img-seperator official" />

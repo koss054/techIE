@@ -55,9 +55,8 @@ a {
     text-decoration: none;
 }
 
-a.product {
+a.product-details {
     color: black;
-    border: none;
 }
 
 .no-products {
