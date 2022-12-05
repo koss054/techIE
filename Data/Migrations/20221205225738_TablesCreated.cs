@@ -32,13 +32,6 @@ namespace techIE.Data.Migrations
                 oldMaxLength: 256,
                 oldNullable: true);
 
-            migrationBuilder.AddColumn<bool>(
-                name: "IsAdmin",
-                table: "AspNetUsers",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
-
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
@@ -105,7 +98,7 @@ namespace techIE.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserProduct",
+                name: "UsersProducts",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -113,15 +106,15 @@ namespace techIE.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserProduct", x => new { x.UserId, x.ProductId });
+                    table.PrimaryKey("PK_UsersProducts", x => new { x.UserId, x.ProductId });
                     table.ForeignKey(
-                        name: "FK_UserProduct_AspNetUsers_UserId",
+                        name: "FK_UsersProducts_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserProduct_Products_ProductId",
+                        name: "FK_UsersProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -144,15 +137,15 @@ namespace techIE.Data.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProduct_ProductId",
-                table: "UserProduct",
+                name: "IX_UsersProducts_ProductId",
+                table: "UsersProducts",
                 column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserProduct");
+                name: "UsersProducts");
 
             migrationBuilder.DropTable(
                 name: "Products");
@@ -163,15 +156,11 @@ namespace techIE.Data.Migrations
             migrationBuilder.DropTable(
                 name: "Orders");
 
-            migrationBuilder.DropColumn(
-                name: "IsAdmin",
-                table: "AspNetUsers");
-
             migrationBuilder.AlterColumn<string>(
                 name: "UserName",
                 table: "AspNetUsers",
-                type: "nvarchar(32)",
-                maxLength: 32,
+                type: "nvarchar(256)",
+                maxLength: 256,
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(256)",
@@ -180,8 +169,8 @@ namespace techIE.Data.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
                 table: "AspNetUsers",
-                type: "nvarchar(80)",
-                maxLength: 80,
+                type: "nvarchar(256)",
+                maxLength: 256,
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(256)",
