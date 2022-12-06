@@ -4,7 +4,10 @@
 
     using Constants;
     using Contracts;
+    using Infrastructure;
+
     using Models.Products;
+
     using techIE.Controllers;
 
     /// <summary>
@@ -14,13 +17,16 @@
     [Area("Marketplace")]
     public class ProductController : BaseController
     {
+        private readonly IUserService userService;
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
 
         public ProductController(
+            IUserService _userService,
             IProductService _productService,
             ICategoryService _categoryService)
         {
+            userService = _userService;
             productService = _productService;
             categoryService = _categoryService;
         }
@@ -57,7 +63,7 @@
 
             // As this product is added in the user marketplace it's not considered one of techIE's official products.
             model.IsOfficial = false;
-            await productService.AddAsync(model);
+            await productService.AddAsync(model, this.User.Id());
             return RedirectToAction(
                 RedirectPaths.AddMarketplaceProductPage,
                 RedirectPaths.AddMarketplaceProductController);
@@ -71,7 +77,13 @@
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var model = await productService.GetDetailedAsync(id);
+            var seller = await userService.GetUserByProductIdAsync(id);
+            if (seller == null)
+            {
+                return BadRequest();
+            }
+
+            var model = await productService.GetDetailedAsync(id, seller);
             return View(model);
         }
     }

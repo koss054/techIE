@@ -12,10 +12,14 @@
     [Area("Official")]
     public class ProductController : BaseController
     {
+        private readonly IUserService userService;
         private readonly IProductService productService;
 
-        public ProductController(IProductService _productService)
+        public ProductController(
+            IUserService _userService,
+            IProductService _productService)
         {
+            userService = _userService;
             productService = _productService;
         }
 
@@ -27,7 +31,13 @@
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var model = await productService.GetDetailedAsync(id);
+            var seller = await userService.GetUserByProductIdAsync(id);
+            if (seller == null)
+            {
+                return BadRequest();
+            }
+
+            var model = await productService.GetDetailedAsync(id, seller);
             return View(model);
         }
     }
