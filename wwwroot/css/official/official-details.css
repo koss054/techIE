@@ -1,3 +1,16 @@
 ﻿.details-category {
     color: #5377b9;
 }
+
+.details-description-separator {
+    margin-top: 1rem;
+}
+
+.admin-buttons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.admin-button {
+    margin-right: 1rem;
+}
