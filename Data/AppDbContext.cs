@@ -47,12 +47,17 @@
             base.OnModelCreating(builder);
         }
 
+        #region DbSets
         public DbSet<Category> Categories { get; set; } = null!;
 
         public DbSet<Order> Orders { get; set; } = null!;
 
         public DbSet<Product> Products { get; set; } = null!;
 
+        public DbSet<UserProduct> UsersProducts { get; set; } = null!;
+        #endregion
+
+        #region SeedDatabase
         private void SeedAdmin()
         {
             var hasher = new PasswordHasher<User>();
@@ -71,5 +76,6 @@
         }
 
         private User AdminUser { get; set; } = null!;
+        #endregion
     }
 }
