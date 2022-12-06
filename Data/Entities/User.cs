@@ -10,15 +10,8 @@
     public class User : IdentityUser
     {
         /// <summary>
-        /// If true - the user can create listings in the official store; the user gets a warning when creating a listing in the marketplace.
-        /// If false - the user can only create listings in the marketplace (no warning).
-        /// </summary>
-        [Required]
-        public bool IsAdmin { get; set; } = false;
-
-        /// <summary>
         /// Mapping table for the User and the Marketplace Product.
         /// </summary>
-        public virtual ICollection<UserProduct> UsersMProducts { get; set; } = new List<UserProduct>();
+        public virtual ICollection<UserProduct> UsersProducts { get; set; } = new List<UserProduct>();
     }
 }
