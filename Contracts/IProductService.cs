@@ -1,7 +1,10 @@
 ﻿namespace techIE.Contracts
 {
+    using Models;
     using Models.Products;
+
     using Services.Products;
+
     using Data.Entities;
     using Data.Entities.Enums;
 
@@ -10,6 +13,7 @@
     /// </summary>
     public interface IProductService
     {
+        #region GetProduct
         /// <summary>
         /// Get a product with provided Id.
         /// </summary>
@@ -23,7 +27,7 @@
         /// </summary>
         /// <param name="id">Id of the product that we are looking for.</param>
         /// <returns>Product with additional details.</returns>
-        Task<ProductDetailedViewModel?> GetDetailedAsync(int id);
+        Task<ProductDetailedViewModel?> GetDetailedAsync(int id, UserViewModel seller);
 
         /// <summary>
         /// Get all products with IsOfficial == true.
@@ -62,23 +66,30 @@
             ProductSorting sorting = ProductSorting.Newest,
             int currentPage = 1,
             int productsPerPage = 1);
+        #endregion
 
+        #region AddProduct
         /// <summary>
         /// Add a product to the database.
         /// </summary>
         /// <param name="model">Model with validation.</param>
-        Task AddAsync(ProductFormViewModel model);
+        Task AddAsync(ProductFormViewModel model, string userId);
+        #endregion
 
+        #region EditProduct
         /// <summary>
         /// Edit a product from the database.
         /// </summary>
         /// <param name="model">Model with validation.</param>
         Task EditAsync(ProductFormViewModel model);
+        #endregion
 
+        #region DeleteProduct
         /// <summary>
         /// Delete a product from the database;
         /// </summary>
         /// <param name="id">Id of deleted product.</param>
         Task DeleteAsync(int id);
+        #endregion
     }
 }

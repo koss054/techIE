@@ -15,10 +15,11 @@
         Task<UserViewModel?> GetUserAsync(string userId);
 
         /// <summary>
-        /// Checks if the current user is an admin or not.
+        /// Get user by product Id.
+        /// Method used to display who has listed the product.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>Value of the bool user property IsAdmin.</returns>
-        bool IsAdminAsync(string userId);
+        /// <param name="productId">Id of the product whose user we want to find.</param>
+        /// <returns>User if successful. Otherwise, null.</returns>
+        Task<UserViewModel?> GetUserByProductIdAsync(int productId);
     }
 }

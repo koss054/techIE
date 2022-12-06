@@ -12,7 +12,7 @@ using techIE.Data;
 namespace techIE.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221111182330_TablesCreated")]
+    [Migration("20221205225738_TablesCreated")]
     partial class TablesCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -222,7 +222,7 @@ namespace techIE.Data.Migrations
                         .HasMaxLength(10000)
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -267,9 +267,6 @@ namespace techIE.Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -331,7 +328,7 @@ namespace techIE.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("UserProduct");
+                    b.ToTable("UsersProducts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -420,7 +417,7 @@ namespace techIE.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("techIE.Data.Entities.User", "User")
-                        .WithMany("UsersMProducts")
+                        .WithMany("UsersProducts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -442,7 +439,7 @@ namespace techIE.Data.Migrations
 
             modelBuilder.Entity("techIE.Data.Entities.User", b =>
                 {
-                    b.Navigation("UsersMProducts");
+                    b.Navigation("UsersProducts");
                 });
 #pragma warning restore 612, 618
         }

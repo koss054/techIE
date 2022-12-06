@@ -5,7 +5,9 @@
     using Constants;
     using Contracts;
     using Infrastructure;
+
     using Models.Products;
+
     using techIE.Controllers;
 
     /// <summary>
@@ -14,16 +16,13 @@
     [Area("Admin")]
     public class ProductController : BaseController
     {
-        private readonly IUserService userService;
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
 
         public ProductController(
-            IUserService _userService,
             IProductService _productService,
             ICategoryService _categoryService)
         {
-            userService = _userService;
             productService = _productService;
             categoryService = _categoryService;
         }
@@ -71,7 +70,7 @@
 
             // Since this controller is in the Admin area, the added products are always official.
             model.IsOfficial = true;
-            await productService.AddAsync(model);
+            await productService.AddAsync(model, this.User.Id());
             return RedirectToAction(
                 RedirectPaths.UpdateProductPage,
                 RedirectPaths.UpdateProductController);

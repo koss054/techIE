@@ -267,9 +267,6 @@ namespace techIE.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -321,16 +318,15 @@ namespace techIE.Data.Migrations
                         {
                             Id = "sse3f072-d231-e1e1-ab26-1120hhj364e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c8042a4-f2c2-4d5e-8032-76e241f42ce4",
+                            ConcurrencyStamp = "92d74833-7df8-4aa7-ae15-8a58a9cb61e2",
                             Email = "admin@techie.com",
                             EmailConfirmed = false,
-                            IsAdmin = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@techie.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL7e8Dd5XHcCeVc8RzcC5E/KLqkvmGwSKmdvnSlJvlL9I5zfl+nI9Ui4p2Ce70t7ZA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBJmU7Z059iiM1jbWn0asbP/uN+98PKp7Q/IjVK/5tR5jEc655lJzLIRsUJCwRM+Nw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "67867c3a-cfc1-42f1-907e-5f9c19da69be",
+                            SecurityStamp = "074cf96f-e21b-4f6f-93d9-3291f611d4b3",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -348,7 +344,7 @@ namespace techIE.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("UserProduct");
+                    b.ToTable("UsersProducts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -437,7 +433,7 @@ namespace techIE.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("techIE.Data.Entities.User", "User")
-                        .WithMany("UsersMProducts")
+                        .WithMany("UsersProducts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -459,7 +455,7 @@ namespace techIE.Data.Migrations
 
             modelBuilder.Entity("techIE.Data.Entities.User", b =>
                 {
-                    b.Navigation("UsersMProducts");
+                    b.Navigation("UsersProducts");
                 });
 #pragma warning restore 612, 618
         }
