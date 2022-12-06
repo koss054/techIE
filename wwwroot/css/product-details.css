@@ -1,4 +1,4 @@
-﻿img {
+﻿#product-image {
     width: 400px;
     height: 600px;
 }
@@ -20,7 +20,7 @@
 }
 
 .details-description-separator {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .details-description-header {
@@ -30,4 +30,13 @@
 
 .details-price-separator {
     margin-bottom: 2rem;
+}
+
+.admin-buttons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.admin-button {
+    margin-right: 1rem;
 }
