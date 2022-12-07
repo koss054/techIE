@@ -31,7 +31,7 @@
             return RedirectToAction(
                 RedirectPaths.AddProductToOrderPage,
                 RedirectPaths.AddProductToOrderController,
-                new { area = store.ToString() });
+                new { area = store });
         }
     }
 }
