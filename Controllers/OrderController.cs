@@ -23,7 +23,7 @@
         /// Adding a product to the current order.
         /// </summary>
         /// <param name="id">Id of product that is being ordered.</param>
-        /// <param name="area">Name of area from where the action has been called.</param>
+        /// <param name="store">Name of area from where the action has been called.</param>
         /// <returns>Redirects the user to appropriate store index page.</returns>
         public async Task<IActionResult> Add(int id, string store)
         {
