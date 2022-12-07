@@ -30,5 +30,9 @@
         // ---------- Marketplace Controllers Redirects ----------
         public const string AddMarketplaceProductPage = "Index";
         public const string AddMarketplaceProductController = "Store";
+
+        // ---------- Order Controller Redirects ----------
+        public const string AddProductToOrderPage = "Index";
+        public const string AddProductToOrderController = "Store";
     }
 }
