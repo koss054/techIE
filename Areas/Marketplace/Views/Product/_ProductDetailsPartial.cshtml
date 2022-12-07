@@ -22,10 +22,13 @@
             </div>
         }
         <hr class="details-description-separator" />
-            <span class="details-description-header">Description:</span>
-            <p class="details-description">@Model.Description</p>
+        <span class="details-description-header">Description:</span>
+        <p class="details-description">@Model.Description</p>
         <hr class="details-price-separator" />
         <h3 class="details-price">Price: $@Model.Price</h3>
+        <a class="admin-button" asp-area="" asp-controller="Order" asp-action="Add" asp-route-id="@Model.Id">
+            <img class="grow" src="~/images/menus/edit.svg" style="width: 25px">
+        </a>
     </div>
 </div>
 
