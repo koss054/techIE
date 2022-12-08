@@ -25,13 +25,10 @@
         /// <param name="id">Id of product that is being ordered.</param>
         /// <param name="store">Name of area from where the action has been called.</param>
         /// <returns>Redirects the user to appropriate store index page.</returns>
-        public async Task<IActionResult> Add(int id, string store)
+        public async Task<IActionResult> Add(int cartId)
         {
-            await orderService.AddAsync(id, this.User.Id());
-            return RedirectToAction(
-                RedirectPaths.AddProductToOrderPage,
-                RedirectPaths.AddProductToOrderController,
-                new { area = store });
+            await orderService.EmptyCartAsync(1, this.User.Id());
+            return View();
         }
     }
 }
