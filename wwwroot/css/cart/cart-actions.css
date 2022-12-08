@@ -1,0 +1,30 @@
+﻿.cart-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.cart-empty {
+    background-color: #ffd0d0;
+    border-radius: 8px;
+    margin-right: 20px;
+    padding: 8px;
+}
+
+.cart-proceed {
+    background-color: #bad6ba;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.cart-remove {
+    background-color: #ffd0d0;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.cart-buttons a,
+.cart-remove a {
+    text-decoration: none;
+    color: black;
+}
