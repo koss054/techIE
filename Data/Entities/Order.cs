@@ -24,8 +24,6 @@
 
         /// <summary>
         /// If the order is the current order of an user.
-        /// If it is, any product is added to it.
-        /// After the order is finalized, new products are added to a new order.
         /// </summary>
         [Required]
         public bool IsCurrent { get; set; }
@@ -42,10 +40,10 @@
         [Required]
         public User User { get; set; } = null!;
 
-        /// <summary>
-        /// A collection of the ordered products.
-        /// The total value is calculated by using this property.
-        /// </summary>
-        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+        [ForeignKey(nameof(Cart))]
+        public int CartId { get; set; }
+
+        [Required]
+        public Cart Cart { get; set; } = null!;
     }
 }
