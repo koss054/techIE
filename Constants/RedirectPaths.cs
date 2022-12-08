@@ -34,5 +34,9 @@
         // ---------- Order Controller Redirects ----------
         public const string AddProductToOrderPage = "Index";
         public const string AddProductToOrderController = "Store";
+
+        // ---------- Cart Controller Redirects ----------
+        public const string CartInspectPage = "Inspect";
+        public const string CartInspectController = "Cart";
     }
 }

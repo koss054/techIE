@@ -159,6 +159,49 @@ namespace techIE.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("techIE.Data.Entities.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsCurrent")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("techIE.Data.Entities.CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartsProducts");
+                });
+
             modelBuilder.Entity("techIE.Data.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -187,6 +230,9 @@ namespace techIE.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsCurrent")
                         .HasColumnType("bit");
 
@@ -198,6 +244,9 @@ namespace techIE.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CartId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -235,17 +284,12 @@ namespace techIE.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("Products");
                 });
@@ -321,15 +365,15 @@ namespace techIE.Data.Migrations
                         {
                             Id = "sse3f072-d231-e1e1-ab26-1120hhj364e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0c01d8a6-a816-40a7-a945-88569117ae1e",
+                            ConcurrencyStamp = "f522201c-5d04-4350-8f6d-0f67b19c2e5e",
                             Email = "admin@techie.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@techie.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEByaw87tc+SjGptAoEWn7VgBlG1otXqfoupKn7+snrN2bF/985vZg+D2OgAZD9gNOw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAqhqhtqRLCSYRlGC7NdRp/cydn9jgGiot8LhsWmYEtADY9AIRG/Ru6zToFYwHkzxQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "09fba402-3e7a-475f-b25c-a45ef2e391f0",
+                            SecurityStamp = "71738f53-d2ee-4f8e-b6f4-936552d91bac",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -401,13 +445,51 @@ namespace techIE.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("techIE.Data.Entities.Order", b =>
+            modelBuilder.Entity("techIE.Data.Entities.Cart", b =>
                 {
                     b.HasOne("techIE.Data.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("techIE.Data.Entities.CartProduct", b =>
+                {
+                    b.HasOne("techIE.Data.Entities.Cart", "Cart")
+                        .WithMany("CartsProducts")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("techIE.Data.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("techIE.Data.Entities.Order", b =>
+                {
+                    b.HasOne("techIE.Data.Entities.Cart", "Cart")
+                        .WithOne("Order")
+                        .HasForeignKey("techIE.Data.Entities.Order", "CartId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("techIE.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
 
                     b.Navigation("User");
                 });
@@ -419,10 +501,6 @@ namespace techIE.Data.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("techIE.Data.Entities.Order", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderId");
 
                     b.Navigation("Category");
                 });
@@ -446,9 +524,11 @@ namespace techIE.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("techIE.Data.Entities.Order", b =>
+            modelBuilder.Entity("techIE.Data.Entities.Cart", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("CartsProducts");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("techIE.Data.Entities.Product", b =>

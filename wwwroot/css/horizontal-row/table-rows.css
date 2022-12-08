@@ -1,0 +1,11 @@
+﻿hr.cart-separator {
+    margin: auto;
+    width: 400px;
+    height: 8px;
+    color: cornflowerblue;
+    border-radius: 10px;
+}
+
+hr.cart-separator.pink {
+    color: deeppink;
+}

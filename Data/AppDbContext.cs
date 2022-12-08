@@ -37,8 +37,21 @@
                 .HasMaxLength(MaxEmailLength)
                 .IsRequired();
 
+            builder.Entity<Order>()
+                .HasOne(c => c.Cart)
+                .WithOne(o => o.Order)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Cart>()
+                .HasOne(o => o.Order)
+                .WithOne(c => c.Cart)
+                .OnDelete(DeleteBehavior.NoAction);
+
             builder.Entity<UserProduct>()
                 .HasKey(up => new { up.UserId, up.ProductId});
+
+            builder.Entity<CartProduct>()
+                .HasKey(cp => new { cp.CartId, cp.ProductId });
 
             SeedAdmin();
             builder.Entity<User>()
@@ -50,11 +63,15 @@
         #region DbSets
         public DbSet<Category> Categories { get; set; } = null!;
 
+        public DbSet<Cart> Carts { get; set; } = null!;
+
         public DbSet<Order> Orders { get; set; } = null!;
 
         public DbSet<Product> Products { get; set; } = null!;
 
         public DbSet<UserProduct> UsersProducts { get; set; } = null!;
+
+        public DbSet<CartProduct> CartsProducts { get; set; } = null!;
         #endregion
 
         #region SeedDatabase
