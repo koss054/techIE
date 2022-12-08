@@ -1,4 +1,10 @@
-﻿<head>
+﻿@using Microsoft.AspNetCore.Identity
+@using techIE.Data.Entities
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<head>
     <link rel="stylesheet" href="~/css/dropdowns/dropdown-with-animations.css" />
 </head>
 
@@ -18,6 +24,14 @@
             <li><a class="nav-link text-dark" asp-area="Marketplace" asp-controller="Product" asp-action="Add">Create Listing</a></li>
         </ul>
     </li>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item position-fixed cart-icon">
+            <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Inspect">
+                <img id="cart-img" src="~/images/menus/cart.svg" />
+            </a>
+        </li>
+    }
 </ul>
 
 <style>
@@ -27,5 +41,17 @@
 
     ul li.user-marketplace-dropdown ul li a:hover {
         border-left: 2px solid deeppink;
+    }
+
+    ul li.cart-icon {
+        top: 10px;
+        left: 29rem;
+    }
+
+    #cart-img {
+        width: 25px!important;
+        min-width: 25px!important;
+        max-width: 25px!important;
+        height: 25px!important;
     }
 </style>
