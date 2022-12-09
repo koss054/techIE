@@ -48,7 +48,9 @@
                 </a>
             </div>
             <div class="cart-proceed">
-                Finish Order
+                <a asp-area="" asp-controller="Order" asp-action="Finish" asp-route-cartId="@Model.Id">
+                    Finish Order
+                </a>
             </div>
         </div>
     </div>
