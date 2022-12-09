@@ -31,6 +31,13 @@
         Task<CartViewModel?> GetCurrentCart(string userId);
 
         /// <summary>
+        /// Get the total of the cart.
+        /// </summary>
+        /// <param name="cartId">Id of the cart which total we want to get.</param>
+        /// <returns>Total of all products in the requested cart.</returns>
+        Task<decimal> GetTotalAsync(int cartId);
+
+        /// <summary>
         /// Remove a product from the cart.
         /// </summary>
         /// <param name="cartId">Id of the cart that has the product being removed.</param>

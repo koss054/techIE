@@ -77,6 +77,26 @@
         }
 
         /// <summary>
+        /// Get the total of the cart.
+        /// </summary>
+        /// <param name="cartId">Id of the cart which total we want to get.</param>
+        /// <returns>Total of all products in the requested cart.</returns>
+        public async Task<decimal> GetTotalAsync(int cartId)
+        {
+            decimal total = 0;
+            var cartProducts = await context.CartsProducts
+                .Where(cp => cp.CartId == cartId)
+                .Include(p => p.Product)
+                .ToListAsync();
+
+            foreach (var item in cartProducts)
+            {
+                total += (item.ProductQuantity * item.Product.Price);
+            }
+            return total;
+        }
+
+        /// <summary>
         /// Remove a product from the cart.
         /// If product quantity is higher than 1, the total quantity is reduced by 1 instead of removing the product.
         /// </summary>
@@ -129,10 +149,12 @@
         private async Task<CartAction> AddToCurrentAsync(Product product, User user)
         {
             // Check if the cart already exists.
-            var cart = await context.Carts.FirstOrDefaultAsync(c => c.UserId == user.Id);
+            var cart = await context.Carts
+                .FirstOrDefaultAsync(c => c.UserId == user.Id &&
+                                          c.IsCurrent == true);
 
             // If it doesn't exist, or if it isn't the current one, create a new cart.
-            if (cart == null || cart.IsCurrent == false)
+            if (cart == null)
             {
                 cart = new Cart()
                 {
@@ -176,12 +198,12 @@
         /// </summary>
         /// <param name="cartId">Id of the cart that is requesting the products.</param>
         /// <returns>Products that are in the requested cart.</returns>
-        private async Task<IEnumerable<ProductCartFormViewModel>> GetProductsForCurrentAsync(int cartId)
+        private async Task<IEnumerable<ProductCartViewModel>> GetProductsForCurrentAsync(int cartId)
         {
             return await context.CartsProducts
                 .Where(cp => cp.CartId == cartId)
                 .Include(p => p.Product)
-                .Select(p => new ProductCartFormViewModel()
+                .Select(p => new ProductCartViewModel()
                 {
                     Id = p.Product.Id,
                     Name = p.Product.Name,
@@ -189,26 +211,6 @@
                     ImageUrl = p.Product.ImageUrl,
                     Quantity = p.ProductQuantity
                 }).ToListAsync();
-        }
-
-        /// <summary>
-        /// Get the total of the cart.
-        /// </summary>
-        /// <param name="cartId">Id of the cart which total we want to get.</param>
-        /// <returns>Total of all products in the requested cart.</returns>
-        private async Task<decimal> GetTotalAsync(int cartId)
-        {
-            decimal total = 0;
-            var cartProducts = await context.CartsProducts
-                .Where(cp => cp.CartId == cartId)
-                .Include(p => p.Product)
-                .ToListAsync();
-
-            foreach (var item in cartProducts)
-            {
-                total += (item.ProductQuantity * item.Product.Price);
-            }
-            return total;
         }
         #endregion
     }
