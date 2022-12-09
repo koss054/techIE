@@ -22,6 +22,6 @@
         /// <summary>
         /// Products that are in the current cart.
         /// </summary>
-        public IEnumerable<ProductCartFormViewModel> Products { get; set; } = new List<ProductCartFormViewModel>();
+        public IEnumerable<ProductCartViewModel> Products { get; set; } = new List<ProductCartViewModel>();
     }
 }
