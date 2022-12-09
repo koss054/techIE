@@ -1,0 +1,43 @@
+﻿@model IEnumerable<OrderHistoryViewModel>
+
+@{
+    ViewBag.Title = "Order History";
+}
+
+@if (Model.Count() > 0)
+{
+    <div class="cart-panel">
+        <ul class="responsive-table">
+
+            <li class="table-header">
+                <div class="col col-1">Order Id</div>
+                <div class="col col-2">Order Total</div>
+                <div class="col col-3">@*View Products Button*@</div>
+            </li>
+
+            @foreach (var order in Model)
+            {
+                <li class="table-row">
+                    <div class="col col-1">@order.Id</div>
+                    <div class="col col-2">$@order.TotalValue</div>
+                    <div class="col col-3 cart-view">
+                        <a asp-area="" asp-controller="Cart" asp-action="History" asp-route-cartId="@order.CartId" asp-route-productId="@order.Id">
+                            Remove
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+        <hr class="cart-separator"/>
+        <h3 class="text-center mt-3">Total Money Spent: $@Model.Sum(o => o.TotalValue)</h3>
+    </div>
+} 
+else
+{
+    <div class="cart-panel">
+        <img id="empty-cart" src="~/images/cart/empty-cart.jpg">
+        <hr class="cart-separator pink"/>
+        <h2 class="text-center mt-3">No products in cart!</h2>
+        <h5 class="text-center">Visit our Official Store or User Marketplace to add products to your cart!</h5>
+    </div>
+}
