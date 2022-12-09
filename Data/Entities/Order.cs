@@ -23,12 +23,6 @@
         public decimal TotalValue { get; set; }
 
         /// <summary>
-        /// If the order is the current order of an user.
-        /// </summary>
-        [Required]
-        public bool IsCurrent { get; set; }
-
-        /// <summary>
         /// ID of the user who has made the order.
         /// </summary>
         [ForeignKey(nameof(User))]
