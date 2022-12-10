@@ -1,13 +1,8 @@
-﻿.cart-panel {
+﻿.page-panel {
     display: grid;
     margin: 60px;
     margin-bottom: 30px;
     align-self: center;
-}
-
-.cart-product-img {
-    width: 50px;
-    height: 50px;
 }
 
 .responsive-table {

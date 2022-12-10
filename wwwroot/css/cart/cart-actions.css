@@ -23,8 +23,19 @@
     padding: 8px;
 }
 
+.cart-back-to-orders {
+    background-color: #dcebff;
+    border-radius: 8px;
+    margin: 60px;
+    margin-bottom: 0px;
+    padding: 8px;
+    width: 175px;
+    text-align: center;
+}
+
 .cart-buttons a,
-.cart-remove a {
+.cart-remove a,
+.cart-back-to-orders a{
     text-decoration: none;
     color: black;
 }

@@ -1,0 +1,10 @@
+﻿.cart-view {
+    background-color: #dcebff;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.cart-view a {
+    text-decoration: none;
+    color: black;
+}
