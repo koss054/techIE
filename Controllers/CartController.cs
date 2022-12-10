@@ -61,7 +61,7 @@
         /// <returns>Cart content if there are items in the cart. Otherwise, the user is informed that their cart is empty..</returns>
         public async Task<IActionResult> Inspect()
         {
-            var model = await cartService.GetCurrentCart(this.User.Id());
+            var model = await cartService.GetCurrentCartAsync(this.User.Id());
             return View(model);
         }
 
@@ -74,6 +74,11 @@
         /// <returns>Redirects to the cart inspect page.</returns>
         public async Task<IActionResult> Remove(int cartId, int productId)
         {
+            if (await cartService.IsCartForUserAsync(cartId, this.User.Id()) == false)
+            {
+                return NotFound();
+            }
+
             await cartService.RemoveProductAsync(cartId, productId);
             return RedirectToAction(
                 RedirectPaths.CartInspectPage,
@@ -87,10 +92,26 @@
         /// <returns>Redirects to the cart inspect page.</returns>
         public async Task<IActionResult> Empty(int cartId)
         {
+            if (await cartService.IsCartForUserAsync(cartId, this.User.Id()) == false)
+            {
+                return NotFound();
+            }
+
             await cartService.RemoveAllProductsAsync(cartId);
             return RedirectToAction(
                 RedirectPaths.CartInspectPage,
                 RedirectPaths.CartInspectController);
+        }
+
+        public async Task<IActionResult> History(int cartId) 
+        {
+            if (await cartService.IsCartForUserAsync(cartId, this.User.Id()) == false)
+            {
+                return NotFound();
+            }
+
+            var model = await cartService.GetCartAsync(cartId);
+            return View(model);
         }
     }
 }
