@@ -1,0 +1,50 @@
+﻿<div class="page-panel">
+    <ul class="responsive-table">
+
+        <li class="table-header">
+            <div class="col col-1">Image</div>
+            <div class="col col-2">Product Name</div>
+            <div class="col col-3">Price per Product</div>
+            <div class="col col-4">Quantity</div>
+            @if (@Model.IsCurrent)
+            {
+                <div class="col col-5">@*Remove Product from Cart*@</div>
+            }
+        </li>
+
+        @foreach (var product in Model.Products)
+        {
+            <li class="table-row">
+                <div class="col col-1"><img class="cart-product-img" src="@product.ImageUrl"></div>
+                <div class="col col-2">@product.Name</div>
+                <div class="col col-3">$@product.Price</div>
+                <div class="col col-4">@product.Quantity</div>
+                @if (Model.IsCurrent)
+                {
+                    <div class="col col-5 cart-remove">
+                        <a asp-area="" asp-controller="Cart" asp-action="Remove" asp-route-cartId="@Model.Id" asp-route-productId="@product.Id">
+                            Remove
+                        </a>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+    <hr class="cart-separator" />
+    <h3 class="text-center mt-3">Total: $@Model.Total</h3>
+    @if (@Model.IsCurrent)
+    {
+        <div class="cart-buttons">
+            <div class="cart-empty">
+                <a asp-area="" asp-controller="Cart" asp-action="Empty" asp-route-cartId="@Model.Id">
+                    Empty Cart
+                </a>
+            </div>
+            <div class="cart-proceed">
+                <a asp-area="" asp-controller="Order" asp-action="Finish" asp-route-cartId="@Model.Id">
+                    Finish Order
+                </a>
+            </div>
+        </div>
+    }
+</div>
