@@ -12,10 +12,14 @@
     /// </summary>
     public class OrderController : BaseController
     {
+        private readonly ICartService cartService;
         private readonly IOrderService orderService;
 
-        public OrderController(IOrderService _orderService)
+        public OrderController(
+            ICartService _cartService,
+            IOrderService _orderService)
         {
+            cartService = _cartService;
             orderService = _orderService;
         }
 
@@ -26,8 +30,15 @@
         /// <returns>Redirects the user to their order history page.</returns>
         public async Task<IActionResult> Finish(int cartId)
         {
+            if (await cartService.IsCartForUserAsync(cartId, this.User.Id()) == false)
+            {
+                return NotFound();
+            }
+
             await orderService.FinishAsync(cartId);
-            return RedirectToAction("Inspect", "Cart");
+            return RedirectToAction(
+                RedirectPaths.FinishOrderPage,
+                RedirectPaths.FinishOrderController);
         }
 
         public async Task<IActionResult> History()
