@@ -1,8 +1,6 @@
 ﻿namespace techIE.Models.Products
 {
-    using System.ComponentModel.DataAnnotations;
-
-    public class ProductCartFormViewModel
+    public class ProductCartViewModel
     {
         /// <summary>
         /// Id of product.
@@ -28,7 +26,6 @@
         /// <summary>
         /// Quantity of the product that is in the cart.
         /// </summary>
-        [Required]
         public int Quantity { get; set; }
     }
 }

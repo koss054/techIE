@@ -41,17 +41,20 @@
         }
 
         /// <summary>
-        /// Checks if the current user has a cart that is active.
+        /// Checks if the cart is for the provided user.
         /// </summary>
         /// <param name="userId">Id of user.</param>
-        /// <returns>True if user has an active cart. False if user doesn't.</returns>
-        public async Task<bool> IsUserCartCurrent(string userId)
+        /// <returns>True if the user owns the cart. False if they don't.</returns>
+        public async Task<bool> IsCartForUserAsync(int cartId, string userId)
         {
-            var cart = await context.Carts
-                .FirstOrDefaultAsync(c => c.UserId == userId &&
-                                          c.IsCurrent == true);
+            var cart = await context.Carts.FirstOrDefaultAsync(c => c.Id == cartId);
 
-            return cart != null ? true : false;
+            if (cart == null)
+            {
+                return false;
+            }
+
+            return cart.UserId == userId ? true : false;
         }
 
         /// <summary>
@@ -59,7 +62,7 @@
         /// </summary>
         /// <param name="userId">User whose cart we are trying to get.</param>
         /// <returns>CartViewModel used in the Inspect page, if there is a current cart active.</returns>
-        public async Task<CartViewModel?> GetCurrentCart(string userId)
+        public async Task<CartViewModel?> GetCurrentCartAsync(string userId)
         {
             var cart = await context.Carts
                 .FirstOrDefaultAsync(c => c.UserId == userId &&
@@ -68,12 +71,45 @@
             var cartModel = new CartViewModel();
             if (cart != null)
             {
-                cartModel.Id = cart.Id;
-                cartModel.UserId = userId;
-                cartModel.Total = await GetTotalAsync(cart.Id);
-                cartModel.Products = await GetProductsForCurrentAsync(cart.Id);
+                cartModel = await CreateModelAsync(cart, cartModel);
             }
             return cartModel;
+        }
+
+        /// <summary>
+        /// Get a cart by its Id.
+        /// </summary>
+        /// <param name="cartId">Id of cart that we are trying to get.</param>
+        /// <returns>CartViewModel, used in cart History page.</returns>
+        public async Task<CartViewModel?> GetCartAsync(int cartId)
+        {
+            var cart = await context.Carts.FirstOrDefaultAsync(c => c.Id == cartId);
+            var cartModel = new CartViewModel();
+            if (cart != null)
+            {
+                cartModel = await CreateModelAsync(cart, cartModel);
+            }
+            return cartModel;
+        }
+
+        /// <summary>
+        /// Get the total of the cart.
+        /// </summary>
+        /// <param name="cartId">Id of the cart which total we want to get.</param>
+        /// <returns>Total of all products in the requested cart.</returns>
+        public async Task<decimal> GetTotalAsync(int cartId)
+        {
+            decimal total = 0;
+            var cartProducts = await context.CartsProducts
+                .Where(cp => cp.CartId == cartId)
+                .Include(p => p.Product)
+                .ToListAsync();
+
+            foreach (var item in cartProducts)
+            {
+                total += (item.ProductQuantity * item.Product.Price);
+            }
+            return total;
         }
 
         /// <summary>
@@ -129,10 +165,12 @@
         private async Task<CartAction> AddToCurrentAsync(Product product, User user)
         {
             // Check if the cart already exists.
-            var cart = await context.Carts.FirstOrDefaultAsync(c => c.UserId == user.Id);
+            var cart = await context.Carts
+                .FirstOrDefaultAsync(c => c.UserId == user.Id &&
+                                          c.IsCurrent == true);
 
             // If it doesn't exist, or if it isn't the current one, create a new cart.
-            if (cart == null || cart.IsCurrent == false)
+            if (cart == null)
             {
                 cart = new Cart()
                 {
@@ -176,12 +214,12 @@
         /// </summary>
         /// <param name="cartId">Id of the cart that is requesting the products.</param>
         /// <returns>Products that are in the requested cart.</returns>
-        private async Task<IEnumerable<ProductCartFormViewModel>> GetProductsForCurrentAsync(int cartId)
+        private async Task<IEnumerable<ProductCartViewModel>> GetProductsForCurrentAsync(int cartId)
         {
             return await context.CartsProducts
                 .Where(cp => cp.CartId == cartId)
                 .Include(p => p.Product)
-                .Select(p => new ProductCartFormViewModel()
+                .Select(p => new ProductCartViewModel()
                 {
                     Id = p.Product.Id,
                     Name = p.Product.Name,
@@ -192,23 +230,21 @@
         }
 
         /// <summary>
-        /// Get the total of the cart.
+        /// Create cart view model.
+        /// It's created in multiple places, so a method is a good way to avoid duplicate code.
+        /// Easier to change as well. Don't need to go to different places.
         /// </summary>
-        /// <param name="cartId">Id of the cart which total we want to get.</param>
-        /// <returns>Total of all products in the requested cart.</returns>
-        private async Task<decimal> GetTotalAsync(int cartId)
+        /// <param name="cart">Cart that the model is based on.</param>
+        /// <param name="cartModel">Model that we return to views.</param>
+        /// <returns>CartViewModel.</returns>
+        private async Task<CartViewModel> CreateModelAsync(Cart cart, CartViewModel cartModel)
         {
-            decimal total = 0;
-            var cartProducts = await context.CartsProducts
-                .Where(cp => cp.CartId == cartId)
-                .Include(p => p.Product)
-                .ToListAsync();
-
-            foreach (var item in cartProducts)
-            {
-                total += (item.ProductQuantity * item.Product.Price);
-            }
-            return total;
+            cartModel.Id = cart.Id;
+            cartModel.UserId = cart.UserId;
+            cartModel.Total = await GetTotalAsync(cart.Id);
+            cartModel.Products = await GetProductsForCurrentAsync(cart.Id);
+            cartModel.IsCurrent = cart.IsCurrent;
+            return cartModel;
         }
         #endregion
     }

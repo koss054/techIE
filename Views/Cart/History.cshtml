@@ -1,0 +1,21 @@
+﻿@model CartViewModel
+
+@{
+    ViewBag.Title = "Cart History";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/table.css" />
+    <link rel="stylesheet" href="~/css/cart/cart-table.css" />
+    <link rel="stylesheet" href="~/css/cart/empty-cart.css" />
+    <link rel="stylesheet" href="~/css/cart/cart-actions.css" />
+    <link rel="stylesheet" href="~/css/horizontal-row/table-rows.css" />
+</head>
+
+<div class="cart-back-to-orders">
+    <a asp-area="" asp-controller="Order" asp-action="History">
+        Back to Order History
+    </a>
+</div>
+
+<partial name="_CartProductsPartial" />

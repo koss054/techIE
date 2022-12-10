@@ -1,4 +1,5 @@
-﻿hr.cart-separator {
+﻿hr.cart-separator,
+hr.order-separator {
     margin: auto;
     width: 400px;
     height: 8px;
@@ -6,6 +7,7 @@
     border-radius: 10px;
 }
 
-hr.cart-separator.pink {
+hr.cart-separator.pink,
+hr.order-separator.pink {
     color: deeppink;
 }
