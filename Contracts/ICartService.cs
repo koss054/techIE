@@ -17,18 +17,26 @@
         Task<CartAction> AddProductAsync(int productId, string userId);
 
         /// <summary>
-        /// Checks if the current user has a cart that is active.
+        /// Checks if the cart is for the provided user.
         /// </summary>
+        /// <param name="cartId">Id of cart.</param>
         /// <param name="userId">Id of user.</param>
-        /// <returns>True if user has an active cart. False if user doesn't.</returns>
-        Task<bool> IsUserCartCurrent(string userId);
+        /// <returns>True if the user owns the cart. False if they don't.</returns>
+        Task<bool> IsCartForUserAsync(int cartId, string userId);
 
         /// <summary>
         /// Get the current cart of the user.
         /// </summary>
         /// <param name="userId">User whose cart we are trying to get.</param>
         /// <returns>CartViewModel used in the Inspect page, if there is a current cart active.</returns>
-        Task<CartViewModel?> GetCurrentCart(string userId);
+        Task<CartViewModel?> GetCurrentCartAsync(string userId);
+
+        /// <summary>
+        /// Get a cart by its Id.
+        /// </summary>
+        /// <param name="cartId">Id of cart that we are trying to get.</param>
+        /// <returns>CartViewModel, used in cart History page.</returns>
+        Task<CartViewModel?> GetCartAsync(int cartId);
 
         /// <summary>
         /// Get the total of the cart.
