@@ -20,11 +20,11 @@
 .navigation-bar {
     display: flex;
     justify-content: center;
-    margin: 30px 0;
+    margin: 25px 0;
 }
 
 .btn.navigation {
-    margin: 0 100px;
+    margin: 0 5px;
 }
 
 select option {
