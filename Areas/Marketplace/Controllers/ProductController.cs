@@ -86,5 +86,49 @@
             var model = await productService.GetDetailedAsync(id, seller);
             return View(model);
         }
+
+        /// <summary>
+        /// Edit a product which the user has created.
+        /// If the user isn't the one who has created the product, 404 is returned.
+        /// </summary>
+        /// <param name="id">Id of the product that is being edited.</param>
+        /// <returns>NotFound if user isn't seller or if product with provided Id doesn't exist. Otherwise proceeds to post request.</returns>
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (await productService.IsUserSellerAsync(id, this.User.Id()) == false)
+            {
+                return NotFound();
+            }
+
+            var model = await productService.GetFormModelAsync(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            model.Categories = await categoryService.GetAllAsync();
+            return View(model);
+        }
+
+        /// <summary>
+        /// Edits the marketplace product.
+        /// </summary>
+        /// <param name="model">Product that is being edited passed as a model to visualize on page.</param>
+        /// <returns>The same page if model validations don't pass. Otherwise redirects to the marketplace store index page.</returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Categories = await categoryService.GetAllAsync();
+                return View(model);
+            }
+
+            await productService.EditAsync(model);
+            return RedirectToAction(
+                RedirectPaths.MarketplaceEditPage,
+                RedirectPaths.MarketplaceEditController);
+        }
     }
 }
