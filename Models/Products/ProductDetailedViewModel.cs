@@ -48,7 +48,7 @@
         public string Description { get; set; } = null!;
 
         /// <summary>
-        /// Id of the user who is selling the product.
+        /// User who is selling the product.
         /// </summary>
         public UserViewModel Seller { get; set; } = null!;
     }
