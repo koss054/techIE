@@ -89,22 +89,13 @@
                 return Unauthorized();
             }
 
-            // **********************************************************************************
-            // TODO: Confirm if it's pointless to convert between database entity and view model.
-            //       ----- If so, validation should be done differently.
-            // **********************************************************************************
-            var entity = await productService.GetAsync(id);
-            var model = new ProductFormViewModel()
+            var model = await productService.GetFormModelAsync(id);
+            if (model == null)
             {
-                Name = entity.Name,
-                Price = entity.Price,
-                ImageUrl = entity.ImageUrl,
-                Color = entity.Color,
-                Description = entity.Description,
-                Categories = await categoryService.GetOfficialAsync(),
-                CategoryId = entity.CategoryId
-            };
+                return NotFound();
+            }
 
+            model.Categories = await categoryService.GetOfficialAsync();
             return View(model);
         }
 
