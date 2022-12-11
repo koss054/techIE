@@ -1,0 +1,55 @@
+﻿.story-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 60px;
+    margin-top: 30px;
+}
+
+.year {
+    font-size: 10rem;
+}
+
+.year-blue {
+    color: cornflowerblue;
+}
+
+.year-pink {
+    color: deeppink;
+}
+
+.left-align {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+.right-align {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 1rem;
+}
+
+.left-align .year {
+    margin-right: 6rem;
+}
+
+.right-align .year {
+    margin-left: 6rem;
+}
+
+.left-align.last,
+.right-align.last {
+    margin-bottom: 0;
+}
+
+.paragraphs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dim {
+    color: #6969697a;
+}
