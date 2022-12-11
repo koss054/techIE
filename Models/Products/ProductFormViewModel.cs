@@ -19,7 +19,6 @@
         /// <summary>
         /// Id of the product.
         /// </summary>
-        [Key]
         public int Id { get; set; }
 
         /// <summary>
@@ -72,9 +71,8 @@
         public bool IsOfficial { get; set; }
 
         /// <summary>
-        /// Foreign key for the category.
+        /// Id of the product category.
         /// </summary>
-        [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
 
         /// <summary>

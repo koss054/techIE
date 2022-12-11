@@ -40,5 +40,9 @@
         // ---------- Cart Controller Redirects ----------
         public const string CartInspectPage = "Inspect";
         public const string CartInspectController = "Cart";
+
+        // ---------- Product Controller Redirects ----------
+        public const string MarketplaceEditPage = "Index";
+        public const string MarketplaceEditController = "Store";
     }
 }
