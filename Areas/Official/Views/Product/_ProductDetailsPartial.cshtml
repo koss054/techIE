@@ -26,6 +26,9 @@
         <p class="details-description">@Model.Description</p>
         <hr class="details-price-separator" />
         <h3 class="details-price">Price: $@Model.Price</h3>
+        <a class="admin-button" asp-area="" asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-store="Official">
+            <img class="grow" src="~/images/menus/cart-plus.svg" style="width: 25px">
+        </a>
     </div>
 </div>
 
