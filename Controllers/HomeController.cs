@@ -21,11 +21,19 @@
         }
 
         /// <summary>
-        /// Privacy policy.
-        /// Still empty. May abandon completely.
+        /// Comapny story page.
         /// </summary>
         [AllowAnonymous]
-        public IActionResult Privacy()
+        public IActionResult Story()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Comapny mission page.
+        /// </summary>
+        [AllowAnonymous]
+        public IActionResult Mission()
         {
             return View();
         }
