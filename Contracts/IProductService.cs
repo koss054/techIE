@@ -52,6 +52,13 @@
         Task<IEnumerable<ProductOverviewViewModel>> GetThreeRandomAsync(bool isOfficial);
 
         /// <summary>
+        /// Get product form model, used when user wants to edit.
+        /// </summary>
+        /// <param name="id">Id of the product that is going to be edited.</param>
+        /// <returns>ProductFormViewModel of a product with the provided Id.</returns>
+        Task<ProductFormViewModel?> GetFormModelAsync(int id);
+
+        /// <summary>
         /// Gets products for the Explore page in the user marketplace.
         /// </summary>
         /// <param name="category">Searched category.</param>
@@ -90,6 +97,16 @@
         /// </summary>
         /// <param name="id">Id of deleted product.</param>
         Task DeleteAsync(int id);
+        #endregion
+
+        #region UserValidation
+        /// <summary>
+        /// Checks if the provided user is the seller of the product.
+        /// </summary>
+        /// <param name="productId">Id of product which we are checking.</param>
+        /// <param name="userId">User who we are validating.</param>
+        /// <returns>True if the user sells the product. False if they don't.</returns>
+        Task<bool> IsUserSellerAsync(int productId, string userId);
         #endregion
     }
 }

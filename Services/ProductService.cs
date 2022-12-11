@@ -101,6 +101,28 @@
         }
 
         /// <summary>
+        /// Get product form model, used when user wants to edit.
+        /// </summary>
+        /// <param name="id">Id of the product that is going to be edited.</param>
+        /// <returns>ProductFormViewModel of a product with the provided Id.</returns>
+        public async Task<ProductFormViewModel?> GetFormModelAsync(int id)
+        {
+            return await context.Products
+                .Where(p => p.Id == id)
+                .Select(p => new ProductFormViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                    Color = p.Color,
+                    Description = p.Description,
+                    IsOfficial = p.IsOfficial,
+                    CategoryId = p.CategoryId,
+                }).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
         /// Get three random products.
         /// They are displayed on the store index pages.
         /// </summary>
@@ -255,6 +277,23 @@
                 context.Remove(entity);
                 await context.SaveChangesAsync();
             }
+        }
+        #endregion
+
+        #region UserValidation
+        /// <summary>
+        /// Checks if the provided user is the seller of the product.
+        /// </summary>
+        /// <param name="productId">Id of product which we are checking.</param>
+        /// <param name="userId">User who we are validating.</param>
+        /// <returns>True if the user sells the product. False if they don't.</returns>
+        public async Task<bool> IsUserSellerAsync(int productId, string userId)
+        {
+            var userProduct = await context.UsersProducts
+                .FirstOrDefaultAsync(up => up.ProductId == productId &&
+                                           up.UserId == userId);
+
+            return userProduct != null ? true : false;
         }
         #endregion
 
