@@ -19,88 +19,89 @@
     <hr class="marketplace text-center" />
 </div>
 
+@{
+    var previousPage = Model.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
 
-<form method="get"> 
-    <div class="search-bar"> 
-        <div class="form-group"> 
-            <div class="form-group"> 
-                <label asp-for="Category"></label> 
-                <select asp-for="Category" class="form-control"> 
-                    <option value="">All</option> 
-                    @foreach (var category in Model.Categories) 
-                    { 
-                        <option value="@category">@category</option> 
-                    } 
-                </select> 
-            </div> 
-        </div> 
+    var maxPage = Math.Ceiling((double)Model.TotalProductsCount / ProductQueryViewModel.ProductsPerPage);
+}
 
-        <div> 
-            <label asp-for="SearchTerm"></label> 
-            <input asp-for="SearchTerm" class="form-control" placeholder="..."> 
-        </div> 
+<form method="get">
+    <div class="search-bar">
+        <div class="form-group">
+            <div class="form-group">
+                <label asp-for="Category"></label>
+                <select asp-for="Category" class="form-control">
+                    <option value="">All</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </select>
+            </div>
+        </div>
 
-        <div> 
-            <div class="form-group"> 
-                <label asp-for="Sorting"></label> 
-                <select asp-for="Sorting" class="form-control"> 
-                    <option value="0">Newest</option> 
-                    <option value="1">Lowest price</option> 
-                    <option value="2">Alphabetical</option> 
-                </select> 
-            </div> 
-        </div> 
+        <div>
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="...">
+        </div>
 
- 
-        <div> 
-            <div class="form-group" id="search-button"> 
-                <input type="submit" value="Search" class="btn btn-primary" /> 
-            </div> 
-        </div> 
-    </div> 
-</form> 
+        <div>
+            <div class="form-group">
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0">Newest</option>
+                    <option value="1">Lowest price</option>
+                    <option value="2">Alphabetical</option>
+                </select>
+            </div>
+        </div>
 
-@{ 
-    var previousPage = Model.CurrentPage - 1; 
-    if (previousPage < 1) 
-    { 
-        previousPage = 1; 
-    } 
 
-    var maxPage = Math.Ceiling((double)Model.TotalProductsCount / ProductQueryViewModel.ProductsPerPage); 
-} 
+        <div>
+            <div class="form-group" id="search-button">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
 
-<div class="navigation-bar"> 
-    <div> 
-        <a class="btn btn-primary navigation @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" 
-           asp-area="Marketplace"
-           asp-controller="Store" 
-           asp-action="Explore" 
-           asp-route-currentPage="@previousPage" 
-           asp-route-category="@Model.Category" 
-           asp-route-searchTerm="@Model.SearchTerm" 
-           asp-route-sorting="@((int)Model.Sorting)"><<</a> 
-    </div> 
+        <div class="navigation-bar">
+            <div>
+                <a class="btn btn-primary navigation @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                   asp-area="Marketplace"
+                   asp-controller="Store"
+                   asp-action="Explore"
+                   asp-route-currentPage="@previousPage"
+                   asp-route-category="@Model.Category"
+                   asp-route-searchTerm="@Model.SearchTerm"
+                   asp-route-sorting="@((int)Model.Sorting)"><<</a>
+            </div>
 
-    @{ 
-        var shouldButtonBeDisabled = Model.CurrentPage == maxPage || 
-        !Model.Products.Any(); 
-    } 
+            @{
+                var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                !Model.Products.Any();
+            }
 
-    <div> 
-        <a class="btn btn-primary navigation @(shouldButtonBeDisabled ? "disabled" : string.Empty)" 
-           asp-area="Marketplace"
-           asp-controller="Store" 
-           asp-action="Explore" 
-           asp-route-currentPage="@(Model.CurrentPage + 1)" 
-           asp-route-category="@Model.Category" 
-           asp-route-searchTerm="@Model.SearchTerm" 
-           asp-route-sorting="@((int)Model.Sorting)">>></a> 
-    </div> 
-</div> 
+            <div>
+                <a class="btn btn-primary navigation @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+                   asp-area="Marketplace"
+                   asp-controller="Store"
+                   asp-action="Explore"
+                   asp-route-currentPage="@(Model.CurrentPage + 1)"
+                   asp-route-category="@Model.Category"
+                   asp-route-searchTerm="@Model.SearchTerm"
+                   asp-route-sorting="@((int)Model.Sorting)">>></a>
+            </div>
+        </div>
+    </div>
+
+
+</form>
 
 <div class="product-panel">
-    @if (Model.Products.Count() > 0) 
+    @if (Model.Products.Count() > 0)
     {
         @foreach (var product in Model.Products)
         {
@@ -120,5 +121,5 @@
             <h2>No items added, yet. Be the <span style="color: deeppink">first</span> one!</h2>
         </div>
     }
-    
+
 </div>

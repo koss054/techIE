@@ -1,0 +1,65 @@
+﻿@model ProductFormViewModel
+
+<div class="panel">
+    <img class="product-image" src="https://i.imgur.com/MBPYVWU.jpeg" />
+    <div class="panel-inputs">
+        <div class="category-options text-center">
+            <h2 class="mb-4">
+                @ViewBag.Title
+            </h2>
+            <form method="post">
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control" asp-for="@Model.Name" aria-required="true" placeholder="Name..." />
+                </div>
+
+                <span asp-validation-for="Price" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control" asp-for="@Model.Price" aria-required="true" placeholder="Price..." />
+                </div>
+
+                <div class="mb-4 mt-4 text-center">
+                    <select asp-for="@Model.CategoryId" class="form-control" id="product-category">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option id="@category.Name" value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <input class="form-control img-url" type="url" asp-for="@Model.ImageUrl" aria-required="true" placeholder="Image Url..." />
+                </div>
+
+                <div class="mb-4 mt-4 text-center">
+                    <select asp-for="Color"
+                            class="form-control"
+                            asp-items="Html.GetEnumSelectList<Color>()">
+                    </select>
+                </div>
+
+                <span asp-validation-for="Description" class="text-danger"></span>
+                <div class="mb-4 mt-4 text-center">
+                    <textarea class="form-control" asp-for="@Model.Description" aria-required="true" placeholder="Write product description here...">
+                    </textarea>
+                </div>
+
+                <div class="mb-3 text-center">
+                    @if (ViewData["Page"] == "Add")
+                    {
+                        <input class="btn btn-primary text-center marketplace-btn" type="submit" value="Add" 
+                        data-confirm="Are you sure you want to add this product?" />
+                    }
+                    else if (ViewData["Page"] == "Edit")
+                    {
+                        <input class="btn btn-primary text-center marketplace-btn" type="submit" value="Edit" 
+                        data-confirm="Are you sure you want to edit this product?" />
+                    }
+                    <input class="btn btn-primary text-center marketplace-btn" type="button" value="Back" onclick="location.href='@Url.Action("Index", "Store")'" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
