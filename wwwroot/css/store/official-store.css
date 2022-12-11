@@ -1,6 +1,7 @@
 ﻿img {
     width: 250px;
     height: 300px;
+    margin-top: 5px;
 }
 
 .store-heading {
@@ -49,6 +50,13 @@ span.below-hr {
     border-radius: 10px;
     padding: 1rem;
     margin-bottom: 30px;
+    width: 300px;
+    height: 500px;
+    text-align: center;
+}
+
+.product h4 {
+    overflow-wrap: anywhere;
 }
 
 a {
