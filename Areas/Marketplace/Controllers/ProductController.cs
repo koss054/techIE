@@ -84,6 +84,11 @@
             }
 
             var model = await productService.GetDetailedAsync(id, seller);
+            if (model == null)
+            {
+                return NotFound();
+            }
+
             return View(model);
         }
 
