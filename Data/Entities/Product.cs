@@ -64,6 +64,13 @@
         public bool IsOfficial { get; set; }
 
         /// <summary>
+        /// True if product is deleted.
+        /// False if product is still available.
+        /// </summary>
+        [Required]
+        public bool IsDeleted { get; set; }
+
+        /// <summary>
         /// Foreign key for the category.
         /// </summary>
         [ForeignKey(nameof(Category))]
