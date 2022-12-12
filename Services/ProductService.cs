@@ -49,7 +49,7 @@
         public async Task<ProductDetailedViewModel?> GetDetailedAsync(int id, UserViewModel seller)
         {
             return await context.Products
-                .Where(p => p.Id == id)
+                .Where(p => p.Id == id && p.IsDeleted == false)
                 .Select(p => new ProductDetailedViewModel()
                 {
                     Id = p.Id,
@@ -77,7 +77,8 @@
                     Id = p.Id,
                     Name = p.Name,
                     Category = p.Category.Name,
-                    IsOfficial = p.IsOfficial
+                    IsOfficial = p.IsOfficial,
+                    IsDeleted = p.IsDeleted
                 }).ToListAsync();
         }
 
@@ -89,7 +90,7 @@
         public async Task<IEnumerable<ProductOverviewViewModel>> GetAllAsync(bool isOfficial)
         {
             return await context.Products
-                .Where(p => p.IsOfficial)
+                .Where(p => p.IsOfficial && p.IsDeleted == false)
                 .Select(p => new ProductOverviewViewModel()
                 {
                     Id = p.Id,
@@ -131,7 +132,7 @@
         public async Task<IEnumerable<ProductOverviewViewModel>> GetThreeRandomAsync(bool isOfficial)
         {
             return await context.Products
-                .Where(p => p.IsOfficial == isOfficial)
+                .Where(p => p.IsOfficial == isOfficial && p.IsDeleted == false)
                 .OrderBy(r => Guid.NewGuid())
                 .Take(3)
                 .Select(p => new ProductOverviewViewModel()
@@ -171,20 +172,20 @@
                     (p.Category.Name == category &&
                     (p.Name.ToLower().Contains(searchTerm.ToLower()) ||
                     p.Description.ToLower().Contains(searchTerm.ToLower()))) &&
-                    p.IsOfficial == false);
+                    p.IsOfficial == false && p.IsDeleted == false);
             }
             else if (!string.IsNullOrWhiteSpace(category))
             {
                 productQuery = context.Products.Where(p => 
                     p.Category.Name == category &&
-                    p.IsOfficial == false);
+                    p.IsOfficial == false && p.IsDeleted == false);
             }
             else if (!string.IsNullOrWhiteSpace(searchTerm))
             {
                 productQuery = context.Products.Where(p =>
                     (p.Name.ToLower().Contains(searchTerm.ToLower()) ||
                     p.Description.ToLower().Contains(searchTerm.ToLower())) &&
-                    p.IsOfficial == false);
+                    p.IsOfficial == false && p.IsDeleted == false);
             }
 
             productQuery = sorting switch
@@ -232,6 +233,7 @@
                 Color = (Color)model.Color,
                 Description = model.Description,
                 IsOfficial = model.IsOfficial,
+                IsDeleted = false,
                 CategoryId = model.CategoryId
             };
 
@@ -266,15 +268,31 @@
 
         #region DeleteProduct
         /// <summary>
-        /// Delete a product from the database;
+        /// Delete a product, making it unavailable in the stores.
         /// </summary>
-        /// <param name="id">Id of deleted product.</param>
+        /// <param name="id">Id of the deleted product.</param>
         public async Task DeleteAsync(int id)
         {
             var entity = await this.GetAsync(id);
             if (entity != null)
             {
-                context.Remove(entity);
+                entity.IsDeleted = true;
+                await context.SaveChangesAsync();
+            }
+        }
+        #endregion
+
+        #region RestoreProduct
+        /// <summary>
+        /// Restora a deleted product.
+        /// </summary>
+        /// <param name="id">Id of the restored product.</param>
+        public async Task RestoreAsync(int id)
+        {
+            var entity = await this.GetAsync(id);
+            if (entity != null)
+            {
+                entity.IsDeleted = false;
                 await context.SaveChangesAsync();
             }
         }
