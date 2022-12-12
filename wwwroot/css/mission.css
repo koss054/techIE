@@ -1,0 +1,48 @@
+﻿.mission-panel {
+    margin: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-align,
+.right-align {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.right-align {
+    flex-direction: row-reverse;
+}
+
+.mission-img {
+    width: 700px;
+    border-radius: 20px;
+}
+
+.paragraphs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.mission-panel .official {
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.left-align img {
+    margin-right: 5rem;
+}
+
+.right-align img {
+    margin-left: 5rem;
+}
+
+
+.mission-img.square {
+    width: 500px;
+    margin-right: 6rem;
+}
