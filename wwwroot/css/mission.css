@@ -25,6 +25,7 @@
     flex-direction: column;
     justify-content: center;
     font-size: 22px;
+    text-align: center;
 }
 
 .mission-panel .official {
