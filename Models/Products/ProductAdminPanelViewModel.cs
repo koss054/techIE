@@ -24,5 +24,10 @@
         /// If true, it's official.
         /// </summary>
         public bool IsOfficial { get; set; }
+
+        /// <summary>
+        /// If true, product is deleted and is not available in the stores.
+        /// </summary>
+        public bool IsDeleted { get; set; }
     }
 }
