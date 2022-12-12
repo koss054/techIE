@@ -22,6 +22,11 @@ else
         <img id="empty-cart" src="~/images/cart/empty-cart.jpg">
         <hr class="cart-separator pink"/>
         <h2 class="text-center mt-3">No products in cart!</h2>
-        <h5 class="text-center">Visit our Official Store or User Marketplace to add products to your cart!</h5>
+        <h5 class="text-center">Check out our 
+                <a style="color: cornflowerblue; text-decoration: none" asp-area="Official" asp-controller="Store" asp-action="Index">Official Store</a> 
+                or our 
+                <a style="color: deeppink; text-decoration: none" asp-area="Marketplace" asp-controller="Store" asp-action="Index">User Marketplace</a>
+                to add products to your cart!
+        </h5>
     </div>
 }
