@@ -59,5 +59,22 @@
             query.Categories = productCategories;
             return View(query);
         }
+
+        /// <summary>
+        /// Page for when a user tries to add/edit a product when no categories are added.
+        /// User is informed.
+        /// If categories are available, page isn't displayed.
+        /// </summary>
+        /// <returns>Page that informs user that there are no available categories.</returns>
+        public async Task<IActionResult> Empty()
+        {
+            var categories = await categoryService.GetAllAvailableAsync();
+            if (categories.Count() > 0)
+            {
+                return BadRequest();
+            }
+
+            return View();
+        }
     }
 }
