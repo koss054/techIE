@@ -45,6 +45,13 @@
                 Categories = await categoryService.GetOfficialAsync()
             };
 
+            if (model.Categories.Count() == 0)
+            {
+                return RedirectToAction(
+                    RedirectPaths.NoAvailableCategoriesPage,
+                    RedirectPaths.NoAvailableCategoriesController);
+            }
+
             return View(model);
         }
 
@@ -96,6 +103,13 @@
             }
 
             model.Categories = await categoryService.GetOfficialAsync();
+            if (model.Categories.Count() == 0)
+            {
+                return RedirectToAction(
+                    RedirectPaths.NoAvailableCategoriesPage,
+                    RedirectPaths.NoAvailableCategoriesController);
+            }
+
             return View(model);
         }
 
