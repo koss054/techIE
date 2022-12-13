@@ -49,10 +49,16 @@
                 </a>
             </td>
             <td>
-                @if (!category.IsOfficial)
+                @if (!category.IsDeleted)
                 {
                     <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" onclick="return confirm('Are you sure you want to delete @category.Name category?')">
                         <img class="grow" src="~/images/menus/delete.svg" style="width: 25px">
+                    </a>
+                }
+                else
+                {
+                    <a asp-area="Admin" asp-controller="Category" asp-action="Restore" asp-route-id="@category.Id" onclick="return confirm('Are you sure you want to restore @category.Name category?')">
+                        <img class="grow" src="~/images/menus/restore.svg" style="width: 25px">
                     </a>
                 }
             </td>
