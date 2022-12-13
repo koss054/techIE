@@ -45,7 +45,9 @@
 
             if (model.Categories.Count() == 0)
             {
-                return RedirectToAction("PLACEHOLDER", "EMPTY");
+                return RedirectToAction(
+                    RedirectPaths.NoMarketplaceCategoriesPage,
+                    RedirectPaths.NoMarketplaceCategoriesController);
             }
 
             return View(model);
@@ -120,7 +122,9 @@
             model.Categories = await categoryService.GetAllAvailableAsync();
             if (model.Categories.Count() == 0)
             {
-                return RedirectToAction("PLACEHODLENR", "NOCATEGOESI");
+                return RedirectToAction(
+                    RedirectPaths.NoMarketplaceCategoriesPage,
+                    RedirectPaths.NoMarketplaceCategoriesController);
             }
 
             return View(model);
