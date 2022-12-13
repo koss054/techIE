@@ -80,11 +80,17 @@
         /// </summary>
         /// <returns>Page, informing the admin that no official categories are available.</returns>
         [HttpGet]
-        public IActionResult Empty()
+        public async Task<IActionResult> Empty()
         {
             if (!this.User.IsAdmin())
             {
                 return Unauthorized();
+            }
+
+            var officialCategories = await categoryService.GetOfficialAsync();
+            if (officialCategories.Count() > 0)
+            {
+                return BadRequest();
             }
 
             return View();
