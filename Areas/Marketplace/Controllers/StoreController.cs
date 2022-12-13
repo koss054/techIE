@@ -46,7 +46,7 @@
         /// <returns>The explore page of the marketplace StoreController.</returns>
         public async Task<IActionResult> Explore([FromQuery] ProductQueryViewModel query)
         {
-            var productCategories = await categoryService.GetAllNamesAsync();
+            var productCategories = await categoryService.GetAllAvailableAsync();
             var queryResult = await productService.GetSearchResultAsync(
                 query.Category,
                 query.SearchTerm,
@@ -56,7 +56,7 @@
 
             query.TotalProductsCount = queryResult.TotalProductCount;
             query.Products = queryResult.Products;
-            query.Categories = productCategories;
+            query.Categories = productCategories.Select(c => c.Name);
             return View(query);
         }
 
