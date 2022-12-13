@@ -45,6 +45,14 @@ else
         <img id="empty-history" src="~/images/order/no-orders.jpg">
         <hr class="order-separator pink"/>
         <h2 class="text-center mt-3">No orders made... yet!</h2>
-        <h5 class="text-center">Visit our Official Store or User Marketplace to add products to your cart and make an order!</h5>
+        <h5 class="text-center">Visit our 
+            <a style="color: cornflowerblue; text-decoration: none" asp-area="Official" asp-controller="Store" asp-action="Index">
+                Official Store
+            </a>
+            or 
+            <a style="color: deeppink; text-decoration: none" asp-area="Marketplace" asp-controller="Store" asp-action="Index">
+                User Marketplace
+            </a>
+            to add products to your cart and make an order!</h5>
     </div>
 }
