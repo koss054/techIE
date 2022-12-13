@@ -62,6 +62,25 @@
         }
 
         /// <summary>
+        /// Gets all available categories from the database.
+        /// </summary>
+        /// <returns>List of categories where IsDeleted == false.</returns>
+        public async Task<IEnumerable<CategoryViewModel>> GetAllAvailableAsync()
+        {
+            var entities = await context.Categories
+                .Select(c => new CategoryViewModel()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    IsOfficial = c.IsOfficial,
+                    IsDeleted = c.IsDeleted
+
+                }).ToListAsync();
+
+            return entities.Where(e => e.IsDeleted == false);
+        }
+
+        /// <summary>
         /// Get all of the official categories from the database.
         /// </summary>
         /// <returns>A list containing all of the official categories that are currently added to the database.</returns>

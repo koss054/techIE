@@ -28,6 +28,12 @@
         Task<IEnumerable<CategoryViewModel>> GetAllAsync();
 
         /// <summary>
+        /// Gets all available categories from the database.
+        /// </summary>
+        /// <returns>List of categories where IsDeleted == false.</returns>
+        Task<IEnumerable<CategoryViewModel>> GetAllAvailableAsync();
+
+        /// <summary>
         /// Get all of the official categories from the database.
         /// </summary>
         /// <returns>A list containing all of the official categories that are currently added to the database.</returns>
