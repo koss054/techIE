@@ -5,8 +5,10 @@
     using Microsoft.AspNetCore.Authorization;
 
     using Models;
+    using Contracts;
     using Constants;
     using Data.Entities;
+    using Infrastructure;
 
     /// <summary>
     /// Controller used for user operations - login, register, logout.
@@ -15,13 +17,16 @@
     {
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
+        private readonly IProductService productService;
 
         public UserController(
             SignInManager<User> _signInManager,
-            UserManager<User> _userManager)
+            UserManager<User> _userManager,
+            IProductService _productService)
         {
             signInManager = _signInManager;
             userManager = _userManager;
+            productService = _productService;
         }
 
         public async Task<IActionResult> Logout()
@@ -135,6 +140,17 @@
                 ModelState.AddModelError(string.Empty, item.Description);
             }
 
+            return View(model);
+        }
+
+        /// <summary>
+        /// Page that displays all of the products listed by the currently logged in user.
+        /// </summary>
+        /// <returns>Page with the user's available and deleted products.</returns>
+        [HttpGet]
+        public async Task<IActionResult> Products()
+        {
+            var model = await productService.GetCurrentUserProductsAsync(this.User.Id());
             return View(model);
         }
     }

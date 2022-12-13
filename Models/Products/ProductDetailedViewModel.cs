@@ -48,6 +48,18 @@
         public string Description { get; set; } = null!;
 
         /// <summary>
+        /// True if listed by techIE.
+        /// False if listed by user.
+        /// </summary>
+        public bool IsOfficial { get; set; }
+
+        /// <summary>
+        /// True if product is deleted.
+        /// False if product is still available.
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
+        /// <summary>
         /// User who is selling the product.
         /// </summary>
         public UserViewModel Seller { get; set; } = null!;

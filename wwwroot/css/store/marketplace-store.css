@@ -49,6 +49,7 @@ span.below-hr {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .product {
@@ -59,6 +60,7 @@ span.below-hr {
     width: 300px;
     height: 500px;
     text-align: center;
+    margin: 20px 5px;
 }
 
 .product h4 {

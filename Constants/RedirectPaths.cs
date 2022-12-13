@@ -27,9 +27,27 @@
         public const string UpdateProductPage = "Products";
         public const string UpdateProductController = "Panel";
 
-        // ---------- Marketplace Controllers Redirects ----------
+        public const string NoAvailableCategoriesPage = "Empty";
+        public const string NoAvailableCategoriesController = "Panel";
+
+        // ---------- Official Store Controller Redirects ----------
+        public const string ProductIsOfficialPage = "Details";
+        public const string ProductIsOfficialController = "Product";
+        public const string ProductIsOfficialArea = "Official";
+
+        // ---------- Marketplace Controller Redirects ----------
         public const string AddMarketplaceProductPage = "Index";
         public const string AddMarketplaceProductController = "Store";
+
+        public const string NoMarketplaceCategoriesPage = "Empty";
+        public const string NoMarketplaceCategoriesController = "Store";
+
+        public const string DeleteMarketplaceProductPage = "Products";
+        public const string DeleteMarketplaceProductController = "User";
+
+        public const string ProductIsNotOfficialPage = "Details";
+        public const string ProductIsNotOfficialController = "Product";
+        public const string ProductIsNotOfficialArea = "Marketplace";
 
         // ---------- Order Controller Redirects ----------
         public const string AddProductToOrderPage = "Index";

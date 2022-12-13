@@ -40,8 +40,15 @@
         {
             var model = new ProductFormViewModel
             {
-                Categories = await categoryService.GetAllAsync()
+                Categories = await categoryService.GetAllAvailableAsync()
             };
+
+            if (model.Categories.Count() == 0)
+            {
+                return RedirectToAction(
+                    RedirectPaths.NoMarketplaceCategoriesPage,
+                    RedirectPaths.NoMarketplaceCategoriesController);
+            }
 
             return View(model);
         }
@@ -57,7 +64,7 @@
         {
             if (!ModelState.IsValid)
             {
-                model.Categories = await categoryService.GetAllAsync();
+                model.Categories = await categoryService.GetAllAvailableAsync();
                 return View(model);
             }
 
@@ -84,6 +91,20 @@
             }
 
             var model = await productService.GetDetailedAsync(id, seller);
+            if (model == null || model.IsDeleted)
+            {
+                return NotFound();
+            }
+
+            // Redirects the user to the Official area, if the product is official.
+            if (model.IsOfficial)
+            {
+                return RedirectToAction(
+                    RedirectPaths.ProductIsOfficialPage,
+                    RedirectPaths.ProductIsOfficialController,
+                    new { id = model.Id, area = RedirectPaths.ProductIsOfficialArea });
+            }
+
             return View(model);
         }
 
@@ -107,7 +128,14 @@
                 return NotFound();
             }
 
-            model.Categories = await categoryService.GetAllAsync();
+            model.Categories = await categoryService.GetAllAvailableAsync();
+            if (model.Categories.Count() == 0)
+            {
+                return RedirectToAction(
+                    RedirectPaths.NoMarketplaceCategoriesPage,
+                    RedirectPaths.NoMarketplaceCategoriesController);
+            }
+
             return View(model);
         }
 
@@ -121,7 +149,7 @@
         {
             if (!ModelState.IsValid)
             {
-                model.Categories = await categoryService.GetAllAsync();
+                model.Categories = await categoryService.GetAllAvailableAsync();
                 return View(model);
             }
 
@@ -129,6 +157,46 @@
             return RedirectToAction(
                 RedirectPaths.MarketplaceEditPage,
                 RedirectPaths.MarketplaceEditController);
+        }
+
+        /// <summary>
+        /// Delete product from the marketplace.
+        /// </summary>
+        /// <param name="id">Id of product that will be deleted.</param>
+        /// <returns>Returns to panel page if successful.</returns>
+        public async Task<IActionResult> Delete(int id)
+        {
+            var isSeller = await productService.IsUserSellerAsync(id, this.User.Id());
+            if (isSeller == false)
+            {
+                return NotFound();
+            }
+
+            await productService.DeleteAsync(id);
+            return RedirectToAction(
+                RedirectPaths.DeleteMarketplaceProductPage,
+                RedirectPaths.DeleteMarketplaceProductController,
+                new { area = "" });
+        }
+
+        /// <summary>
+        /// Restore a product to the marketplace.
+        /// </summary>
+        /// <param name="id">Id of product that will be restored.</param>
+        /// <returns>Returns to panel page if successful.</returns>
+        public async Task<IActionResult> Restore(int id)
+        {
+            var isSeller = await productService.IsUserSellerAsync(id, this.User.Id());
+            if (isSeller == false)
+            {
+                return NotFound();
+            }
+
+            await productService.RestoreAsync(id);
+            return RedirectToAction(
+                RedirectPaths.DeleteMarketplaceProductPage,
+                RedirectPaths.DeleteMarketplaceProductController,
+                new { area = "" });
         }
     }
 }

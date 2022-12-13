@@ -44,6 +44,14 @@
         Task<IEnumerable<ProductOverviewViewModel>> GetAllAsync(bool isOfficial);
 
         /// <summary>
+        /// Get the products listed by the provided user.
+        /// Gets both available and deleted products.
+        /// </summary>
+        /// <param name="userId">Id of the user who is trying to view their products.</param>
+        /// <returns>List of products added by the provided user.</returns>
+        Task<IEnumerable<ProductOverviewViewModel>> GetCurrentUserProductsAsync(string userId);
+
+        /// <summary>
         /// Get three random products.
         /// They are displayed on the store index pages.
         /// </summary>
@@ -97,6 +105,14 @@
         /// </summary>
         /// <param name="id">Id of deleted product.</param>
         Task DeleteAsync(int id);
+        #endregion
+
+        #region RestoreProduct
+        /// <summary>
+        /// Restora a deleted product.
+        /// </summary>
+        /// <param name="id">Id of the restored product.</param>
+        Task RestoreAsync(int id);
         #endregion
 
         #region UserValidation

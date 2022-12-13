@@ -45,6 +45,13 @@
                 Categories = await categoryService.GetOfficialAsync()
             };
 
+            if (model.Categories.Count() == 0)
+            {
+                return RedirectToAction(
+                    RedirectPaths.NoAvailableCategoriesPage,
+                    RedirectPaths.NoAvailableCategoriesController);
+            }
+
             return View(model);
         }
 
@@ -96,6 +103,13 @@
             }
 
             model.Categories = await categoryService.GetOfficialAsync();
+            if (model.Categories.Count() == 0)
+            {
+                return RedirectToAction(
+                    RedirectPaths.NoAvailableCategoriesPage,
+                    RedirectPaths.NoAvailableCategoriesController);
+            }
+
             return View(model);
         }
 
@@ -125,7 +139,7 @@
         }
 
         /// <summary>
-        /// Delete product from database.
+        /// Delete product from the list.
         /// </summary>
         /// <param name="id">Id of product that will be deleted.</param>
         /// <returns>Returns to panel page if successful.</returns>
@@ -136,12 +150,25 @@
                 return Unauthorized();
             }
 
-            if (!ModelState.IsValid)
+            await productService.DeleteAsync(id);
+            return RedirectToAction(
+                RedirectPaths.UpdateProductPage,
+                RedirectPaths.UpdateProductController);
+        }
+
+        /// <summary>
+        /// Restore a product to the list.
+        /// </summary>
+        /// <param name="id">Id of product that will be restored.</param>
+        /// <returns>Returns to panel page if successful.</returns>
+        public async Task<IActionResult> Restore(int id)
+        {
+            if (!this.User.IsAdmin())
             {
-                return RedirectToAction("PLACE", "HOLDER");
+                return Unauthorized();
             }
 
-            await productService.DeleteAsync(id);
+            await productService.RestoreAsync(id);
             return RedirectToAction(
                 RedirectPaths.UpdateProductPage,
                 RedirectPaths.UpdateProductController);

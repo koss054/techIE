@@ -81,6 +81,11 @@
             }
 
             var entity = await categoryService.GetAsync(id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
             var model = new CategoryFormViewModel()
             {
                 Id = entity.Id,
@@ -129,7 +134,7 @@
 
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("PLACE", "HOLDER");
+                return BadRequest();
             }
 
             await categoryService.VerifyAsync(id);
@@ -139,7 +144,7 @@
         }
 
         /// <summary>
-        /// Delete category from database.
+        /// Delete category from list.
         /// </summary>
         /// <param name="id">Id of category that will be deleted.</param>
         /// <returns>Returns to panel page if successful.</returns>
@@ -150,12 +155,25 @@
                 return Unauthorized();
             }
 
-            if (!ModelState.IsValid)
+            await categoryService.DeleteAsync(id);
+            return RedirectToAction(
+                RedirectPaths.UpdateCategoryPage,
+                RedirectPaths.UpdateCategoryController);
+        }
+
+        /// <summary>
+        /// Restore category to list.
+        /// </summary>
+        /// <param name="id">Id of category that will be restored.</param>
+        /// <returns>Returns to panel page if successful.</returns>
+        public async Task<IActionResult> Restore(int id)
+        {
+            if (!this.User.IsAdmin())
             {
-                return RedirectToAction("PLACE", "HOLDER");
+                return Unauthorized();
             }
 
-            await categoryService.DeleteAsync(id);
+            await categoryService.RestoreAsync(id);
             return RedirectToAction(
                 RedirectPaths.UpdateCategoryPage,
                 RedirectPaths.UpdateCategoryController);

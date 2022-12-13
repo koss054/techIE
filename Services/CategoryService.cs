@@ -37,6 +37,7 @@
         public async Task<IEnumerable<string>> GetAllNamesAsync()
         {
             return await context.Categories
+                .Where(c => c.IsDeleted == false)
                 .Select(c => c.Name)
                 .ToListAsync();
         }
@@ -52,10 +53,31 @@
                 {
                     Id = c.Id,
                     Name = c.Name,
-                    IsOfficial = c.IsOfficial
+                    IsOfficial = c.IsOfficial,
+                    IsDeleted = c.IsDeleted
+                    
                 }).ToListAsync();
 
             return entities;
+        }
+
+        /// <summary>
+        /// Gets all available categories from the database.
+        /// </summary>
+        /// <returns>List of categories where IsDeleted == false.</returns>
+        public async Task<IEnumerable<CategoryViewModel>> GetAllAvailableAsync()
+        {
+            var entities = await context.Categories
+                .Select(c => new CategoryViewModel()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    IsOfficial = c.IsOfficial,
+                    IsDeleted = c.IsDeleted
+
+                }).ToListAsync();
+
+            return entities.Where(e => e.IsDeleted == false);
         }
 
         /// <summary>
@@ -70,7 +92,8 @@
                 {
                     Id = c.Id,
                     Name = c.Name,
-                    IsOfficial = c.IsOfficial
+                    IsOfficial = c.IsOfficial,
+                    IsDeleted = c.IsDeleted
                 }).ToListAsync();
         }
 
@@ -85,7 +108,8 @@
             {
                 Id = model.Id,
                 Name = model.Name,
-                IsOfficial = false
+                IsOfficial = false,
+                IsDeleted = false
             };
 
             await context.Categories.AddAsync(entity);
@@ -130,13 +154,26 @@
         /// Delete a category from the list.
         /// </summary>
         /// <param name="id">Id of the category that should be deleted.</param>
-        /// <returns></returns>
         public async Task DeleteAsync(int id)
         {
             var entity = await this.GetAsync(id);
             if (entity != null)
             {
-                context.Remove(entity);
+                entity.IsDeleted = true;
+                await context.SaveChangesAsync();
+            }
+        }
+
+        /// <summary>
+        /// Restore a category to the list.
+        /// </summary>
+        /// <param name="id">Id of the category that should be restored.</param>
+        public async Task RestoreAsync(int id)
+        {
+            var entity = await this.GetAsync(id);
+            if (entity != null)
+            {
+                entity.IsDeleted = false;
                 await context.SaveChangesAsync();
             }
         }

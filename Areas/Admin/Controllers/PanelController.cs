@@ -1,7 +1,5 @@
 ﻿namespace techIE.Areas.Admin.Controllers
 {
-    using System.Security.Claims;
-
     using Microsoft.AspNetCore.Mvc;
 
     using Contracts;
@@ -10,21 +8,18 @@
 
     /// <summary>
     /// Controller for the admin access.
-    /// Only accessible by IsAdmin == true; users.
+    /// Only accessible by users with the Administrator/Admin role.
     /// </summary>
     [Area("Admin")]
     public class PanelController : BaseController
     {
-        private readonly IUserService userService;
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
 
         public PanelController(
-            IUserService _userService,
             ICategoryService _categoryService,
             IProductService _productService)
         {
-            userService = _userService;
             categoryService = _categoryService;
             productService = _productService;
         }
@@ -33,7 +28,7 @@
         /// Index page for the Panel controller.
         /// Admins can access all of the admin pages from here.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Panel index page.</returns>
         [HttpGet]
         public IActionResult Index()
         {
@@ -49,6 +44,7 @@
         /// Checks if the current user is an admin. If not, they are redirected.
         /// If user is admin, they can manage all categories.
         /// </summary>
+        /// <returns>Category panel page.</returns>
         [HttpGet]
         public async Task<IActionResult> Categories()
         {
@@ -65,6 +61,7 @@
         /// Checks if the current user is an admin. If not, they are redirected.
         /// If user is admin, they can manage all official products.
         /// </summary>
+        /// <returns>Product panel page.</returns>
         [HttpGet]
         public async Task<IActionResult> Products()
         {
@@ -75,6 +72,28 @@
 
             var model = await productService.GetAllAdminAsync();
             return View(model);
+        }
+
+        /// <summary>
+        /// Checks if the current user is an admin. If not, they are redirected.
+        /// If user tries to add/edit an official product and no category has IsDeleted == false, they get redirected here.
+        /// </summary>
+        /// <returns>Page, informing the admin that no official categories are available.</returns>
+        [HttpGet]
+        public async Task<IActionResult> Empty()
+        {
+            if (!this.User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
+            var officialCategories = await categoryService.GetOfficialAsync();
+            if (officialCategories.Count() > 0)
+            {
+                return BadRequest();
+            }
+
+            return View();
         }
     }
 }

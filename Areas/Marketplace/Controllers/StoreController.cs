@@ -46,7 +46,7 @@
         /// <returns>The explore page of the marketplace StoreController.</returns>
         public async Task<IActionResult> Explore([FromQuery] ProductQueryViewModel query)
         {
-            var productCategories = await categoryService.GetAllNamesAsync();
+            var productCategories = await categoryService.GetAllAvailableAsync();
             var queryResult = await productService.GetSearchResultAsync(
                 query.Category,
                 query.SearchTerm,
@@ -56,8 +56,25 @@
 
             query.TotalProductsCount = queryResult.TotalProductCount;
             query.Products = queryResult.Products;
-            query.Categories = productCategories;
+            query.Categories = productCategories.Select(c => c.Name);
             return View(query);
+        }
+
+        /// <summary>
+        /// Page for when a user tries to add/edit a product when no categories are added.
+        /// User is informed.
+        /// If categories are available, page isn't displayed.
+        /// </summary>
+        /// <returns>Page that informs user that there are no available categories.</returns>
+        public async Task<IActionResult> Empty()
+        {
+            var categories = await categoryService.GetAllAvailableAsync();
+            if (categories.Count() > 0)
+            {
+                return BadRequest();
+            }
+
+            return View();
         }
     }
 }

@@ -28,5 +28,12 @@
         /// </summary>
         [Required]
         public bool IsOfficial { get; set; }
+
+        /// <summary>
+        /// True if category is deleted.
+        /// False if category is available.
+        /// </summary>
+        [Required]
+        public bool IsDeleted { get; set; }
     }
 }

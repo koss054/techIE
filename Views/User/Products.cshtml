@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ProductOverviewViewModel>
+
+@{
+    ViewBag.Title = "Your Products";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/your-products.css" />
+    <link rel="stylesheet" href="~/css/horizontal-row/marketplace-rows.css" />
+    <link rel="stylesheet" href="~/css/store/marketplace-store.css" />
+</head>
+
+<section class="user-products">
+    <h2>@ViewBag.Title</h2>
+    <hr class="marketplace" />
+
+    @if (Model.Count() > 0)
+    {
+        <div class="products">
+            <h5 class="mt-4">Available Products</h5>
+            <hr class="marketplace short" />
+
+            <div class="product-panel mt-4">
+                @foreach (var product in Model)
+                {
+                    @if (product.IsDeleted == false)
+                    {
+                        <a class="product-details" asp-area="Marketplace" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
+                            <div class="product grow">
+                                <img src="@product.ImageUrl">
+                                <hr class="img-seperator marketplace" />
+                                <h4 class="text-center">@product.Name</h4>
+                                <h6 class="text-center">$@product.Price</h6>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+
+            <h5>Deleted Products</h5>
+            <hr class="marketplace short" />
+
+            <div class="product-panel mt-4">
+                @foreach (var product in Model)
+                {
+                    @if (product.IsDeleted == true)
+                    {
+                        <div class="product">
+                            <img style="margin-bottom: 1rem" src="@product.ImageUrl">
+                            <h4 class="text-center">@product.Name</h4>
+                            <h6 class="text-center">$@product.Price</h6>
+                            <div class="deleted-product-buttons">
+                                <a class="deleted-product-button" asp-area="Marketplace" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">
+                                    <img class="grow" src="~/images/menus/edit.svg">
+                                </a>
+
+                                <a class="deleted-product-button" asp-area="Marketplace" asp-controller="Product" asp-action="Restore" asp-route-id="@product.Id"
+                       onclick="return confirm('Are you sure you want to restore @product.Name?')">
+                                    <img class="grow" src="~/images/menus/restore.svg">
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="no-products">
+            <h3>You haven't listed any products, yet!</h3>
+            <h5>
+                You can create a listing from
+                <a style="color: deeppink; text-decoration: none" asp-area="Marketplace" asp-controller="Product" asp-action="Add">
+                    here
+                </a>
+                - it'll be added to the user marketplace.
+            </h5>
+        </div>
+    }
+</section>
+
+<style>
+    .grow {
+        transition: all .2s ease-in-out;
+    }
+
+    .grow:hover {
+        transform: scale(1.05);
+    }
+</style>

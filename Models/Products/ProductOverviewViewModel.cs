@@ -33,5 +33,11 @@
         /// Depending on it the product is visualized or not (in the store/marketplace).
         /// </summary>
         public string Category { get; set; } = null!;
+
+        /// <summary>
+        /// True if product is deleted.
+        /// False if product is still available.
+        /// </summary>
+        public bool IsDeleted { get; set; }
     }
 }
