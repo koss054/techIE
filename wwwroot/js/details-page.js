@@ -4,14 +4,19 @@
     const productColor = $("#product-color");
     const colorText = productColor.text().toLowerCase();
 
-    if (colorText !== "colorful") {
-        $("#product-color").css({ "color": colorText });
-    } else {
+    if (colorText === "colorful") {
         productColor.css({
             "background": "linear-gradient(to bottom right, #ff98f6, #b5a2ff)",
             "-webkit-background-clip": "text",
             "text-fill-color": "transparent"
         });
+    } else if (colorText == "white") {
+        productColor.css({
+            "color": "white",
+            "text-shadow": "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+        });
+    } else {
+        productColor.css({ "color": colorText });
     }
 
     // Add new lines to product description.
