@@ -22,5 +22,11 @@
         /// The value is false if the category is used only in the user marketplace.
         /// </summary>
         public bool IsOfficial { get; set; }
+
+        /// <summary>
+        /// True if category is deleted.
+        /// False if category is available.
+        /// </summary>
+        public bool IsDeleted { get; set; }
     }
 }
