@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using techIE.Controllers;
+    using Constants;
     using Contracts;
 
     /// <summary>
@@ -41,6 +42,15 @@
             if (model == null || model.IsDeleted)
             {
                 return NotFound();
+            }
+
+            // Redirects the user to Marketplace area, if the product is not official.
+            if (model.IsOfficial == false)
+            {
+                return RedirectToAction(
+                    RedirectPaths.ProductIsNotOfficialPage,
+                    RedirectPaths.ProductIsNotOfficialController,
+                    new { id = model.Id, area = RedirectPaths.ProductIsNotOfficialArea });
             }
 
             return View(model);
