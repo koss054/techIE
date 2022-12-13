@@ -27,6 +27,9 @@
         public const string UpdateProductPage = "Products";
         public const string UpdateProductController = "Panel";
 
+        public const string NoAvailableCategoriesPage = "Empty";
+        public const string NoAvailableCategoriesController = "Panel";
+
         // ---------- Marketplace Controllers Redirects ----------
         public const string AddMarketplaceProductPage = "Index";
         public const string AddMarketplaceProductController = "Store";
