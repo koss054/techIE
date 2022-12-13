@@ -57,5 +57,11 @@
         /// <param name="id">Id of the category that should be deleted.</param>
         /// <returns></returns>
         Task DeleteAsync(int id);
+
+        /// <summary>
+        /// Restore a category to the list.
+        /// </summary>
+        /// <param name="id">Id of the category that should be restored.</param>
+        Task RestoreAsync(int id);
     }
 }
