@@ -34,6 +34,9 @@
         public const string AddMarketplaceProductPage = "Index";
         public const string AddMarketplaceProductController = "Store";
 
+        public const string NoMarketplaceCategoriesPage = "Empty";
+        public const string NoMarketplaceCategoriesController = "Store";
+
         // ---------- Order Controller Redirects ----------
         public const string AddProductToOrderPage = "Index";
         public const string AddProductToOrderController = "Store";
