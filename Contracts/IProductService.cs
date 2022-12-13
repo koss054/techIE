@@ -99,6 +99,14 @@
         Task DeleteAsync(int id);
         #endregion
 
+        #region RestoreProduct
+        /// <summary>
+        /// Restora a deleted product.
+        /// </summary>
+        /// <param name="id">Id of the restored product.</param>
+        Task RestoreAsync(int id);
+        #endregion
+
         #region UserValidation
         /// <summary>
         /// Checks if the provided user is the seller of the product.
