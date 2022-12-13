@@ -38,7 +38,7 @@
             }
 
             var model = await productService.GetDetailedAsync(id, seller);
-            if (model == null)
+            if (model == null || model.IsDeleted)
             {
                 return NotFound();
             }
