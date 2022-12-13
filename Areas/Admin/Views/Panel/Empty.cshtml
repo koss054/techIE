@@ -4,10 +4,11 @@
 
 <head>
     <link rel="stylesheet" href="~/css/no-categories.css" />
-    <link rel="stylesheet" href="~/css/admin/admin-panel.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/admin-panel.css" />
 </head>
 
 <section class="no-categories-available">
+    <img id="no-categories" src="~/images/errors/no-categories.jpg" />
     <h2>@ViewBag.Title</h2>
     <h4>Add categories from 
         <a asp-area="Admin" asp-controller="Category" asp-action="Add">here</a>
