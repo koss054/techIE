@@ -59,6 +59,7 @@
                     Category = p.Category.Name,
                     Color = p.Color,
                     Description = p.Description,
+                    IsDeleted = p.IsDeleted,
                     Seller = seller
                 }).FirstOrDefaultAsync();
         }
