@@ -59,6 +59,7 @@
                     Category = p.Category.Name,
                     Color = p.Color,
                     Description = p.Description,
+                    IsOfficial = p.IsOfficial,
                     IsDeleted = p.IsDeleted,
                     Seller = seller
                 }).FirstOrDefaultAsync();
@@ -98,7 +99,8 @@
                     Name = p.Name,
                     Price = p.Price,
                     ImageUrl = p.ImageUrl,
-                    Category = p.Category.Name
+                    Category = p.Category.Name,
+                    IsDeleted = p.IsDeleted
                 }).ToListAsync();
         }
 
@@ -125,6 +127,29 @@
         }
 
         /// <summary>
+        /// Get the products listed by the provided user.
+        /// Gets both available and deleted products.
+        /// </summary>
+        /// <param name="userId">Id of the user who is trying to view their products.</param>
+        /// <returns>List of products added by the provided user.</returns>
+        public async Task<IEnumerable<ProductOverviewViewModel>> GetCurrentUserProductsAsync(string userId)
+        {
+            return await context.UsersProducts
+                .Where(up => up.UserId == userId)
+                .Include(p => p.Product)
+                .Select(up => new ProductOverviewViewModel()
+                {
+                    Id = up.Product.Id,
+                    Name = up.Product.Name,
+                    Price = up.Product.Price,
+                    ImageUrl = up.Product.ImageUrl,
+                    Category = up.Product.Category.Name,
+                    IsDeleted = up.Product.IsDeleted
+                })
+                .ToListAsync();
+        }
+
+        /// <summary>
         /// Get three random products.
         /// They are displayed on the store index pages.
         /// </summary>
@@ -142,7 +167,8 @@
                     Name = p.Name,
                     Price = p.Price,
                     ImageUrl = p.ImageUrl,
-                    Category = p.Category.Name
+                    Category = p.Category.Name,
+                    IsDeleted = p.IsDeleted
                 }).ToListAsync();
         }
 
@@ -163,7 +189,10 @@
             int productsPerPage = 1)
         {
             // We only take the unofficial products as the search bar is only used in the Marketplace section.
-            var productQuery = context.Products.Where(p => p.IsOfficial == false).AsQueryable();
+            var productQuery = context.Products
+                .Where(p => p.IsOfficial == false &&
+                            p.IsDeleted == false)
+                .AsQueryable();
 
             // Made the if statement a lot bigger than necessary because the search term was overriding the category.
             // Will try to reduce the lines of code when I'm refactoring the app, if I have time D:
@@ -206,7 +235,8 @@
                     Name = p.Name,
                     Price = p.Price,
                     ImageUrl = p.ImageUrl,
-                    Category = p.Category.Name
+                    Category = p.Category.Name,
+                    IsDeleted = p.IsDeleted
                 }).ToListAsync();
 
             var totalProducts = productQuery.Count();
