@@ -73,6 +73,7 @@
         /// <summary>
         /// Id of the product category.
         /// </summary>
+        [Required]
         public int CategoryId { get; set; }
 
         /// <summary>
