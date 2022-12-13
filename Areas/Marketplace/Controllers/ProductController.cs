@@ -40,8 +40,13 @@
         {
             var model = new ProductFormViewModel
             {
-                Categories = await categoryService.GetAllAsync()
+                Categories = await categoryService.GetAllAvailableAsync()
             };
+
+            if (model.Categories.Count() == 0)
+            {
+                return RedirectToAction("PLACEHOLDER", "EMPTY");
+            }
 
             return View(model);
         }
@@ -57,7 +62,7 @@
         {
             if (!ModelState.IsValid)
             {
-                model.Categories = await categoryService.GetAllAsync();
+                model.Categories = await categoryService.GetAllAvailableAsync();
                 return View(model);
             }
 
@@ -112,7 +117,12 @@
                 return NotFound();
             }
 
-            model.Categories = await categoryService.GetAllAsync();
+            model.Categories = await categoryService.GetAllAvailableAsync();
+            if (model.Categories.Count() == 0)
+            {
+                return RedirectToAction("PLACEHODLENR", "NOCATEGOESI");
+            }
+
             return View(model);
         }
 
@@ -126,7 +136,7 @@
         {
             if (!ModelState.IsValid)
             {
-                model.Categories = await categoryService.GetAllAsync();
+                model.Categories = await categoryService.GetAllAvailableAsync();
                 return View(model);
             }
 
