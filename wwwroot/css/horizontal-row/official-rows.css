@@ -11,6 +11,11 @@ hr.long {
     width: 800px;
 }
 
+hr.short {
+    width: 250px;
+    height: 6px;
+}
+
 hr.img-seperator.official {
     width: 200px;
     height: 4px;

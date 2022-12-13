@@ -1,0 +1,22 @@
+﻿.user-products {
+    margin: 60px;
+    text-align: center;
+}
+
+.no-products {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+
+.products {
+    margin-top: 4rem;
+}
+
+.deleted-product-button {
+    text-decoration: none;
+}
+
+.deleted-product-button img {
+    width: 25px;
+    height: 25px;
+}
