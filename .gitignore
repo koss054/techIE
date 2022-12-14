@@ -1,3 +1,8 @@
-bin/
-obj/
+techIE/bin/
+techIE/obj/
+techIE/.vs/
+
+techIE.UnitTests/bin/
+techIE.UnitTests/obj
+
 .vs/
