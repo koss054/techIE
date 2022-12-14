@@ -29,6 +29,7 @@
             context = new AppDbContext(options);
 
             SeedUsers();
+            SeedCategories();
             SeedCarts();
             SeedOrders();
             SeedProducts();
@@ -56,6 +57,19 @@
             context.SaveChanges();
         }
 
+        private void SeedCategories()
+        {
+            var categories = new List<Category>()
+            {
+                new Category(){ Id = 1, Name = "Phones", IsOfficial = true, IsDeleted = false },
+                new Category(){ Id = 2, Name = "Computers", IsOfficial = false, IsDeleted = false },
+                new Category(){ Id = 3, Name = "Fax Machines", IsOfficial = false, IsDeleted = true }
+            };
+
+            context.AddRange(categories);
+            context.SaveChanges();
+        }
+
         /// <summary>
         /// Seed the carts.
         /// </summary>
@@ -65,7 +79,8 @@
             {
                 new Cart(){ Id = 1, IsCurrent = true, UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", OrderId = 1 },
                 new Cart(){ Id = 2, IsCurrent = false, UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", OrderId = 2 },
-                new Cart(){ Id = 3, IsCurrent = false, UserId = "de505807-eafb-4f1f-a7cb-51cb2d88d80f", OrderId = 3 }
+                new Cart(){ Id = 3, IsCurrent = false, UserId = "de505807-eafb-4f1f-a7cb-51cb2d88d80f", OrderId = 3 },
+                new Cart(){ Id = 4, IsCurrent = true, UserId = "sse3f072-d231-e1e1-ab26-1120hhj364e4" }
             };
 
             context.AddRange(carts);
@@ -115,6 +130,7 @@
                 new CartProduct(){ CartId = 2, ProductQuantity = 4, ProductId = 3 },
                 new CartProduct(){ CartId = 3, ProductQuantity = 1, ProductId = 3 },
                 new CartProduct(){ CartId = 3, ProductQuantity = 5, ProductId = 1 },
+                new CartProduct(){ CartId = 4, ProductQuantity = 2, ProductId = 2 },
             };
 
             context.AddRange(cartProducts);
