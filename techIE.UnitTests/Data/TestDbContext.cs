@@ -30,6 +30,7 @@
 
             SeedUsers();
             SeedCarts();
+            SeedOrders();
             SeedProducts();
             SeedCartProducts();
         }
@@ -68,6 +69,22 @@
             };
 
             context.AddRange(carts);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Seed the orders.
+        /// </summary>
+        private void SeedOrders()
+        {
+            var orders = new List<Order>()
+            {
+                new Order(){ Id = 1, TotalValue = 2000, UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", CartId = 1 },
+                new Order(){ Id = 2, TotalValue = 1200, UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", CartId = 2},
+                new Order(){ Id = 3, TotalValue = 800, UserId = "de505807-eafb-4f1f-a7cb-51cb2d88d80f", CartId = 3}
+            };
+
+            context.AddRange(orders);
             context.SaveChanges();
         }
 
