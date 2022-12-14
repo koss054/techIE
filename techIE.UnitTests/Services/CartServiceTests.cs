@@ -24,6 +24,7 @@ namespace techIE.UnitTests.Services
         {
             var testContext = new TestDbContext();
             context = testContext.GetSeededEntities();
+
             cartService = new CartService(context);
         }
 
@@ -34,7 +35,7 @@ namespace techIE.UnitTests.Services
             var userId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b";
             var action = await cartService.AddProductAsync(productId, userId);
 
-            Assert.AreEqual(action, CartAction.Successful);
+            Assert.AreEqual(CartAction.Successful, action);
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace techIE.UnitTests.Services
             var userId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b";
             var action = await cartService.AddProductAsync(productId, userId);
 
-            Assert.AreEqual(action, CartAction.Duplicate);
+            Assert.AreEqual(CartAction.Duplicate, action);
         }
 
         [Test]
@@ -54,7 +55,7 @@ namespace techIE.UnitTests.Services
             var userId = "de505807-eafb-4f1f-a7cb-51cb2d88d80f";
             var action = await cartService.AddProductAsync(productId, userId);
 
-            Assert.AreEqual(action, CartAction.Failed);
+            Assert.AreEqual(CartAction.Failed, action);
         }
 
         [Test]
@@ -82,9 +83,9 @@ namespace techIE.UnitTests.Services
             var cart = await cartService.GetCurrentCartAsync(userId);
             var dbCart = context.Carts.FirstOrDefault(c => c.UserId == userId && c.IsCurrent);
 
-            Assert.AreEqual(cart.Id, dbCart.Id);
-            Assert.AreEqual(cart.UserId, dbCart.UserId);
-            Assert.AreEqual(cart.IsCurrent, dbCart.IsCurrent);
+            Assert.AreEqual(dbCart.Id, cart.Id);
+            Assert.AreEqual(dbCart.UserId, cart.UserId);
+            Assert.AreEqual(dbCart.IsCurrent, cart.IsCurrent);
         }
 
         [Test]
@@ -96,9 +97,9 @@ namespace techIE.UnitTests.Services
             // Service method returns empty model if user doesn't have a current cart.
             var cartModel = new CartViewModel();
 
-            Assert.True(cart.Id == cartModel.Id);
-            Assert.True(cart.UserId == cartModel.UserId);
-            Assert.True(cart.IsCurrent == cartModel.IsCurrent);
+            Assert.AreEqual(cartModel.Id, cart.Id);
+            Assert.AreEqual(cartModel.UserId, cart.UserId);
+            Assert.AreEqual(cartModel.IsCurrent, cart.IsCurrent);
         }
 
         [Test]
@@ -108,7 +109,7 @@ namespace techIE.UnitTests.Services
             var cart = await cartService.GetCartAsync(cartId);
             var dbCart = context.Carts.FirstOrDefault(c => c.Id == cartId);
 
-            Assert.AreNotEqual(cart, null);
+            Assert.AreNotEqual(null, cart);
             Assert.AreEqual(cart.UserId, cart.UserId);
             Assert.AreEqual(cart.IsCurrent, cart.IsCurrent);
         }
@@ -116,14 +117,14 @@ namespace techIE.UnitTests.Services
         [Test]
         public async Task Test_GetCartAsync_InvalidId()
         {
-            var cartId = 4;
+            var cartId = 999;
             var cartModel = new CartViewModel();
 
             // Service method returns an empty view model if the provided Id doesn't match any cart in the db.
             var cart = await cartService.GetCartAsync(cartId);
 
-            Assert.AreEqual(cart.Id, cartModel.Id);
-            Assert.AreEqual(cart.IsCurrent, cartModel.IsCurrent);
+            Assert.AreEqual(cartModel.Id, cart.Id);
+            Assert.AreEqual(cartModel.IsCurrent, cart.IsCurrent);
         }
 
         [Test]
@@ -165,7 +166,7 @@ namespace techIE.UnitTests.Services
 
             await cartService.RemoveProductAsync(cartId, productId);
 
-            Assert.AreEqual(cartProducts.ProductQuantity, expectedQuantity);
+            Assert.AreEqual(expectedQuantity, cartProducts.ProductQuantity);
         }
 
         [Test]
@@ -180,7 +181,7 @@ namespace techIE.UnitTests.Services
                 .FirstOrDefault(cp => cp.CartId == cartId && cp.ProductId == productId);
 
 
-            Assert.AreEqual(cartProducts, null);
+            Assert.AreEqual(null, cartProducts);
         }
         // Not testing invalid case, since nothing happens to the db with invalid parameters.
 
@@ -191,7 +192,7 @@ namespace techIE.UnitTests.Services
             await cartService.RemoveAllProductsAsync(cartId);
             var cartProducts = context.CartsProducts.FirstOrDefault(cp => cp.CartId == cartId);
 
-            Assert.AreEqual(cartProducts, null);
+            Assert.AreEqual(null, cartProducts);
         }
         // Not testing invalid, as nothing happens when an invalid cartId is passed.
     }
