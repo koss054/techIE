@@ -34,6 +34,11 @@
             SeedCartProducts();
         }
 
+        public AppDbContext GetSeededEntities()
+        {
+            return context;
+        }
+
         /// <summary>
         /// Seed the users.
         /// </summary>
