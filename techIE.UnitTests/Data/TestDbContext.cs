@@ -34,6 +34,7 @@
             SeedOrders();
             SeedProducts();
             SeedCartProducts();
+            SeedUserProducts();
         }
 
         public AppDbContext GetSeededEntities()
@@ -110,9 +111,10 @@
         {
             var products = new List<Product>()
             {
-                new Product(){ Id = 1, Name = "Nokia 3310", Price = 100, ImageUrl = "www.com", Description = "A classic, unbreakable phone.", IsOfficial = true, CategoryId = 1 },
-                new Product(){ Id = 2, Name = "Qk Laptop", Price = 2000, ImageUrl = "www.com", Description = "Very cool, indeed.", IsOfficial = false, CategoryId = 2 },
-                new Product(){ Id = 3, Name = "Umen Chasovnik", Price = 300,ImageUrl = "www.com", Description = "Smart. Watch.",  IsOfficial = false, CategoryId = 3 }
+                new Product(){ Id = 1, Name = "Nokia 3310", Price = 100, ImageUrl = "www.com", Description = "A classic, unbreakable phone.", IsOfficial = true, CategoryId = 1, IsDeleted = false },
+                new Product(){ Id = 2, Name = "Qk Laptop", Price = 2000, ImageUrl = "www.com", Description = "Very cool, indeed.", IsOfficial = true, CategoryId = 2, IsDeleted = true },
+                new Product(){ Id = 3, Name = "Umen Chasovnik", Price = 300,ImageUrl = "www.com", Description = "Smart. Watch.",  IsOfficial = false, CategoryId = 3, IsDeleted = false },
+                new Product(){ Id = 4, Name = "Deleted Product", Price = 1000, ImageUrl = "www.com", Description = "Deleted product, man.", IsOfficial = false, CategoryId = 4, IsDeleted = true }
             };
 
             context.AddRange(products);
@@ -134,6 +136,19 @@
             };
 
             context.AddRange(cartProducts);
+            context.SaveChanges();
+        }
+
+        private void SeedUserProducts()
+        {
+            var userProducts = new List<UserProduct>()
+            {
+                new UserProduct(){ UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", ProductId = 1 },
+                new UserProduct(){ UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", ProductId = 2},
+                new UserProduct(){ UserId = "de505807-eafb-4f1f-a7cb-51cb2d88d80f", ProductId = 3}
+            };
+
+            context.AddRange(userProducts);
             context.SaveChanges();
         }
     }
