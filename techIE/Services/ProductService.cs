@@ -29,6 +29,7 @@
         }
 
         #region GetProduct
+
         /// <summary>
         /// Get a product with provided Id.
         /// </summary>
@@ -92,7 +93,7 @@
         public async Task<IEnumerable<ProductOverviewViewModel>> GetAllAsync(bool isOfficial)
         {
             return await context.Products
-                .Where(p => p.IsOfficial && p.IsDeleted == false)
+                .Where(p => p.IsOfficial == isOfficial && p.IsDeleted == false)
                 .Select(p => new ProductOverviewViewModel()
                 {
                     Id = p.Id,
@@ -220,7 +221,7 @@
 
             productQuery = sorting switch
             {
-                ProductSorting.Newest => productQuery.OrderBy(p => p.Id),
+                ProductSorting.Newest => productQuery.OrderByDescending(p => p.Id),
                 ProductSorting.Price => productQuery.OrderBy(p => p.Price),
                 _ => productQuery.OrderBy(p => p.Name)
             };
@@ -246,9 +247,9 @@
                 Products = products
             };
         }
+
         #endregion
 
-        #region AddProduct
         /// <summary>
         /// Add a product to the database.
         /// </summary>
@@ -272,9 +273,7 @@
             await this.AddToUserProduct(product, userId);
             await context.SaveChangesAsync();
         }
-        #endregion
 
-        #region EditProduct
         /// <summary>
         /// Edit a product from the database.
         /// </summary>
@@ -295,9 +294,7 @@
                 await context.SaveChangesAsync();
             }
         }
-        #endregion
 
-        #region DeleteProduct
         /// <summary>
         /// Delete a product, making it unavailable in the stores.
         /// </summary>
@@ -311,9 +308,7 @@
                 await context.SaveChangesAsync();
             }
         }
-        #endregion
 
-        #region RestoreProduct
         /// <summary>
         /// Restora a deleted product.
         /// </summary>
@@ -327,9 +322,7 @@
                 await context.SaveChangesAsync();
             }
         }
-        #endregion
 
-        #region UserValidation
         /// <summary>
         /// Checks if the provided user is the seller of the product.
         /// </summary>
@@ -344,9 +337,7 @@
 
             return userProduct != null ? true : false;
         }
-        #endregion
 
-        #region PrivateMethods
         /// <summary>
         /// Adding the product to the mapping table.
         /// This way the product and the user are tied together.
@@ -368,6 +359,5 @@
             }
             await context.SaveChangesAsync();
         }
-        #endregion
     }
 }
