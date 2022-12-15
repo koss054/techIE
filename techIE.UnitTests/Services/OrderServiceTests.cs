@@ -42,8 +42,8 @@
             // Getting the order that was added last.
             var order = await context.Orders.LastOrDefaultAsync();
 
-            Assert.AreNotEqual(null, order);
-            Assert.AreNotEqual(null, cart);
+            Assert.IsNotNull(order);
+            Assert.IsNotNull(cart);
             Assert.AreEqual(false, cart.IsCurrent);
             Assert.AreEqual(expectedTotalValue, order.TotalValue);
         }
