@@ -48,7 +48,7 @@
 
             var category = await categoryService.GetAsync(categoryId);
 
-            Assert.AreEqual(null, category);
+            Assert.IsNull(category);
         }
 
         [Test]
@@ -106,7 +106,7 @@
 
             var dbCategory = await categoryService.GetAsync(categoryId);
 
-            Assert.AreNotEqual(null, dbCategory);
+            Assert.IsNotNull(dbCategory);
             Assert.AreEqual(dbCategory.Id, model.Id);
             Assert.AreEqual(dbCategory.Name, model.Name);
             Assert.AreEqual(dbCategory.IsOfficial, model.IsOfficial);
@@ -121,7 +121,7 @@
 
             await categoryService.EditAsync(model);
 
-            Assert.AreNotEqual(null, dbCategory);
+            Assert.IsNotNull(dbCategory);
             Assert.AreEqual(dbCategory.Id, model.Id);
             Assert.AreEqual(dbCategory.Name, model.Name);
             Assert.AreEqual(dbCategory.IsOfficial, model.IsOfficial);
