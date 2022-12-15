@@ -51,7 +51,7 @@ namespace techIE.UnitTests.Services
         [Test]
         public async Task Test_AddProductAsync_ReturnsFailed()
         {
-            var productId = 4;
+            var productId = 999;
             var userId = "de505807-eafb-4f1f-a7cb-51cb2d88d80f";
             var action = await cartService.AddProductAsync(productId, userId);
 
@@ -109,7 +109,7 @@ namespace techIE.UnitTests.Services
             var cart = await cartService.GetCartAsync(cartId);
             var dbCart = context.Carts.FirstOrDefault(c => c.Id == cartId);
 
-            Assert.AreNotEqual(null, cart);
+            Assert.IsNotNull(cart);
             Assert.AreEqual(cart.UserId, cart.UserId);
             Assert.AreEqual(cart.IsCurrent, cart.IsCurrent);
         }
@@ -181,7 +181,7 @@ namespace techIE.UnitTests.Services
                 .FirstOrDefault(cp => cp.CartId == cartId && cp.ProductId == productId);
 
 
-            Assert.AreEqual(null, cartProducts);
+            Assert.IsNull(cartProducts);
         }
         // Not testing invalid case, since nothing happens to the db with invalid parameters.
 
@@ -192,7 +192,7 @@ namespace techIE.UnitTests.Services
             await cartService.RemoveAllProductsAsync(cartId);
             var cartProducts = context.CartsProducts.FirstOrDefault(cp => cp.CartId == cartId);
 
-            Assert.AreEqual(null, cartProducts);
+            Assert.IsNull(cartProducts);
         }
         // Not testing invalid, as nothing happens when an invalid cartId is passed.
     }
