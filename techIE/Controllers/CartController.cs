@@ -41,11 +41,11 @@
 
             if (action == CartAction.Successful)
             {
-                // Add view data for success
+                TempData["Cart"] = Messages.CartActionSuccessful;
             }
             else if (action == CartAction.Duplicate)
             {
-                // Add view data for duplication
+                TempData["Cart"] = Messages.CartActionDuplicate;
             }
 
             return RedirectToAction(
