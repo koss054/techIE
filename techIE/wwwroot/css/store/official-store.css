@@ -1,4 +1,5 @@
-﻿img {
+﻿@import url('file:///C:\Users\kkostad\Documents\techIE\techIE\wwwroot\css\store\official-store.css');
+img {
     width: 250px;
     height: 300px;
     margin-top: 5px;
@@ -79,3 +80,15 @@ a.official-redirect {
 a.marketplace-redirect {
     color: deeppink;
 }
+
+.cart-action-message {
+    background-color: lightgreen;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    width: 400px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
