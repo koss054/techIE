@@ -2,12 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
     using techIE.Data.Entities;
     using techIE.Data;
@@ -144,8 +140,8 @@
             var userProducts = new List<UserProduct>()
             {
                 new UserProduct(){ UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", ProductId = 1 },
-                new UserProduct(){ UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", ProductId = 2},
-                new UserProduct(){ UserId = "de505807-eafb-4f1f-a7cb-51cb2d88d80f", ProductId = 3}
+                new UserProduct(){ UserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b", ProductId = 2 },
+                new UserProduct(){ UserId = "de505807-eafb-4f1f-a7cb-51cb2d88d80f", ProductId = 3 }
             };
 
             context.AddRange(userProducts);
