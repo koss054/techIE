@@ -1,16 +1,13 @@
 ﻿namespace techIE.UnitTests.Services
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using NUnit.Framework;
 
     using techIE.Data;
-    using techIE.Contracts;
     using techIE.Services;
+    using techIE.Contracts;
     using techIE.Models.Categories;
 
     using techIE.UnitTests.Data;

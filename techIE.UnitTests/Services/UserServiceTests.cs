@@ -1,14 +1,11 @@
 ﻿namespace techIE.UnitTests.Services
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using Microsoft.EntityFrameworkCore;
     using NUnit.Framework;
 
     using techIE.Contracts;
     using techIE.Data;
-    using techIE.Data.Entities;
     using techIE.Services;
 
     using techIE.UnitTests.Data;

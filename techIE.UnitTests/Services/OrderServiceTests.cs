@@ -3,13 +3,12 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Microsoft.EntityFrameworkCore;
     using NUnit.Framework;
+    using Microsoft.EntityFrameworkCore;
 
-    using techIE.Contracts;
     using techIE.Data;
-    using techIE.Data.Entities;
     using techIE.Services;
+    using techIE.Contracts;
 
     using techIE.UnitTests.Data;
 

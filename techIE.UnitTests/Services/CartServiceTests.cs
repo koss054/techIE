@@ -5,9 +5,9 @@ namespace techIE.UnitTests.Services
 
     using NUnit.Framework;
 
-    using techIE.Contracts;
     using techIE.Data;
     using techIE.Services;
+    using techIE.Contracts;
     using techIE.Models.Carts;
     using techIE.Data.Entities.Enums;
 
