@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="~/css/animations/grow-on-hover.css" />
 </head>
 
+@if (TempData["Cart"] != null)
+{
+    <style>
+        h4.our-categories {
+            margin-top: 0;
+        }
+    </style>
+
+    <div class="cart-action-message">
+        @TempData["Cart"]
+    </div>
+}
+
 <partial name="_BrowseOurCategoriesPartial" />
 
 <div class="store-heading">

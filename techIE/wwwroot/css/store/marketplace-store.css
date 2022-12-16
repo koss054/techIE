@@ -79,3 +79,14 @@ a.product-details {
     text-decoration: none!important;
     color: black;
 }
+
+.cart-action-message {
+    background-color: lightgreen;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    width: 400px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
