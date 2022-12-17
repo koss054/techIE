@@ -1,14 +1,11 @@
 ﻿namespace techIE.UnitTests.Areas.Official
 {
-    using System.Collections.Generic;
-
     using Moq;
     using NUnit.Framework;
     using Microsoft.AspNetCore.Mvc;
 
     using techIE.Contracts;
     using techIE.Areas.Official.Controllers;
-    using techIE.Models.Categories;
     using techIE.Models;
     using techIE.Models.Products;
 
