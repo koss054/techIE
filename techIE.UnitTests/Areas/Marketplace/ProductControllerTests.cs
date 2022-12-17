@@ -1,14 +1,11 @@
 ﻿namespace techIE.UnitTests.Areas.Marketplace
 {
-    using System.Threading.Tasks;
     using System.Collections.Generic;
 
     using Moq;
     using NUnit.Framework;
     using Microsoft.AspNetCore.Mvc;
 
-    using techIE.Controllers;
-    using techIE.Constants;
     using techIE.Contracts;
     using techIE.Areas.Marketplace.Controllers;
     using techIE.Models.Categories;
