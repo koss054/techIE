@@ -1,4 +1,5 @@
-﻿namespace techIE.UnitTests.Areas.Official
+﻿#nullable disable
+namespace techIE.UnitTests.Areas.Official
 {
     using Microsoft.AspNetCore.Mvc;
 

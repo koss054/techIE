@@ -43,7 +43,7 @@
                 Categories = await categoryService.GetAllAvailableAsync()
             };
 
-            if (model.Categories.Count() == 0)
+            if (!model.Categories.Any())
             {
                 return RedirectToAction(
                     RedirectPaths.NoMarketplaceCategoriesPage,
@@ -129,7 +129,7 @@
             }
 
             model.Categories = await categoryService.GetAllAvailableAsync();
-            if (model.Categories.Count() == 0)
+            if (!model.Categories.Any())
             {
                 return RedirectToAction(
                     RedirectPaths.NoMarketplaceCategoriesPage,

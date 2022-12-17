@@ -1,4 +1,4 @@
-﻿namespace techIE.Areas.Marketplace.Controllers
+﻿namespace techIE.UnitTests.TestControllers.Areas.Marketplace
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -7,7 +7,6 @@
 
     using Constants;
     using Contracts;
-    using Infrastructure;
 
     using Models.Products;
 
@@ -20,10 +19,11 @@
     [Area("Marketplace")]
     public class ProductTestController : BaseController
     {
+        // Specifying this here, because I can't test the static ClaimsPrincipalExtensions User.Id().
+        private readonly string testUserId = "fake-guid-id";
         private readonly IUserService userService;
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
-        private readonly string testUserId = "fake-guid-id";
 
         public ProductTestController(
             IUserService _userService,
@@ -47,7 +47,7 @@
                 Categories = await categoryService.GetAllAvailableAsync()
             };
 
-            if (model.Categories.Count() == 0)
+            if (!model.Categories.Any())
             {
                 return RedirectToAction(
                     RedirectPaths.NoMarketplaceCategoriesPage,
@@ -133,7 +133,7 @@
             }
 
             model.Categories = await categoryService.GetAllAvailableAsync();
-            if (model.Categories.Count() == 0)
+            if (!model.Categories.Any())
             {
                 return RedirectToAction(
                     RedirectPaths.NoMarketplaceCategoriesPage,

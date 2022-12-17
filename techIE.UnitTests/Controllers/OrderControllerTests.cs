@@ -1,18 +1,14 @@
-﻿namespace techIE.UnitTests.Controllers
+﻿#nullable disable
+namespace techIE.UnitTests.Controllers
 {
     using System.Collections.Generic;
 
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
     using Moq;
     using NUnit.Framework;
 
-    using Constants;
     using Contracts;
-    using Models.Carts;
-    using techIE.Data.Entities.Enums;
 
     using techIE.UnitTests.TestControllers;
     using techIE.Models.Orders;

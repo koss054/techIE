@@ -88,7 +88,7 @@
             }
 
             var officialCategories = await categoryService.GetOfficialAsync();
-            if (officialCategories.Count() > 0)
+            if (officialCategories.Any())
             {
                 return BadRequest();
             }

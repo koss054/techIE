@@ -15,8 +15,9 @@
     /// </summary>
     public class CartTestController : BaseController
     {
+        // Specifying this here, because I can't test the static ClaimsPrincipalExtensions User.Id().
+        private readonly string testUserId = "fake-guid"; 
         private readonly ICartService cartService;
-        private string testUserId = "fake-guid"; // Specifying this here, because I can't test the static ClaimsPrincipalExtensions User.Id().
 
         public CartTestController(
             ICartService _cartService)

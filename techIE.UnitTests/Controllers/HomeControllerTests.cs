@@ -1,4 +1,5 @@
-﻿namespace techIE.UnitTests.Controllers
+﻿#nullable disable
+namespace techIE.UnitTests.Controllers
 {
     using NUnit.Framework;
     using Microsoft.AspNetCore.Mvc;
@@ -80,7 +81,6 @@
         public void Test_AnyOtherError_ViewResultName()
         {
             // Assert
-            var expectedViewName = "Error";
             var statusCode = 402;
 
             // Act

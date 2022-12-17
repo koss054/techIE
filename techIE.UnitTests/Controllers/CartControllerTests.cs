@@ -1,4 +1,5 @@
-﻿namespace techIE.UnitTests.Controllers
+﻿#nullable disable
+namespace techIE.UnitTests.Controllers
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;

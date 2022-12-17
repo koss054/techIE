@@ -1,4 +1,5 @@
-﻿namespace techIE.UnitTests.Areas.Marketplace
+﻿#nullable disable
+namespace techIE.UnitTests.Areas.Marketplace
 {
     using System.Collections.Generic;
 
@@ -7,10 +8,11 @@
     using Microsoft.AspNetCore.Mvc;
 
     using techIE.Contracts;
-    using techIE.Areas.Marketplace.Controllers;
     using techIE.Models.Categories;
     using techIE.Models;
     using techIE.Models.Products;
+
+    using techIE.UnitTests.TestControllers.Areas.Marketplace;
 
     public class ProductControllerTests
     {

@@ -1,4 +1,5 @@
-﻿namespace techIE.UnitTests.Areas.Marketplace
+﻿#nullable disable
+namespace techIE.UnitTests.Areas.Marketplace
 {
     using System.Collections.Generic;
 

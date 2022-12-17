@@ -15,14 +15,10 @@
     [Area("Admin")]
     public class CategoryController : BaseController
     {
-        private readonly IUserService userService;
         private readonly ICategoryService categoryService;
 
-        public CategoryController(
-            IUserService _userService,
-            ICategoryService _categoryService)
+        public CategoryController(ICategoryService _categoryService)
         {
-            userService = _userService;
             categoryService = _categoryService;
         }
 
