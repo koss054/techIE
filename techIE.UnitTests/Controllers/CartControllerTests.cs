@@ -171,7 +171,7 @@
             var action = controller.History(It.IsAny<int>());
 
             // Assert
-            Assert.That(action.Result, Is.TypeOf<RedirectToActionResult>());
+            Assert.That(action.Result, Is.TypeOf<ViewResult>());
         }
 
         [Test]
