@@ -1,18 +1,15 @@
 ﻿#nullable disable
 namespace techIE.UnitTests.Areas.Admin
 {
-    using System.Collections.Generic;
-
     using Moq;
     using NUnit.Framework;
     using Microsoft.AspNetCore.Mvc;
 
     using techIE.Contracts;
     using techIE.Models.Categories;
-    using techIE.Models.Products;
+    using techIE.Data.Entities;
 
     using techIE.UnitTests.TestControllers.Areas.Admin;
-    using techIE.Data.Entities;
 
     public class CategoryControllerTests
     {

@@ -29,11 +29,14 @@ namespace techIE.UnitTests.Services
         [Test]
         public async Task Test_GetUserAsync_ValidId()
         {
+            // Arrange
             var userId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b";
             var expectedUserName = "firstUser";
 
+            // Act
             var user = await userService.GetUserAsync(userId);
 
+            // Assert
             Assert.IsNotNull(user);
             Assert.AreEqual(expectedUserName, user.UserName);
         }
@@ -41,21 +44,27 @@ namespace techIE.UnitTests.Services
         [Test]
         public async Task Test_GetUserAsync_InvalidId()
         {
+            // Arrange
             var userId = "invalid-user-id-guid-maaaan";
 
+            // Act
             var user = await userService.GetUserAsync(userId);
 
+            // Assert
             Assert.IsNull(user);
         }
 
         [Test]
         public async Task Test_GetUserByProductIdAsync_ValidProduct()
         {
+            // Arrange
             var expectedUserId = "a9ad02b6-f60f-4bae-b99a-83fbacbb0c9b";
             var productId = 1;
 
+            // Act
             var user = await userService.GetUserByProductIdAsync(productId);
 
+            // Assert
             Assert.IsNotNull(user);
             Assert.AreEqual(expectedUserId, user.Id);
         }
@@ -63,10 +72,13 @@ namespace techIE.UnitTests.Services
         [Test]
         public async Task Test_GetUserByProductIdAsync_InvalidProduct()
         {
+            // Arrange
             var productId = 999;
 
+            // Act
             var user = await userService.GetUserByProductIdAsync(productId);
 
+            // Assert
             Assert.IsNull(user);
         }
     }
