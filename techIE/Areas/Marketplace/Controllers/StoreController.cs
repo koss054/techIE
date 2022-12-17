@@ -69,7 +69,7 @@
         public async Task<IActionResult> Empty()
         {
             var categories = await categoryService.GetAllAvailableAsync();
-            if (categories.Count() > 0)
+            if (categories.Any())
             {
                 return BadRequest();
             }

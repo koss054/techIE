@@ -54,7 +54,7 @@
                 return false;
             }
 
-            return cart.UserId == userId ? true : false;
+            return cart.UserId == userId;
         }
 
         /// <summary>

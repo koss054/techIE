@@ -1,23 +1,26 @@
-﻿namespace techIE.Areas.Admin.Controllers
+﻿namespace techIE.UnitTests.TestControllers.Areas.Admin
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
 
-    using Constants;
     using Contracts;
-    using Infrastructure;
-    using Models.Categories;
+
     using techIE.Controllers;
+    using techIE.Models.Categories;
+    using techIE.Constants;
 
     /// <summary>
     /// Controller managing the actions which are available in the admin category panel.
     /// No views pages are used here.
     /// </summary>
     [Area("Admin")]
-    public class CategoryController : BaseController
+    public class CategoryTestController : BaseController
     {
         private readonly ICategoryService categoryService;
 
-        public CategoryController(ICategoryService _categoryService)
+        public CategoryTestController(ICategoryService _categoryService)
         {
             categoryService = _categoryService;
         }
@@ -25,12 +28,16 @@
         /// <summary>
         /// Get request for adding a category.
         /// </summary>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Passed the necessary form model for the post request.</returns>
         [HttpGet]
 
-        public IActionResult Add()
+        public IActionResult Add(bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -43,11 +50,15 @@
         /// Post request for adding a category/updating existing categories.
         /// </summary>
         /// <param name="model">View model containing all of the categories and the add view model.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>The same view page on successfull category update.</returns>
         [HttpPost]
-        public async Task<IActionResult> Add(CategoryFormViewModel model)
+        public async Task<IActionResult> Add(CategoryFormViewModel model, bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -67,11 +78,15 @@
         /// Get request for editing a category.
         /// </summary>
         /// <param name="id">Id of the category that the user wants to edit.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>CategoryFormViewModel to post request, allowing the user to edit the name of the selected category.</returns>
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id, bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -96,11 +111,15 @@
         /// Post request for editing a category.
         /// </summary>
         /// <param name="model">View model used to ensure that the new name covers the needed validations.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>If model is valid, user is redirected to admin category panel. Otherwise, they are prompted to edit the name again.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(CategoryFormViewModel model)
+        public async Task<IActionResult> Edit(CategoryFormViewModel model, bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -120,10 +139,14 @@
         /// Toggle the IsOfficial category property.
         /// </summary>
         /// <param name="id">Id of the category that should be verified.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns></returns>
-        public async Task<IActionResult> Verify(int id)
+        public async Task<IActionResult> Verify(int id, bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -143,10 +166,14 @@
         /// Delete category from list.
         /// </summary>
         /// <param name="id">Id of category that will be deleted.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Returns to panel page if successful.</returns>
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -161,10 +188,14 @@
         /// Restore category to list.
         /// </summary>
         /// <param name="id">Id of category that will be restored.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Returns to panel page if successful.</returns>
-        public async Task<IActionResult> Restore(int id)
+        public async Task<IActionResult> Restore(int id, bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }

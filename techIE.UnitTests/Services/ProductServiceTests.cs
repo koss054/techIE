@@ -1,4 +1,5 @@
-﻿namespace techIE.UnitTests.Services
+﻿#nullable disable
+namespace techIE.UnitTests.Services
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -315,7 +316,7 @@
             await productService.AddAsync(productModel, sellerId);
 
             var newProduct = context.Products.Last();
-            var newUserProductCount = context.UsersProducts.ToList().Count();
+            var newUserProductCount = context.UsersProducts.ToList().Count;
 
             Assert.IsNotNull(newProduct);
             Assert.AreNotEqual(initialUserProductCount, newUserProductCount);

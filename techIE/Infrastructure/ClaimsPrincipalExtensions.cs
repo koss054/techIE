@@ -1,4 +1,5 @@
-﻿namespace techIE.Infrastructure
+﻿#nullable disable
+namespace techIE.Infrastructure
 {
     using System.Security.Claims;
 

@@ -1,4 +1,5 @@
-﻿namespace techIE.UnitTests.Services
+﻿#nullable disable
+namespace techIE.UnitTests.Services
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -59,7 +60,7 @@
             // Expected result is that no order with the provided cartId should be in the database.
             var order = await context.Orders.Where(o => o.CartId == cartId).ToListAsync();
 
-            Assert.AreEqual(expectedOrderCount, order.Count());
+            Assert.AreEqual(expectedOrderCount, order.Count);
         }
 
         [Test]

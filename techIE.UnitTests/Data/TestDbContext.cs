@@ -10,7 +10,7 @@
 
     public class TestDbContext
     {
-        private AppDbContext context;
+        private readonly AppDbContext context;
 
         /// <summary>
         /// Create a test database for the unit tests.

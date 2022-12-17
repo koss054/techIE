@@ -1,21 +1,25 @@
-﻿namespace techIE.Controllers
+﻿namespace techIE.UnitTests.TestControllers
 {
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
 
-    using Constants;
-    using Contracts;
-    using Infrastructure;
-    using Data.Entities.Enums;
+    using techIE.Controllers;
+    using techIE.Constants;
+    using techIE.Contracts;
+    using techIE.Data.Entities.Enums;
 
     /// <summary>
     /// Controller used for managing carts.
     /// Used in both official and marketplace areas.
     /// </summary>
-    public class CartController : BaseController
+    public class CartTestController : BaseController
     {
+        // Specifying this here, because I can't test the static ClaimsPrincipalExtensions User.Id().
+        private readonly string testUserId = "fake-guid"; 
         private readonly ICartService cartService;
 
-        public CartController(
+        public CartTestController(
             ICartService _cartService)
         {
             cartService = _cartService;
@@ -29,7 +33,7 @@
         /// <returns>Depending on the enum CartAction, the user is either redirected to an appropriate page or gets BadRequest.</returns>
         public async Task<IActionResult> Add(int id, string store)
         {
-            var action = await cartService.AddProductAsync(id, this.User.Id());
+            var action = await cartService.AddProductAsync(id, testUserId);
 
             if (action == CartAction.Failed)
             {
@@ -58,7 +62,7 @@
         /// <returns>Cart content if there are items in the cart. Otherwise, the user is informed that their cart is empty..</returns>
         public async Task<IActionResult> Inspect()
         {
-            var model = await cartService.GetCurrentCartAsync(this.User.Id());
+            var model = await cartService.GetCurrentCartAsync(testUserId);
             return View(model);
         }
 
@@ -71,7 +75,7 @@
         /// <returns>Redirects to the cart inspect page.</returns>
         public async Task<IActionResult> Remove(int cartId, int productId)
         {
-            if (await cartService.IsCartForUserAsync(cartId, this.User.Id()) == false)
+            if (await cartService.IsCartForUserAsync(cartId, testUserId) == false)
             {
                 return NotFound();
             }
@@ -89,7 +93,7 @@
         /// <returns>Redirects to the cart inspect page.</returns>
         public async Task<IActionResult> Empty(int cartId)
         {
-            if (await cartService.IsCartForUserAsync(cartId, this.User.Id()) == false)
+            if (await cartService.IsCartForUserAsync(cartId, testUserId) == false)
             {
                 return NotFound();
             }
@@ -102,7 +106,7 @@
 
         public async Task<IActionResult> History(int cartId) 
         {
-            if (await cartService.IsCartForUserAsync(cartId, this.User.Id()) == false)
+            if (await cartService.IsCartForUserAsync(cartId, testUserId) == false)
             {
                 return NotFound();
             }

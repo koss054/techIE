@@ -1,10 +1,12 @@
-﻿namespace techIE.Areas.Marketplace.Controllers
+﻿namespace techIE.UnitTests.TestControllers.Areas.Marketplace
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
 
     using Constants;
     using Contracts;
-    using Infrastructure;
 
     using Models.Products;
 
@@ -15,13 +17,15 @@
     /// Users can add products, view their details and make orders.
     /// </summary>
     [Area("Marketplace")]
-    public class ProductController : BaseController
+    public class ProductTestController : BaseController
     {
+        // Specifying this here, because I can't test the static ClaimsPrincipalExtensions User.Id().
+        private readonly string testUserId = "fake-guid-id";
         private readonly IUserService userService;
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
 
-        public ProductController(
+        public ProductTestController(
             IUserService _userService,
             IProductService _productService,
             ICategoryService _categoryService)
@@ -70,7 +74,7 @@
 
             // As this product is added in the user marketplace it's not considered one of techIE's official products.
             model.IsOfficial = false;
-            await productService.AddAsync(model, this.User.Id());
+            await productService.AddAsync(model, testUserId);
             return RedirectToAction(
                 RedirectPaths.AddMarketplaceProductPage,
                 RedirectPaths.AddMarketplaceProductController);
@@ -117,7 +121,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            if (await productService.IsUserSellerAsync(id, this.User.Id()) == false)
+            if (await productService.IsUserSellerAsync(id, testUserId) == false)
             {
                 return NotFound();
             }
@@ -166,7 +170,7 @@
         /// <returns>Returns to panel page if successful.</returns>
         public async Task<IActionResult> Delete(int id)
         {
-            var isSeller = await productService.IsUserSellerAsync(id, this.User.Id());
+            var isSeller = await productService.IsUserSellerAsync(id, testUserId);
             if (isSeller == false)
             {
                 return NotFound();
@@ -186,7 +190,7 @@
         /// <returns>Returns to panel page if successful.</returns>
         public async Task<IActionResult> Restore(int id)
         {
-            var isSeller = await productService.IsUserSellerAsync(id, this.User.Id());
+            var isSeller = await productService.IsUserSellerAsync(id, testUserId);
             if (isSeller == false)
             {
                 return NotFound();

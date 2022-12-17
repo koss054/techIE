@@ -1,9 +1,12 @@
-﻿namespace techIE.Areas.Admin.Controllers
+﻿namespace techIE.UnitTests.TestControllers.Areas.Admin
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
 
     using Contracts;
-    using Infrastructure;
+
     using techIE.Controllers;
 
     /// <summary>
@@ -11,12 +14,12 @@
     /// Only accessible by users with the Administrator/Admin role.
     /// </summary>
     [Area("Admin")]
-    public class PanelController : BaseController
+    public class PanelTestController : BaseController
     {
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
 
-        public PanelController(
+        public PanelTestController(
             ICategoryService _categoryService,
             IProductService _productService)
         {
@@ -28,11 +31,15 @@
         /// Index page for the Panel controller.
         /// Admins can access all of the admin pages from here.
         /// </summary>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Panel index page.</returns>
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -44,11 +51,15 @@
         /// Checks if the current user is an admin. If not, they are redirected.
         /// If user is admin, they can manage all categories.
         /// </summary>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Category panel page.</returns>
         [HttpGet]
-        public async Task<IActionResult> Categories()
+        public async Task<IActionResult> Categories(bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -61,11 +72,15 @@
         /// Checks if the current user is an admin. If not, they are redirected.
         /// If user is admin, they can manage all official products.
         /// </summary>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Product panel page.</returns>
         [HttpGet]
-        public async Task<IActionResult> Products()
+        public async Task<IActionResult> Products(bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -78,11 +93,15 @@
         /// Checks if the current user is an admin. If not, they are redirected.
         /// If user tries to add/edit an official product and no category has IsDeleted == false, they get redirected here.
         /// </summary>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Page, informing the admin that no official categories are available.</returns>
         [HttpGet]
-        public async Task<IActionResult> Empty()
+        public async Task<IActionResult> Empty(bool isUserAdmin)
         {
-            if (!this.User.IsAdmin())
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
