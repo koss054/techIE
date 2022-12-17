@@ -9,7 +9,6 @@ namespace techIE.UnitTests.Areas.Admin
 
     using techIE.Contracts;
     using techIE.Models.Categories;
-    using techIE.Models;
     using techIE.Models.Products;
 
     using techIE.UnitTests.TestControllers.Areas.Admin;
