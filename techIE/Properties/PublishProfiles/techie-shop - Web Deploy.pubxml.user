@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACNR0LMKOHUC735P+zlovTAAAAAACAAAAAAAQZgAAAAEAACAAAADAEipz5IWDrUebOGl6lfMqJylEzjhgpJzJcENrnPO66gAAAAAOgAAAAAIAACAAAAAyy9ggsdNRYSe726Ki1Q0zrR5R7bZD0OIhaWH39YH6qYAAAAC5E5yJR8Lcj2yFeEYXkRn1eSQL4cd0DOi9xzjKYNrN+FbYr8SIk/mdoE1RLZlFUekWDwqLdz6elVW7SCChyU2gLCapcuIVzSoSkb1LN5kvlF4lDZUKzOetGcI3O56vRBkwrRIweYoDLHXi23MM+PsPmO2E2pR7nc+MskwPN09ItEAAAABVcGSrJq9Sfv88HRXSBOp7r2VbgAcDJCOea5n8brOs3QVhLSPupbulIZX0iRD11kk7Wo3uyj1hHh7bB6m8w6TK</EncryptedPassword>
+    <History>True|2022-12-17T21:27:55.3196702Z;True|2022-12-17T23:21:53.2599969+02:00;True|2022-12-17T23:17:18.4053139+02:00;True|2022-12-17T23:02:38.3922507+02:00;False|2022-12-17T22:57:34.1206194+02:00;False|2022-12-17T22:55:13.6241421+02:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=localhost%3bDatabase=techIE%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
