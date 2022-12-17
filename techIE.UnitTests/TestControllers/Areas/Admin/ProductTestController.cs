@@ -22,7 +22,6 @@
         private readonly string testUserId = "fake-guid-id";
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
-        private readonly bool isTestUserAdmin = true;
 
         public ProductTestController(
             IProductService _productService,
@@ -38,9 +37,9 @@
         /// </summary>
         /// <returns>Model to add to post request.</returns>
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add(bool isUserAdmin)
         {
-            if (!isTestUserAdmin)
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -50,7 +49,7 @@
                 Categories = await categoryService.GetOfficialAsync()
             };
 
-            if (model.Categories.Any())
+            if (!model.Categories.Any())
             {
                 return RedirectToAction(
                     RedirectPaths.NoAvailableCategoriesPage,
@@ -67,9 +66,9 @@
         /// <param name="model"></param>
         /// <returns>Admin product panel on successful add. Otherwise, the user can try to add the product again.</returns>
         [HttpPost]
-        public async Task<IActionResult> Add(ProductFormViewModel model)
+        public async Task<IActionResult> Add(ProductFormViewModel model, bool isUserAdmin)
         {
-            if (isTestUserAdmin)
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -94,9 +93,9 @@
         /// <param name="id">Id for the product that the admin wants to edit.</param>
         /// <returns>Post request with model to edit.</returns>
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id, bool isUserAdmin)
         {
-            if (isTestUserAdmin)
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -124,9 +123,9 @@
         /// <param name="model">View model with validations.</param>
         /// <returns>If model is valid, user is redirected to admin category panel. Otherwise, they are prompted to edit the name again.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(ProductFormViewModel model)
+        public async Task<IActionResult> Edit(ProductFormViewModel model, bool isUserAdmin)
         {
-            if (isTestUserAdmin)
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -148,9 +147,9 @@
         /// </summary>
         /// <param name="id">Id of product that will be deleted.</param>
         /// <returns>Returns to panel page if successful.</returns>
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, bool isUserAdmin)
         {
-            if (isTestUserAdmin)
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
@@ -166,9 +165,9 @@
         /// </summary>
         /// <param name="id">Id of product that will be restored.</param>
         /// <returns>Returns to panel page if successful.</returns>
-        public async Task<IActionResult> Restore(int id)
+        public async Task<IActionResult> Restore(int id, bool isUserAdmin)
         {
-            if (isTestUserAdmin)
+            if (!isUserAdmin)
             {
                 return Unauthorized();
             }
