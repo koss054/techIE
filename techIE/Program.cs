@@ -1,8 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-using techIE.Services;
-using techIE.Contracts;
 using techIE.Data;
 using techIE.Data.Entities;
 using techIE.Infrastructure;
@@ -30,13 +29,12 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/User/Login";
 });
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+});
 
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ICartService, CartService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
@@ -49,6 +47,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
+    app.UseMigrationsEndPoint();
     app.UseExceptionHandler("/Home/Error/500");
     app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
     app.UseHsts();
