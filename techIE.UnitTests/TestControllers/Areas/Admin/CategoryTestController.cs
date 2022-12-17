@@ -28,6 +28,10 @@
         /// <summary>
         /// Get request for adding a category.
         /// </summary>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Passed the necessary form model for the post request.</returns>
         [HttpGet]
 
@@ -46,6 +50,10 @@
         /// Post request for adding a category/updating existing categories.
         /// </summary>
         /// <param name="model">View model containing all of the categories and the add view model.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>The same view page on successfull category update.</returns>
         [HttpPost]
         public async Task<IActionResult> Add(CategoryFormViewModel model, bool isUserAdmin)
@@ -70,6 +78,10 @@
         /// Get request for editing a category.
         /// </summary>
         /// <param name="id">Id of the category that the user wants to edit.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>CategoryFormViewModel to post request, allowing the user to edit the name of the selected category.</returns>
         [HttpGet]
         public async Task<IActionResult> Edit(int id, bool isUserAdmin)
@@ -99,6 +111,10 @@
         /// Post request for editing a category.
         /// </summary>
         /// <param name="model">View model used to ensure that the new name covers the needed validations.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>If model is valid, user is redirected to admin category panel. Otherwise, they are prompted to edit the name again.</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(CategoryFormViewModel model, bool isUserAdmin)
@@ -123,6 +139,10 @@
         /// Toggle the IsOfficial category property.
         /// </summary>
         /// <param name="id">Id of the category that should be verified.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns></returns>
         public async Task<IActionResult> Verify(int id, bool isUserAdmin)
         {
@@ -146,6 +166,10 @@
         /// Delete category from list.
         /// </summary>
         /// <param name="id">Id of category that will be deleted.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Returns to panel page if successful.</returns>
         public async Task<IActionResult> Delete(int id, bool isUserAdmin)
         {
@@ -164,6 +188,10 @@
         /// Restore category to list.
         /// </summary>
         /// <param name="id">Id of category that will be restored.</param>
+        /// <param name="isUserAdmin">
+        /// Temporary param for test controller.
+        /// Otherwise an error for no instance of ClaimsPrincpialExtensions.IsAdmin().
+        /// </param>
         /// <returns>Returns to panel page if successful.</returns>
         public async Task<IActionResult> Restore(int id, bool isUserAdmin)
         {
