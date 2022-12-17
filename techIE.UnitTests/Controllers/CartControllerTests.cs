@@ -1,24 +1,24 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
-using Moq;
-using NUnit.Framework;
-
-using techIE.Constants;
-using techIE.Contracts;
-using techIE.Data.Entities.Enums;
-using techIE.Models.Carts;
-
-using techIE.UnitTests.TestControllers;
-
-namespace techIE.UnitTests.Controllers
+﻿namespace techIE.UnitTests.Controllers
 {
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
+    using Moq;
+    using NUnit.Framework;
+
+    using Constants;
+    using Contracts;
+    using Models.Carts;
+    using techIE.Data.Entities.Enums;
+
+    using techIE.UnitTests.TestControllers;
+
     public class CartControllerTests
     {
         // Using a new cartController, because the static ClaimsPrincipalExtensions User.Id() method doesn't allow the tests to run.
-        private TempDataDictionary tempData;
         private CartTestController controller;
+        private TempDataDictionary tempData;
         private Mock<ICartService> cartServiceMock;
 
         [SetUp]
