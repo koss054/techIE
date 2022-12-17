@@ -14,14 +14,11 @@
     public class CartController : BaseController
     {
         private readonly ICartService cartService;
-        private readonly IProductService productService;
 
         public CartController(
-            ICartService _cartService,
-            IProductService _productService)
+            ICartService _cartService)
         {
             cartService = _cartService;
-            productService = _productService;
         }
 
         /// <summary>
