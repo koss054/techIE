@@ -45,7 +45,7 @@
                 Categories = await categoryService.GetOfficialAsync()
             };
 
-            if (model.Categories.Count() == 0)
+            if (!model.Categories.Any())
             {
                 return RedirectToAction(
                     RedirectPaths.NoAvailableCategoriesPage,
@@ -103,7 +103,7 @@
             }
 
             model.Categories = await categoryService.GetOfficialAsync();
-            if (model.Categories.Count() == 0)
+            if (!model.Categories.Any())
             {
                 return RedirectToAction(
                     RedirectPaths.NoAvailableCategoriesPage,
