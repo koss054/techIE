@@ -7,7 +7,6 @@
     using techIE.Controllers;
     using techIE.Constants;
     using techIE.Contracts;
-    using techIE.Infrastructure;
     using techIE.Data.Entities.Enums;
 
     /// <summary>
